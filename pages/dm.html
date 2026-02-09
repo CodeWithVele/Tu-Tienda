@@ -1,0 +1,763 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensajes Directos - TuTienda</title>
+    
+    <!-- META PWA -->
+    <meta name="theme-color" content="#6a11cb">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Estilos principales -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ENCABEZADO -->
+    <header class="main-header" style="background: linear-gradient(135deg, #6a11cb, #2575fc);">
+        <div class="header-content" style="justify-content: flex-start; padding-left: 20px;">
+            <a href="index.html" style="color: white; text-decoration: none; margin-right: 15px;">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <div class="header-text" style="text-align: left;">
+                <h1 class="app-title">Mensajes Directos</h1>
+                <p class="app-subtitle">ConÃ©ctate con negocios de Macas</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="lista-negocios" style="padding: 20px; padding-bottom: 100px;">
+        
+        <!-- HERO SECTION -->
+        <section class="hero-dm">
+            <div class="hero-content">
+                <i class="fas fa-comments hero-icon"></i>
+                <h1 class="hero-title">ðŸ’¬ Chatea Directo</h1>
+                <p class="hero-subtitle">EnvÃ­a mensajes a negocios de Macas al instante</p>
+                
+                <button onclick="chatearConTodos()" class="btn-hero">
+                    <i class="fas fa-comments"></i>
+                    Chatear 
+                    <span id="contador-chatear-grande" class="contador-hero">0</span>
+                </button>
+                
+                <p class="hero-info">
+                    <i class="fas fa-info-circle"></i> Selecciona los negocios que quieras contactar
+                </p>
+            </div>
+        </section>
+
+        <!-- SECCIÃ“N DE NEGOCIOS -->
+        <section class="seccion-negocios-dm">
+            <div class="seccion-header">
+                <h2 class="seccion-titulo">
+                    <i class="fas fa-store"></i> Negocios Disponibles
+                    <small class="seccion-subtitulo">
+                        (<span id="total-negocios">0</span> disponibles)
+                    </small>
+                </h2>
+                <span id="contador-negocios" class="contador-seccion">
+                    0 seleccionados
+                </span>
+            </div>
+            
+            <!-- LISTA DE NEGOCIOS -->
+            <div id="lista-negocios-dm" class="lista-negocios-dm">
+                <!-- Los negocios se cargan dinÃ¡micamente aquÃ­ -->
+            </div>
+        </section>
+
+        <!-- BOTÃ“N CHATEAR FIJO -->
+        <div class="boton-chatear-fijo">
+            <button onclick="chatearConTodos()" class="btn-chatear-grande">
+                <i class="fas fa-comments"></i>
+                Enviar Mensaje a 
+                <span id="contador-chatear" class="contador-chatear">0</span>
+                negocio(s)
+            </button>
+        </div>
+
+        <!-- MENSAJES RÃPIDOS -->
+        <section class="seccion-rapida">
+            <h3 class="titulo-rapido">
+                <i class="fas fa-bolt"></i> Mensajes RÃ¡pidos
+            </h3>
+            
+            <button onclick="enviarMensajePredeterminado('disponibilidad')" class="btn-rapido btn-rapido-verde">
+                <i class="fas fa-question-circle"></i>
+                "Â¿Tienen disponibilidad ahora?"
+            </button>
+            
+            <button onclick="enviarMensajePredeterminado('precio')" class="btn-rapido btn-rapido-naranja">
+                <i class="fas fa-tag"></i>
+                "Â¿CuÃ¡l es su precio?"
+            </button>
+            
+            <button onclick="enviarMensajePredeterminado('info')" class="btn-rapido btn-rapido-morado">
+                <i class="fas fa-info-circle"></i>
+                "Me gustarÃ­a mÃ¡s informaciÃ³n"
+            </button>
+        </section>
+        
+        <!-- INSTRUCCIONES -->
+        <section class="instrucciones-dm">
+            <h4 class="titulo-instrucciones">
+                <i class="fas fa-lightbulb"></i> Â¿CÃ³mo funciona?
+            </h4>
+            <ol class="lista-instrucciones">
+                <li>Selecciona los negocios con los que quieres contactar</li>
+                <li>Escribe tu mensaje o usa uno de los mensajes rÃ¡pidos</li>
+                <li>Los negocios recibirÃ¡n tu mensaje por WhatsApp</li>
+                <li>Ellos te contactarÃ¡n directamente</li>
+            </ol>
+        </section>
+        
+    </main>
+
+    <!-- MENÃš INFERIOR -->
+    <nav class="menu-inferior">
+        <a href="index.html" class="menu-item">
+            <i class="fas fa-home"></i>
+            <span>Inicio</span>
+        </a>
+        
+        <a href="mapa.html" class="menu-item">
+            <i class="fas fa-map"></i>
+            <span>Mapa</span>
+        </a>
+        
+        <a href="dm.html" class="menu-item menu-activo">
+            <i class="fas fa-comment-dots"></i>
+            <span>DM</span>
+            <span id="dm-icono" class="dm-notificacion">ðŸ’¬</span>
+        </a>
+        
+        <a href="alertas.html" class="menu-item">
+            <i class="fas fa-bell"></i>
+            <span>Alertas</span>
+        </a>
+        
+        <a href="cuenta.html" class="menu-item">
+            <i class="fas fa-user"></i>
+            <span>Cuenta</span>
+        </a>
+    </nav>
+
+    <!-- SCRIPTS -->
+    <script src="negocios.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- SCRIPT DE DM -->
+    <script>
+    // Array de negocios (se carga desde negocios.js)
+    let negociosDM = [];
+
+    // CARGAR NEGOCIOS EN LA LISTA
+    function cargarNegociosDM() {
+        // Obtener negocios desde negocios.js
+        if (typeof window.negociosMacas !== 'undefined') {
+            negociosDM = window.negociosMacas.map(negocio => ({
+                id: negocio.id,
+                nombre: negocio.nombre,
+                categoria: negocio.categoria,
+                telefono: negocio.telefono || '',
+                icono: 'fas fa-store',
+                color: '#6a11cb',
+                seleccionado: false,
+                featured: negocio.fundador || false
+            }));
+        } else {
+            // Datos de ejemplo si no hay negocios.js
+            negociosDM = [
+                {
+                    id: 1,
+                    nombre: "ZapaterÃ­a Colombiano",
+                    categoria: "ReparaciÃ³n de Calzado",
+                    telefono: "0981342236",
+                    icono: "fas fa-shoe-prints",
+                    color: "#28a745",
+                    seleccionado: false,
+                    featured: true
+                },
+                {
+                    id: 2,
+                    nombre: "Restaurante El Sabor de Macas",
+                    categoria: "Restaurante",
+                    telefono: "0912345678",
+                    icono: "fas fa-utensils",
+                    color: "#dc3545",
+                    seleccionado: false,
+                    featured: false
+                },
+                {
+                    id: 3,
+                    nombre: "Farmacia Santa Marianita",
+                    categoria: "Farmacia",
+                    telefono: "0923456789",
+                    icono: "fas fa-pills",
+                    color: "#007bff",
+                    seleccionado: false,
+                    featured: false
+                }
+            ];
+        }
+        
+        const contenedor = document.getElementById('lista-negocios-dm');
+        const contador = document.getElementById('contador-negocios');
+        const contadorChat = document.getElementById('contador-chatear');
+        const contadorGrande = document.getElementById('contador-chatear-grande');
+        const totalNegocios = document.getElementById('total-negocios');
+        
+        if (!contenedor) return;
+        
+        contenedor.innerHTML = '';
+        let totalSeleccionados = 0;
+        
+        // Actualizar total
+        if (totalNegocios) {
+            totalNegocios.textContent = negociosDM.length;
+        }
+        
+        negociosDM.forEach(negocio => {
+            totalSeleccionados += negocio.seleccionado ? 1 : 0;
+            
+            const negocioHTML = `
+                <div class="tarjeta-negocio-dm" data-id="${negocio.id}">
+                    <div class="dm-negocio-content">
+                        <input type="checkbox" 
+                               id="negocio-${negocio.id}" 
+                               ${negocio.seleccionado ? 'checked' : ''}
+                               onchange="toggleNegocio(${negocio.id})"
+                               class="dm-checkbox">
+                        
+                        <div class="dm-icono" style="background: ${negocio.color}20; color: ${negocio.color}">
+                            <i class="${negocio.icono}"></i>
+                        </div>
+                        
+                        <div class="dm-info">
+                            <h3 class="dm-nombre">
+                                ${negocio.nombre}
+                                ${negocio.featured ? '<span class="dm-badge">â­</span>' : ''}
+                            </h3>
+                            <p class="dm-categoria">
+                                <i class="fas fa-tag"></i> ${negocio.categoria}
+                            </p>
+                            <p class="dm-telefono">
+                                <i class="fas fa-phone"></i> ${negocio.telefono || 'Sin telÃ©fono'}
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="dm-acciones">
+                        <button onclick="abrirChatIndividual(${negocio.id})" class="btn-chatear-individual">
+                            <i class="fas fa-comment"></i> Chatear
+                        </button>
+                    </div>
+                </div>
+            `;
+            contenedor.innerHTML += negocioHTML;
+        });
+        
+        // Actualizar contadores
+        if (contador) {
+            contador.textContent = `${totalSeleccionados} seleccionados`;
+            contador.style.background = totalSeleccionados > 0 ? '#28a745' : '#6c757d';
+        }
+        
+        if (contadorChat) {
+            contadorChat.textContent = totalSeleccionados;
+        }
+        
+        if (contadorGrande) {
+            contadorGrande.textContent = totalSeleccionados;
+        }
+    }
+
+    // FUNCIONES BÃSICAS
+    function toggleNegocio(id) {
+        const negocio = negociosDM.find(n => n.id === id);
+        if (negocio) {
+            negocio.seleccionado = !negocio.seleccionado;
+            cargarNegociosDM();
+        }
+    }
+
+    function chatearConTodos() {
+        const negociosSeleccionados = negociosDM.filter(n => n.seleccionado);
+        
+        if (negociosSeleccionados.length === 0) {
+            alert("âš ï¸ Por favor, selecciona al menos un negocio para enviar mensaje.");
+            return;
+        }
+        
+        const mensaje = prompt(`ðŸ“¤ Escribe tu mensaje para ${negociosSeleccionados.length} negocio(s):`, 
+                              "Hola, estoy interesado en sus servicios. Â¿PodrÃ­an contactarme?");
+        
+        if (mensaje) {
+            // Simular envÃ­o a WhatsApp
+            negociosSeleccionados.forEach(negocio => {
+                console.log(`Enviando a ${negocio.nombre} (${negocio.telefono}): ${mensaje}`);
+            });
+            
+            // Abrir WhatsApp con el primer negocio
+            const primerNegocio = negociosSeleccionados[0];
+            if (primerNegocio.telefono) {
+                const whatsappLink = `https://wa.me/593${primerNegocio.telefono.replace(/\D/g, '')}?text=${encodeURIComponent(mensaje)}`;
+                window.open(whatsappLink, '_blank');
+            }
+            
+            alert(`âœ… MENSAJES ENVIADOS\n\nâ€¢ A ${negociosSeleccionados.length} negocio(s)\nâ€¢ Ellos te contactarÃ¡n pronto por WhatsApp`);
+        }
+    }
+
+    function abrirChatIndividual(idNegocio) {
+        const negocio = negociosDM.find(n => n.id === idNegocio);
+        if (negocio) {
+            const mensaje = prompt(`ðŸ’¬ Escribe tu mensaje para ${negocio.nombre}:`, 
+                                  `Hola ${negocio.nombre}, me gustarÃ­a saber mÃ¡s sobre ${negocio.categoria.toLowerCase()}.`);
+            if (mensaje && negocio.telefono) {
+                const whatsappLink = `https://wa.me/593${negocio.telefono.replace(/\D/g, '')}?text=${encodeURIComponent(mensaje)}`;
+                
+                if (confirm(`Â¿Enviar mensaje a ${negocio.nombre}?`)) {
+                    window.open(whatsappLink, '_blank');
+                }
+            }
+        }
+    }
+
+    function enviarMensajePredeterminado(tipo = 'disponibilidad') {
+        const mensajes = {
+            disponibilidad: "Â¿Tienen disponibilidad ahora?",
+            precio: "Â¿CuÃ¡l es su precio?",
+            info: "Me gustarÃ­a mÃ¡s informaciÃ³n sobre sus servicios/productos."
+        };
+        
+        const mensaje = mensajes[tipo] || "Hola, me gustarÃ­a informaciÃ³n.";
+        const negociosSeleccionados = negociosDM.filter(n => n.seleccionado);
+        
+        if (negociosSeleccionados.length === 0) {
+            alert("âš ï¸ Selecciona al menos un negocio primero.");
+            return;
+        }
+        
+        // Abrir WhatsApp con el primer negocio seleccionado
+        const primerNegocio = negociosSeleccionados[0];
+        if (primerNegocio.telefono) {
+            const whatsappLink = `https://wa.me/593${primerNegocio.telefono.replace(/\D/g, '')}?text=${encodeURIComponent(mensaje)}`;
+            window.open(whatsappLink, '_blank');
+        }
+        
+        alert(`âœ… Mensaje enviado a ${negociosSeleccionados.length} negocio(s)`);
+    }
+
+    // Cargar negocios al iniciar
+    document.addEventListener('DOMContentLoaded', function() {
+        cargarNegociosDM();
+    });
+    </script>
+
+    <!-- ESTILOS ESPECÃFICOS PARA DM -->
+    <style>
+    /* HERO SECTION */
+    .hero-dm {
+        background: linear-gradient(135deg, #f8f9ff, #eef2ff);
+        border-radius: var(--radio-large);
+        padding: 30px 20px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .hero-icon {
+        font-size: 80px;
+        color: #6a11cb;
+        margin-bottom: 15px;
+    }
+    
+    .hero-title {
+        color: var(--texto-oscuro);
+        margin-bottom: 10px;
+        font-size: 28px;
+    }
+    
+    .hero-subtitle {
+        color: var(--texto-claro);
+        margin-bottom: 25px;
+        font-size: 18px;
+        line-height: 1.4;
+    }
+    
+    .btn-hero {
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        color: white;
+        border: none;
+        padding: 20px 40px;
+        border-radius: 50px;
+        font-size: 20px;
+        font-weight: bold;
+        margin: 20px 0;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 15px;
+        box-shadow: 0 8px 25px rgba(106, 17, 203, 0.4);
+        transition: all 0.3s ease;
+    }
+    
+    .btn-hero:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 30px rgba(106, 17, 203, 0.5);
+    }
+    
+    .contador-hero {
+        background: white;
+        color: #6a11cb;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 10px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    
+    .hero-info {
+        color: var(--texto-claro);
+        font-size: 14px;
+        margin-top: 15px;
+    }
+    
+    /* SECCIÃ“N NEGOCIOS */
+    .seccion-negocios-dm {
+        margin-bottom: 40px;
+    }
+    
+    .seccion-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    
+    .seccion-titulo {
+        color: var(--texto-oscuro);
+        margin: 0;
+        font-size: 22px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .seccion-subtitulo {
+        font-size: 14px;
+        color: var(--texto-claro);
+        margin-left: 10px;
+        font-weight: normal;
+    }
+    
+    .contador-seccion {
+        background: var(--gris-oscuro);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 14px;
+    }
+    
+    /* LISTA DE NEGOCIOS DM */
+    .lista-negocios-dm {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .tarjeta-negocio-dm {
+        background: var(--blanco);
+        border-radius: var(--radio-medium);
+        padding: 20px;
+        box-shadow: var(--sombra-suave);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: all 0.3s ease;
+        border-left: 5px solid #6a11cb;
+    }
+    
+    .tarjeta-negocio-dm:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--sombra-media);
+    }
+    
+    .dm-negocio-content {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex: 1;
+    }
+    
+    .dm-checkbox {
+        width: 22px;
+        height: 22px;
+        cursor: pointer;
+        accent-color: #6a11cb;
+    }
+    
+    .dm-icono {
+        width: 55px;
+        height: 55px;
+        border-radius: var(--radio-medium);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+    }
+    
+    .dm-info {
+        flex: 1;
+    }
+    
+    .dm-nombre {
+        margin: 0;
+        color: var(--texto-oscuro);
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .dm-badge {
+        background: #ffd700;
+        color: #333;
+        padding: 2px 8px;
+        border-radius: 10px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    
+    .dm-categoria {
+        margin: 5px 0;
+        color: var(--texto-claro);
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .dm-telefono {
+        margin: 0;
+        color: var(--texto-claro);
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .dm-acciones {
+        text-align: right;
+    }
+    
+    .btn-chatear-individual {
+        background: #6a11cb;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-chatear-individual:hover {
+        opacity: 0.9;
+        transform: scale(1.05);
+    }
+    
+    /* BOTÃ“N CHATEAR FIJO */
+    .boton-chatear-fijo {
+        margin: 30px 0;
+        text-align: center;
+    }
+    
+    .btn-chatear-grande {
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        color: white;
+        border: none;
+        padding: 18px 40px;
+        border-radius: var(--radio-medium);
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 15px;
+        box-shadow: 0 8px 25px rgba(106, 17, 203, 0.4);
+        transition: all 0.3s ease;
+        width: 100%;
+        max-width: 400px;
+        justify-content: center;
+    }
+    
+    .btn-chatear-grande:hover {
+        transform: scale(1.05);
+    }
+    
+    .contador-chatear {
+        background: white;
+        color: #6a11cb;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 10px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    
+    /* MENSAJES RÃPIDOS */
+    .seccion-rapida {
+        background: #f8f9ff;
+        padding: 25px;
+        border-radius: var(--radio-medium);
+        border: 2px dashed #6a11cb;
+        margin-bottom: 40px;
+    }
+    
+    .titulo-rapido {
+        color: #6a11cb;
+        margin-bottom: 20px;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .btn-rapido {
+        color: white;
+        border: none;
+        padding: 15px 20px;
+        border-radius: var(--radio-small);
+        font-size: 16px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 10px 0;
+        width: 100%;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-rapido:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .btn-rapido-verde {
+        background: var(--verde-macas);
+    }
+    
+    .btn-rapido-naranja {
+        background: #ff9800;
+    }
+    
+    .btn-rapido-morado {
+        background: #6a11cb;
+    }
+    
+    /* INSTRUCCIONES */
+    .instrucciones-dm {
+        background: #fff8e1;
+        padding: 20px;
+        border-radius: var(--radio-medium);
+        border-left: 5px solid #ff9800;
+        margin-top: 40px;
+    }
+    
+    .titulo-instrucciones {
+        color: #ff9800;
+        margin-top: 0;
+        margin-bottom: 15px;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .lista-instrucciones {
+        color: var(--texto-oscuro);
+        margin-bottom: 0;
+        padding-left: 20px;
+    }
+    
+    .lista-instrucciones li {
+        margin-bottom: 10px;
+        line-height: 1.4;
+    }
+    
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+        .hero-title {
+            font-size: 24px;
+        }
+        
+        .hero-subtitle {
+            font-size: 16px;
+        }
+        
+        .btn-hero {
+            padding: 15px 30px;
+            font-size: 18px;
+        }
+        
+        .tarjeta-negocio-dm {
+            flex-direction: column;
+            gap: 15px;
+            align-items: stretch;
+        }
+        
+        .dm-negocio-content {
+            width: 100%;
+        }
+        
+        .dm-acciones {
+            width: 100%;
+            text-align: center;
+        }
+        
+        .btn-chatear-individual {
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .btn-chatear-grande {
+            font-size: 18px;
+            padding: 15px 30px;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .hero-icon {
+            font-size: 60px;
+        }
+        
+        .seccion-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .contador-seccion {
+            align-self: flex-start;
+        }
+    }
+    </style>
+</body>
+</html>

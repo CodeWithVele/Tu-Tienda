@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Meta tags para WhatsApp -->
+<meta property="og:title" content="MacasConecta">
+<meta property="og:description" content="Tu gu√≠a local de Macas. Encuentra negocios, servicios y m√°s.">
+<meta property="og:image" content="https://ejemplo.com/logo-macasconecta.jpg">
+<meta property="og:url" content="https://macasconecta.com">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Para WhatsApp espec√≠ficamente -->
+<meta property="og:site_name" content="MacasConecta">
+    <meta charset="UTF-8">
+    <!-- En el head de index.html -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>MacasConecta - Tu gu√≠a local de Macas</title>
+    
+    <!-- META PWA -->
+    <meta name="theme-color" content="#28a745">
+    
+    <!-- FAVICON -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    
+    <!-- APPLE (iOS) -->
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    
+    <!-- MANIFEST -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Estilos propios -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Estilos para el selector de pa√≠ses -->
+    <style>
+    /* Selector de pa√≠ses - Barra superior */
+    .country-selector-bar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: linear-gradient(135deg, #2c3e50, #34495e);
+        padding: 10px 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        border-bottom: 3px solid #28a745;
+    }
+
+    .country-selector-btn {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        padding: 12px 25px;
+        border-radius: 50px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 auto;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        width: fit-content;
+    }
+
+    .country-selector-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.5);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(40, 167, 69, 0.3);
+    }
+
+    .country-selector-btn i {
+        font-size: 18px;
+    }
+
+    /* Dropdown de pa√≠ses */
+    .country-dropdown {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: white;
+        width: 320px;
+        max-height: 400px;
+        overflow-y: auto;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        margin-top: 10px;
+        z-index: 1001;
+        padding: 15px 0;
+    }
+
+    .country-dropdown.show {
+        display: block;
+        animation: fadeInUp 0.3s ease;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateX(-50%) translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    }
+
+    /* Opciones de pa√≠ses */
+    .country-option {
+        padding: 15px 20px;
+        border-bottom: 1px solid #f0f0f0;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .country-option:hover {
+        background: #f8f9fa;
+        padding-left: 25px;
+    }
+
+    .country-option.active {
+        background: #e8f5e9;
+        color: #28a745;
+        font-weight: 600;
+    }
+
+    .country-option .flag {
+        font-size: 20px;
+        margin-right: 10px;
+    }
+
+    .country-option .name {
+        flex: 1;
+    }
+
+    .country-option .check {
+        color: #28a745;
+        font-size: 14px;
+    }
+
+    /* Secci√≥n de ciudades */
+    .cities-section {
+        padding: 15px;
+        background: #f8f9fa;
+        border-top: 1px solid #eee;
+    }
+
+    .cities-section h4 {
+        margin: 0 0 15px 0;
+        color: #2c3e50;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .city-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .city-item {
+        padding: 10px 15px;
+        background: white;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        cursor: pointer;
+        text-align: center;
+        font-size: 14px;
+        transition: all 0.2s;
+    }
+
+    .city-item:hover {
+        background: #28a745;
+        color: white;
+        border-color: #28a745;
+        transform: translateY(-2px);
+    }
+
+    .back-btn {
+        padding: 12px;
+        text-align: center;
+        color: #28a745;
+        cursor: pointer;
+        font-weight: 600;
+        border-top: 1px solid #eee;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .back-btn:hover {
+        background: #f8f9fa;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+        .country-selector-btn {
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+        
+        .country-dropdown {
+            width: 280px;
+        }
+        
+        .city-list {
+            grid-template-columns: 1fr;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <!-- Selector de pa√≠ses -->
+    <div class="country-selector-bar" id="countrySelector">
+        <button class="country-selector-btn">
+            <i class="fas fa-globe-americas"></i>
+            <span id="currentCountry">Ecuador</span>
+            <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="country-dropdown">
+            <!-- Aqu√≠ ir√≠an las opciones de pa√≠ses -->
+        </div>
+    </div>
+
+    <script>
+    // Recuperar selecci√≥n de pa√≠s/ciudad si existe
+    const pais = localStorage.getItem('pais');
+    const ciudad = localStorage.getItem('ciudad');
+    
+    if (pais && ciudad) {
+        // Puedes usar estos datos para personalizar la p√°gina
+        console.log(`Usuario de ${ciudad}, ${pais}`);
+        // Opcional: mostrar un saludo personalizado
+        document.addEventListener('DOMContentLoaded', () => {
+            const saludo = document.createElement('div');
+            saludo.style.cssText = 'background:#4CAF50;color:white;padding:0.5rem;text-align:center;';
+            saludo.innerHTML = `üåç Bienvenido desde ${ciudad}, ${pais} | <small><a href="#" onclick="localStorage.clear();location.reload()">Cambiar ubicaci√≥n</a></small>`;
+            document.body.prepend(saludo);
+        });
+    }
+    </script>
+    
+    <!-- ENCABEZADO -->
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-circle">
+                <span class="logo-icon">ü§ù</span>
+            </div>
+            <div class="header-text">
+                <h1 class="app-title">MacasConecta</h1>
+                <p class="app-subtitle">Tu gu√≠a local de Macas</p>
+            </div>
+        </div>
+        
+        <div class="alerta-urgente">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>Si hay paro o cierres, revisa horarios antes de salir</span>
+        </div>
+    </header>
+
+    <!-- BOTONES PRINCIPALES -->
+    <div class="botones-principales">
+        <a href="agregar.html" class="btn-principal btn-verde">
+            <i class="fas fa-store"></i>
+            <span>CONECTAR MI NEGOCIO</span>
+        </a>
+        
+        <a href="https://wa.me/593981342236?text=Hola%20MacasConecta" 
+           class="btn-principal btn-azul" target="_blank">
+            <i class="fas fa-headset"></i>
+            <span>SOPORTE R√ÅPIDO</span>
+        </a>
+    </div>
+
+    <!-- BUSCADOR INTERACTIVO -->
+    <div class="buscador-interactivo">
+        <div class="buscador-contenedor">
+            <input type="text" 
+                   id="search-input" 
+                   class="buscador-input"
+                   placeholder="üîç Buscar negocios (ej: restaurant, zapater√≠a, farmacia...)" 
+                   aria-label="Buscar negocios">
+            <button id="search-button" class="buscador-boton">
+                <i class="fas fa-search"></i> Buscar
+            </button>
+        </div>
+        
+        <a href="#" id="show-all-link" class="categorias-link">
+            <i class="fas fa-check-circle"></i> Ver todas las categor√≠as
+        </a>
+        
+        <div class="contador-negocios">
+            <i class="fas fa-store contador-icono"></i>
+            <span class="contador-numero" id="contadorNumero">6</span>
+            <span class="contador-texto" id="contadorTexto">negocios disponibles</span>
+        </div>
+    </div>
+
+    <!-- CATEGOR√çAS POPULARES -->
+    <div class="categorias-populares">
+        <h3><i class="fas fa-tags"></i> Categor√≠as populares</h3>
+        <div class="categorias-grid">
+            <a href="#" class="categoria-btn" data-categoria="restaurante">
+                <i class="fas fa-utensils"></i> Restaurantes
+            </a>
+            <a href="#" class="categoria-btn" data-categoria="farmacia">
+                <i class="fas fa-pills"></i> Farmacias
+            </a>
+            <a href="#" class="categoria-btn" data-categoria="zapateria">
+                <i class="fas fa-shoe-prints"></i> Zapater√≠as
+            </a>
+            <a href="#" class="categoria-btn" data-categoria="supermercado">
+                <i class="fas fa-shopping-cart"></i> Supermercados
+            </a>
+            <a href="#" class="categoria-btn" data-categoria="hotel">
+                <i class="fas fa-hotel"></i> Hoteles
+            </a>
+            <a href="#" class="categoria-btn" data-categoria="taller">
+                <i class="fas fa-tools"></i> Talleres
+            </a>
+            <a href="#" class="categoria-btn" data-categoria="clinica">
+                <i class="fas fa-hospital"></i> Cl√≠nicas
+            </a>
+            <a href="#" class="categoria-btn" data-categoria="transporte">
+                <i class="fas fa-bus"></i> Transporte
+            </a>
+        </div>
+    </div>
+
+    <!-- LISTA DE NEGOCIOS -->
+    <main class="lista-negocios" id="listaNegocios">
+        <!-- Los negocios aparecer√°n aqu√≠ din√°micamente -->
+        <div class="cargando-negocios">
+            <div class="spinner">
+                <i class="fas fa-circle-notch"></i>
+            </div>
+            <p>Cargando negocios de Macas...</p>
+        </div>
+    </main>
+
+    <!-- SECCI√ìN INGRESOS -->
+    <section class="seccion-ingresos">
+        <h2 class="ingresos-titulo">
+            <i class="fas fa-money-bill-wave"></i>
+            ¬°Gana dinero con MacasConecta!
+        </h2>
+        
+        <div class="opciones-ingreso">
+            <div class="tarjeta-ingreso">
+                <div class="ingreso-icono">
+                    <i class="fas fa-store"></i>
+                </div>
+                <h3>Agrega tu negocio GRATIS</h3>
+                <p>Primer mes sin costo. Luego solo $5/mes por visibilidad completa.</p>
+            </div>
+            
+            <div class="tarjeta-ingreso">
+                <div class="ingreso-icono">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Recomienda y gana</h3>
+                <p>Gana $2 por cada negocio que se registre con tu c√≥digo.</p>
+            </div>
+        </div>
+        
+        <div class="llamado-accion">
+            <p><strong>OFERTA DE LANZAMIENTO:</strong></p>
+            <p class="oferta-especial">¬°PRIMER MES 100% GRATIS PARA TODOS!</p>
+        </div>
+    </section>
+
+    <!-- PIE DE P√ÅGINA -->
+    
+<!-- =========================================== -->
+<!-- SECCI”N: AGREGAR MI NEGOCIO - EN P¡GINA PRINCIPAL -->
+<!-- =========================================== -->
+<section style="
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 40px 20px;
+    margin: 40px 0;
+    border-radius: 15px;
+    border: 2px dashed #28a745;
+">
+    <div style="max-width: 800px; margin: 0 auto;">
+        
+        <!-- TÕTULO -->
+        <h2 style="
+            color: #28a745;
+            text-align: center;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        ">
+            <i class="fas fa-store" style="font-size: 32px;"></i>
+            °AGREGA TU NEGOCIO A MACASCONECTA!
+        </h2>
+        
+        <p style="text-align: center; color: #666; margin-bottom: 30px; font-size: 16px;">
+            Conecta con miles de clientes en Macas. <strong>Primer mes GRATIS</strong>, luego solo $5/mes.
+        </p>
+        
+        <!-- MINI-FORMULARIO -->
+        <div style="
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        ">
+            <!-- Nombre del Negocio -->
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">
+                    <i class="fas fa-signature"></i> Nombre de tu Negocio *
+                </label>
+                <input type="text" 
+                       placeholder="Ej: Mi Restaurante, Supermercado Familiar" 
+                       style="
+                           width: 100%;
+                           padding: 14px;
+                           border: 2px solid #ddd;
+                           border-radius: 8px;
+                           font-size: 16px;
+                       "
+                       id="nombreNegocioIndex">
+            </div>
+            
+            <!-- CategorÌa -->
+            <div style="margin-bottom: 25px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">
+                    <i class="fas fa-list"></i> CategorÌa *
+                </label>
+                <select style="
+                           width: 100%;
+                           padding: 14px;
+                           border: 2px solid #ddd;
+                           border-radius: 8px;
+                           font-size: 16px;
+                           background: white;
+                       "
+                       id="categoriaIndex">
+                    <option value="">Selecciona una categorÌa</option>
+                    <option value="farmacia">?? Farmacia</option>
+                    <option value="restaurante">??? Restaurante</option>
+                    <option value="supermercado">?? Supermercado</option>
+                    <option value="taller">?? Taller Mec·nico</option>
+                    <option value="taxi">?? Servicio de Taxi</option>
+                    <option value="hotel">?? Hotel/Hospedaje</option>
+                    <option value="panaderia">?? PanaderÌa</option>
+                </select>
+                
+                <!-- BotÛn para ver categorÌas -->
+                <button type="button" 
+                        onclick="mostrarCategoriasIndex()"
+                        style="
+                            background: #007bff;
+                            color: white;
+                            border: none;
+                            padding: 10px 15px;
+                            border-radius: 6px;
+                            font-size: 14px;
+                            cursor: pointer;
+                            margin-top: 10px;
+                            display: flex;
+                            align-items: center;
+                            gap: 8px;
+                        ">
+                    <i class="fas fa-eye"></i>
+                    Ver todas las categorÌas disponibles
+                </button>
+            </div>
+            
+            <!-- BotÛn de acciÛn -->
+            <div style="text-align: center;">
+                <button onclick="enviarSolicitudIndex()"
+                        style="
+                            background: linear-gradient(135deg, #28a745, #20c997);
+                            color: white;
+                            border: none;
+                            padding: 16px 40px;
+                            border-radius: 25px;
+                            font-size: 18px;
+                            font-weight: bold;
+                            cursor: pointer;
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 12px;
+                            transition: all 0.3s ease;
+                        "
+                        onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(40, 167, 69, 0.4)';"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+                    <i class="fas fa-paper-plane"></i>
+                    SOLICITAR REGISTRO
+                </button>
+                
+                <p style="margin-top: 15px; color: #666; font-size: 14px;">
+                    <i class="fas fa-shield-alt"></i> Tu informaciÛn est· segura. Te contactaremos en menos de 24h.
+                </p>
+            </div>
+        </div>
+        
+        <!-- Enlace a formulario completo -->
+        <div style="text-align: center; margin-top: 25px;">
+            <a href="agregar.html" 
+               style="
+                   color: #28a745;
+                   text-decoration: none;
+                   font-weight: bold;
+                   display: inline-flex;
+                   align-items: center;
+                   gap: 8px;
+               ">
+                <i class="fas fa-external-link-alt"></i>
+                øNecesitas el formulario completo con m·s opciones?
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Script para la secciÛn de agregar negocio -->
+<script>
+// FunciÛn para mostrar categorÌas en index.html
+function mostrarCategoriasIndex() {
+    const categorias = [
+        "?? Farmacia",
+        "??? Restaurante", 
+        "?? Supermercado",
+        "?? Taller Mec·nico",
+        "?? Servicio de Taxi",
+        "?? Hotel/Hospedaje",
+        "?? PanaderÌa",
+        "?? FruterÌa", 
+        "?? CarnicerÌa",
+        "?? ElectrÛnica",
+        "?? Tienda de Ropa",
+        "?? PeluquerÌa/Belleza",
+        "??? Gimnasio/Deporte",
+        "??? Reparaciones",
+        "?? Otros Servicios"
+    ];
+    
+    alert("?? CATEGORÕAS DISPONIBLES:\n\n" + categorias.join("\n") + "\n\n?? Selecciona una en el men˙ desplegable.");
+    
+    // Enfocar el select
+    const select = document.getElementById('categoriaIndex');
+    if (select) select.focus();
+}
+
+// FunciÛn para enviar solicitud desde index.html
+function enviarSolicitudIndex() {
+    const nombre = document.getElementById('nombreNegocioIndex').value;
+    const categoria = document.getElementById('categoriaIndex').value;
+    
+    if (!nombre || !categoria) {
+        alert("?? Por favor, completa todos los campos obligatorios (*)");
+        return;
+    }
+    
+    const mensaje = \`? °Solicitud registrada!\n\n?? **\${nombre}** (\${categoria})\n\nNuestro equipo se comunicar· contigo en menos de 24 horas para activar tu mes GRATIS.\n\n°Bienvenido a MacasConecta!\`;
+    
+    alert(mensaje);
+    
+    // Limpiar formulario
+    document.getElementById('nombreNegocioIndex').value = '';
+    document.getElementById('categoriaIndex').value = '';
+    
+    console.log("?? Solicitud desde index.html:", { nombre, categoria });
+}
+</script>
+
+
+ class="main-footer">
+        <div class="footer-contenido">
+            <p class="footer-derechos">¬© 2026 MacasConecta - Todos los derechos reservados</p>
+            <p class="footer-nota">üö® Esta app es real y est√° activa en Macas</p>
+            
+            <div class="footer-compartir">
+                <p>¬øTe gusta la app? ¬°Comp√°rtela!</p>
+                <button class="btn-compartir" id="btnCompartir">
+                    <i class="fab fa-whatsapp"></i>
+                    Compartir por WhatsApp
+                </button>
+            </div>
+        </div>
+    
+<!-- =========================================== -->
+<!-- SECCI”N: AGREGAR MI NEGOCIO - EN P¡GINA PRINCIPAL -->
+<!-- =========================================== -->
+<section style="
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 40px 20px;
+    margin: 40px 0;
+    border-radius: 15px;
+    border: 2px dashed #28a745;
+">
+    <div style="max-width: 800px; margin: 0 auto;">
+        
+        <!-- TÕTULO -->
+        <h2 style="
+            color: #28a745;
+            text-align: center;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        ">
+            <i class="fas fa-store" style="font-size: 32px;"></i>
+            °AGREGA TU NEGOCIO A MACASCONECTA!
+        </h2>
+        
+        <p style="text-align: center; color: #666; margin-bottom: 30px; font-size: 16px;">
+            Conecta con miles de clientes en Macas. <strong>Primer mes GRATIS</strong>, luego solo $5/mes.
+        </p>
+        
+        <!-- MINI-FORMULARIO -->
+        <div style="
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        ">
+            <!-- Nombre del Negocio -->
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">
+                    <i class="fas fa-signature"></i> Nombre de tu Negocio *
+                </label>
+                <input type="text" 
+                       placeholder="Ej: Mi Restaurante, Supermercado Familiar" 
+                       style="
+                           width: 100%;
+                           padding: 14px;
+                           border: 2px solid #ddd;
+                           border-radius: 8px;
+                           font-size: 16px;
+                       "
+                       id="nombreNegocioIndex">
+            </div>
+            
+            <!-- CategorÌa -->
+            <div style="margin-bottom: 25px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">
+                    <i class="fas fa-list"></i> CategorÌa *
+                </label>
+                <select style="
+                           width: 100%;
+                           padding: 14px;
+                           border: 2px solid #ddd;
+                           border-radius: 8px;
+                           font-size: 16px;
+                           background: white;
+                       "
+                       id="categoriaIndex">
+                    <option value="">Selecciona una categorÌa</option>
+                    <option value="farmacia">?? Farmacia</option>
+                    <option value="restaurante">??? Restaurante</option>
+                    <option value="supermercado">?? Supermercado</option>
+                    <option value="taller">?? Taller Mec·nico</option>
+                    <option value="taxi">?? Servicio de Taxi</option>
+                    <option value="hotel">?? Hotel/Hospedaje</option>
+                    <option value="panaderia">?? PanaderÌa</option>
+                </select>
+                
+                <!-- BotÛn para ver categorÌas -->
+                <button type="button" 
+                        onclick="mostrarCategoriasIndex()"
+                        style="
+                            background: #007bff;
+                            color: white;
+                            border: none;
+                            padding: 10px 15px;
+                            border-radius: 6px;
+                            font-size: 14px;
+                            cursor: pointer;
+                            margin-top: 10px;
+                            display: flex;
+                            align-items: center;
+                            gap: 8px;
+                        ">
+                    <i class="fas fa-eye"></i>
+                    Ver todas las categorÌas disponibles
+                </button>
+            </div>
+            
+            <!-- BotÛn de acciÛn -->
+            <div style="text-align: center;">
+                <button onclick="enviarSolicitudIndex()"
+                        style="
+                            background: linear-gradient(135deg, #28a745, #20c997);
+                            color: white;
+                            border: none;
+                            padding: 16px 40px;
+                            border-radius: 25px;
+                            font-size: 18px;
+                            font-weight: bold;
+                            cursor: pointer;
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 12px;
+                            transition: all 0.3s ease;
+                        "
+                        onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(40, 167, 69, 0.4)';"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+                    <i class="fas fa-paper-plane"></i>
+                    SOLICITAR REGISTRO
+                </button>
+                
+                <p style="margin-top: 15px; color: #666; font-size: 14px;">
+                    <i class="fas fa-shield-alt"></i> Tu informaciÛn est· segura. Te contactaremos en menos de 24h.
+                </p>
+            </div>
+        </div>
+        
+        <!-- Enlace a formulario completo -->
+        <div style="text-align: center; margin-top: 25px;">
+            <a href="agregar.html" 
+               style="
+                   color: #28a745;
+                   text-decoration: none;
+                   font-weight: bold;
+                   display: inline-flex;
+                   align-items: center;
+                   gap: 8px;
+               ">
+                <i class="fas fa-external-link-alt"></i>
+                øNecesitas el formulario completo con m·s opciones?
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Script para la secciÛn de agregar negocio -->
+<script>
+// FunciÛn para mostrar categorÌas en index.html
+function mostrarCategoriasIndex() {
+    const categorias = [
+        "?? Farmacia",
+        "??? Restaurante", 
+        "?? Supermercado",
+        "?? Taller Mec·nico",
+        "?? Servicio de Taxi",
+        "?? Hotel/Hospedaje",
+        "?? PanaderÌa",
+        "?? FruterÌa", 
+        "?? CarnicerÌa",
+        "?? ElectrÛnica",
+        "?? Tienda de Ropa",
+        "?? PeluquerÌa/Belleza",
+        "??? Gimnasio/Deporte",
+        "??? Reparaciones",
+        "?? Otros Servicios"
+    ];
+    
+    alert("?? CATEGORÕAS DISPONIBLES:\n\n" + categorias.join("\n") + "\n\n?? Selecciona una en el men˙ desplegable.");
+    
+    // Enfocar el select
+    const select = document.getElementById('categoriaIndex');
+    if (select) select.focus();
+}
+
+// FunciÛn para enviar solicitud desde index.html
+function enviarSolicitudIndex() {
+    const nombre = document.getElementById('nombreNegocioIndex').value;
+    const categoria = document.getElementById('categoriaIndex').value;
+    
+    if (!nombre || !categoria) {
+        alert("?? Por favor, completa todos los campos obligatorios (*)");
+        return;
+    }
+    
+    const mensaje = \`? °Solicitud registrada!\n\n?? **\${nombre}** (\${categoria})\n\nNuestro equipo se comunicar· contigo en menos de 24 horas para activar tu mes GRATIS.\n\n°Bienvenido a MacasConecta!\`;
+    
+    alert(mensaje);
+    
+    // Limpiar formulario
+    document.getElementById('nombreNegocioIndex').value = '';
+    document.getElementById('categoriaIndex').value = '';
+    
+    console.log("?? Solicitud desde index.html:", { nombre, categoria });
+}
+</script>
+
+
+
+
+    <!-- MEN√ö INFERIOR -->
+    <nav class="menu-inferior">
+        <a href="index.html" class="menu-item menu-activo">
+            <i class="fas fa-home"></i>
+            <span>Inicio</span>
+        </a>
+        
+        <a href="mapa.html" class="menu-item">
+            <i class="fas fa-map"></i>
+            <span>Mapa</span>
+        </a>
+        
+        <a href="dm.html" class="menu-item">
+            <i class="fas fa-comment-dots"></i>
+            <span>DM</span>
+            <span class="dm-notificacion">3</span>
+        </a>
+        
+        <a href="alertas.html" class="menu-item">
+            <i class="fas fa-bell"></i>
+            <span>Alertas</span>
+        </a>
+        
+        <a href="cuenta.html" class="menu-item">
+            <i class="fas fa-user"></i>
+            <span>Cuenta</span>
+        </a>
+    </nav>
+
+       <!-- SCRIPTS -->
+    <script src="negocios.js"></script>
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+
+    <!-- SCRIPT FINAL DE CARGA -->
+    <script>
+    // SOLUCI√ìN FINAL - Solo esto debe ejecutarse
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log("üéØ INICIANDO CARGA DEFINITIVA");
+        
+        // 1. Verificar que negocios.js se carg√≥
+        if (typeof negociosMacas === 'undefined') {
+            console.error("‚ùå ERROR: negocios.js NO cargado");
+            mostrarErrorCarga();
+            return;
+        }
+        
+        console.log(`‚úÖ Base de datos OK: ${negociosMacas.length} negocios`);
+        
+        // 2. Mostrar los 9 negocios completos
+        mostrarNegociosCompletos();
+        
+        // 3. Configurar buscador
+        configurarBuscadorSimple();
+    });
+    
+    function mostrarNegociosCompletos() {
+        const listaNegocios = document.getElementById('listaNegocios');
+        const contadorNumero = document.getElementById('contadorNumero');
+        const contadorTexto = document.getElementById('contadorTexto');
+        
+        if (!listaNegocios) {
+            console.error("‚ùå No existe #listaNegocios");
+            return;
+        }
+        
+        // Limpiar mensaje de carga
+        listaNegocios.innerHTML = '';
+        
+        // Mostrar TODOS los 9 negocios
+        negociosMacas.forEach((negocio, index) => {
+            const card = document.createElement('div');
+            card.className = 'negocio-card';
+            card.style.animationDelay = `${index * 0.1}s`;
+            
+            // Crear tarjeta COMPLETA igual que en negocios.html
+            card.innerHTML = `
+                <div class="negocio-header">
+                    <span class="negocio-categoria">${negocio.categoria}</span>
+                    ${negocio.fundador ? '<span class="negocio-fundador">üåü FOUNDER</span>' : ''}
+                    ${negocio.horario && negocio.horario.includes('24') ? '<span class="negocio-fundador" style="background: #dc3545; color: white;">üö® 24H</span>' : ''}
+                </div>
+                
+                <div class="negocio-body">
+                    <h3 class="negocio-nombre">${negocio.nombre}</h3>
+                    <p class="negocio-descripcion">${negocio.descripcion}</p>
+                    
+                    <div class="negocio-detalles">
+                        <p><i class="fas fa-map-marker-alt"></i> <strong>Ubicaci√≥n:</strong> ${negocio.ubicacion}</p>
+                        <p><i class="fas fa-phone"></i> <strong>Tel√©fono:</strong> ${negocio.telefono}</p>
+                        ${negocio.whatsapp ? `<p><i class="fab fa-whatsapp"></i> <strong>WhatsApp:</strong> ${negocio.whatsapp}</p>` : ''}
+                        ${negocio.horario ? `<p><i class="fas fa-clock"></i> <strong>Horario:</strong> ${negocio.horario}</p>` : ''}
+                    </div>
+                    
+                    ${negocio.servicios && negocio.servicios.length > 0 ? `
+                    <div class="etiquetas-negocio" style="margin-top: 15px;">
+                        ${negocio.servicios.map(servicio => `<span class="etiqueta-item">${servicio}</span>`).join('')}
+                    </div>
+                    ` : ''}
+                </div>
+                
+                <div class="negocio-footer">
+                    <div class="botones-accion">
+                        <a href="tel:${negocio.telefono}" class="btn-accion btn-llamar">
+                            <i class="fas fa-phone"></i> LLAMAR
+                        </a>
+                        ${negocio.whatsapp ? `
+                        <a href="https://wa.me/${negocio.whatsapp}" class="btn-accion btn-whatsapp" target="_blank">
+                            <i class="fab fa-whatsapp"></i> WHATSAPP
+                        </a>
+                        ` : ''}
+                        <a href="mapa.html?negocio=${negocio.id}" class="btn-accion btn-mapa">
+                            <i class="fas fa-map-marker-alt"></i> MAPA
+                        </a>
+                        <a href="dm.html?negocio=${negocio.id}" class="btn-accion btn-dm">
+                            <i class="fas fa-comment-dots"></i> DM
+                        </a>
+                    </div>
+                </div>
+            `;
+            
+            listaNegocios.appendChild(card);
+        });
+        
+        // Actualizar contador
+        if (contadorNumero && contadorTexto) {
+            contadorNumero.textContent = negociosMacas.length;
+            contadorTexto.textContent = 'negocios disponibles';
+        }
+        
+        console.log(`‚úÖ Mostrados ${negociosMacas.length} negocios`);
+    }
+    
+    function configurarBuscadorSimple() {
+        const searchInput = document.getElementById('search-input');
+        const searchButton = document.getElementById('search-button');
+        
+        if (searchButton && searchInput) {
+            searchButton.addEventListener('click', function() {
+                const termino = searchInput.value.trim();
+                if (termino) {
+                    // Redirigir a negocios.html con b√∫squeda
+                    window.location.href = `negocios.html?search=${encodeURIComponent(termino)}`;
+                }
+            });
+            
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const termino = searchInput.value.trim();
+                    if (termino) {
+                        window.location.href = `negocios.html?search=${encodeURIComponent(termino)}`;
+                    }
+                }
+            });
+        }
+    }
+    
+    function mostrarErrorCarga() {
+        const listaNegocios = document.getElementById('listaNegocios');
+        if (listaNegocios) {
+            listaNegocios.innerHTML = `
+                <div class="sin-resultados">
+                    <i class="fas fa-exclamation-triangle fa-3x" style="color: #dc3545;"></i>
+                    <h3 style="color: #dc3545;">Error cr√≠tico</h3>
+                    <p>No se pudo cargar la base de datos de negocios.</p>
+                    <p><small>Revisa que el archivo <code>negocios.js</code> exista en la carpeta</small></p>
+                    <button onclick="location.reload()" class="btn-accion" style="margin-top: 15px;">
+                        <i class="fas fa-redo"></i> Recargar p√°gina
+                    </button>
+                </div>
+            `;
+        }
+    }
+    
+    // Forzar carga si DOM ya est√° cargado
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        setTimeout(init, 100);
+    }
+    
+    function init() {
+        console.log("‚ö° Ejecutando carga inmediata...");
+        if (typeof negociosMacas !== 'undefined') {
+            mostrarNegociosCompletos();
+        }
+    }
+    </script>
+</body>
+</html>
+<script src="negocios.js"></script>
+<script src="script.js"></script>
+<script src="auth.js"></script>
+<!-- Y luego el c√≥digo que te di arriba -->
+</body>
+</html>

@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa - MacasConecta</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background: #f5f5f5;
+        }
+        
+        .header {
+            background: #28a745;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .map-container {
+            width: 100%;
+            height: 70vh;
+            position: relative;
+        }
+        
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .negocios-list {
+            background: white;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            margin-top: -10px;
+            position: relative;
+        }
+        
+        .negocio-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .negocio-item:hover {
+            background: #f9f9f9;
+        }
+        
+        .negocio-icon {
+            width: 40px;
+            height: 40px;
+            background: #28a745;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        
+        .negocio-info h3 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .negocio-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px;
+            background: white;
+        }
+        
+        .btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .back-btn {
+            position: absolute;
+            left: 15px;
+            top: 15px;
+            background: white;
+            color: #28a745;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            z-index: 1001;
+        }
+    </style>
+    
+    <!-- Leaflet CSS (OpenStreetMap) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <div class="header">
+        <button class="back-btn" onclick="window.location.href='index.html'">←</button>
+        <h1>🗺️ Mapa de Macas</h1>
+        <p>Encuentra negocios en tu ciudad</p>
+    </div>
+    
+    <div class="map-container">
+        <div id="map"></div>
+    </div>
+    
+    <div class="negocios-list">
+        <h2 style="margin-bottom: 15px;">📍 Negocios en Macas</h2>
+        
+        <div class="negocio-item" onclick="marcarEnMapa(-2.3065, -78.1134, 'Restaurante El Sabor')">
+            <div class="negocio-icon">🍴</div>
+            <div class="negocio-info">
+                <h3>Restaurante El Sabor</h3>
+                <p>Av. Amazonas 123 • Comida típica</p>
+            </div>
+        </div>
+        
+        <div class="negocio-item" onclick="marcarEnMapa(-2.3070, -78.1140, 'Farmacia Macas')">
+            <div class="negocio-icon">💊</div>
+            <div class="negocio-info">
+                <h3>Farmacia Macas</h3>
+                <p>Calle 10 de Agosto • 24 horas</p>
+            </div>
+        </div>
+        
+        <div class="negocio-item" onclick="marcarEnMapa(-2.3055, -78.1120, 'Supermercado Central')">
+            <div class="negocio-icon">🛒</div>
+            <div class="negocio-info">
+                <h3>Supermercado Central</h3>
+                <p>Av. del Maestro • Abierto hasta 22:00</p>
+            </div>
+        </div>
+        
+        <div class="negocio-item" onclick="marcarEnMapa(-2.3080, -78.1150, 'Taller Mecánico Rápido')">
+            <div class="negocio-icon">🔧</div>
+            <div class="negocio-info">
+                <h3>Taller Mecánico Rápido</h3>
+                <p>Via a Puyo • Servicio express</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="controls">
+        <button class="btn" onclick="centrarEnMacas()">📍 Centrar en Macas</button>
+        <button class="btn btn-secondary" onclick="mostrarTodosNegocios()">🏪 Mostrar todos</button>
+        <button class="btn" onclick="window.location.href='agregar.html'">➕ Agregar Negocio</button>
+    </div>
+    
+    <!-- Leaflet JS (OpenStreetMap) -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script>
+        // ====== MAPA INTERACTIVO ======
+        let map;
+        let marcadores = [];
+        
+        // Coordenadas de Macas, Ecuador
+        const COORD_MACAS = [-2.3065, -78.1134];
+        
+        // Inicializar mapa
+        function inicializarMapa() {
+            map = L.map('map').setView(COORD_MACAS, 15);
+            
+            // Capa de OpenStreetMap
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 18
+            }).addTo(map);
+            
+            // Marcador central
+            L.marker(COORD_MACAS)
+                .addTo(map)
+                .bindPopup('<b>Macas, Ecuador</b><br>Centro de la ciudad')
+                .openPopup();
+                
+            console.log('✅ Mapa cargado');
+        }
+        
+        // Centrar en Macas
+        function centrarEnMacas() {
+            map.setView(COORD_MACAS, 15);
+        }
+        
+        // Marcar negocio en mapa
+        function marcarEnMapa(lat, lng, nombre) {
+            // Limpiar marcadores anteriores
+            marcadores.forEach(m => map.removeLayer(m));
+            marcadores = [];
+            
+            // Crear nuevo marcador
+            const marcador = L.marker([lat, lng])
+                .addTo(map)
+                .bindPopup(`<b>${nombre}</b>`)
+                .openPopup();
+                
+            marcadores.push(marcador);
+            
+            // Centrar en ese negocio
+            map.setView([lat, lng], 16);
+        }
+        
+        // Mostrar todos los negocios
+        function mostrarTodosNegocios() {
+            // Limpiar marcadores
+            marcadores.forEach(m => map.removeLayer(m));
+            marcadores = [];
+            
+            // Negocios de ejemplo
+            const negocios = [
+                { lat: -2.3065, lng: -78.1134, nombre: "Restaurante El Sabor", icon: "🍴" },
+                { lat: -2.3070, lng: -78.1140, nombre: "Farmacia Macas", icon: "💊" },
+                { lat: -2.3055, lng: -78.1120, nombre: "Supermercado Central", icon: "🛒" },
+                { lat: -2.3080, lng: -78.1150, nombre: "Taller Mecánico Rápido", icon: "🔧" }
+            ];
+            
+            // Agregar cada negocio
+            negocios.forEach(negocio => {
+                const marcador = L.marker([negocio.lat, negocio.lng])
+                    .addTo(map)
+                    .bindPopup(`<b>${negocio.nombre}</b><br>${negocio.icon}`);
+                marcadores.push(marcador);
+            });
+            
+            // Ajustar vista para mostrar todos
+            const grupo = L.featureGroup(marcadores);
+            map.fitBounds(grupo.getBounds().pad(0.1));
+        }
+        
+        // Cuando la página cargue
+        document.addEventListener('DOMContentLoaded', function() {
+            inicializarMapa();
+            console.log('🗺️ Mapa de MacasConecta listo');
+        });
+    </script>
+</body>
+</html>
+

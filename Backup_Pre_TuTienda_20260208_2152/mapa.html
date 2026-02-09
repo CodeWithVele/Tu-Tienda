@@ -1,0 +1,333 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa - MacasConecta</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background: #f5f5f5;
+        }
+        
+        .header {
+            background: #28a745;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .map-container {
+            width: 100%;
+            height: 70vh;
+            position: relative;
+        }
+        
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .negocios-list {
+            background: white;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            margin-top: -10px;
+            position: relative;
+        }
+        
+        .negocio-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .negocio-item:hover {
+            background: #f9f9f9;
+        }
+        
+        .negocio-icon {
+            width: 40px;
+            height: 40px;
+            background: #28a745;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        
+        .negocio-info h3 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .negocio-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .destacado {
+            background: #fff3cd !important;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px;
+            background: white;
+        }
+        
+        .btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .btn-destacado {
+            background: #ffc107;
+            color: #333;
+        }
+        
+        .back-btn {
+            position: absolute;
+            left: 15px;
+            top: 15px;
+            background: white;
+            color: #28a745;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            z-index: 1001;
+        }
+        
+        .direccion-exacta {
+            font-size: 0.8rem;
+            color: #28a745;
+            font-weight: bold;
+            margin-top: 3px;
+        }
+    </style>
+    
+    <!-- Leaflet CSS (OpenStreetMap) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <div class="header">
+        <button class="back-btn" onclick="window.location.href='index.html'">←</button>
+        <h1>🗺️ Mapa de Macas</h1>
+        <p>Encuentra negocios en tu ciudad</p>
+    </div>
+    
+    <div class="map-container">
+        <div id="map"></div>
+    </div>
+    
+    <div class="negocios-list">
+        <h2 style="margin-bottom: 15px;">📍 Negocios en Macas</h2>
+        
+        <!-- ZAPATERÍA COLOMBIANO - DESTACADO -->
+        <div class="negocio-item destacado" onclick="marcarEnMapa(-2.3040, -78.1100, 'Zapatería Colombiano', true)">
+            <div class="negocio-icon">👞</div>
+            <div class="negocio-info">
+                <h3>Zapatería Colombiano ★</h3>
+                <p>Calzado y reparación • Calidad garantizada</p>
+                <div class="direccion-exacta">📍 Amazonas y Kiruba</div>
+            </div>
+        </div>
+        
+        <div class="negocio-item" onclick="marcarEnMapa(-2.3065, -78.1134, 'Restaurante El Sabor')">
+            <div class="negocio-icon">🍴</div>
+            <div class="negocio-info">
+                <h3>Restaurante El Sabor</h3>
+                <p>Av. Amazonas 123 • Comida típica</p>
+            </div>
+        </div>
+        
+        <div class="negocio-item" onclick="marcarEnMapa(-2.3070, -78.1140, 'Farmacia Macas')">
+            <div class="negocio-icon">💊</div>
+            <div class="negocio-info">
+                <h3>Farmacia Macas</h3>
+                <p>Calle 10 de Agosto • 24 horas</p>
+            </div>
+        </div>
+        
+        <div class="negocio-item" onclick="marcarEnMapa(-2.3055, -78.1120, 'Supermercado Central')">
+            <div class="negocio-icon">🛒</div>
+            <div class="negocio-info">
+                <h3>Supermercado Central</h3>
+                <p>Av. del Maestro • Abierto hasta 22:00</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="controls">
+        <button class="btn" onclick="centrarEnMacas()">📍 Centro Macas</button>
+        <button class="btn btn-destacado" onclick="irAZapateriaColombiano()">👞 Ir a Zapatería</button>
+        <button class="btn btn-secondary" onclick="mostrarTodosNegocios()">🏪 Todos los negocios</button>
+        <button class="btn" onclick="window.location.href='agregar.html'">➕ Agregar Negocio</button>
+    </div>
+    
+    <!-- Leaflet JS (OpenStreetMap) -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script>
+        // ====== MAPA INTERACTIVO ======
+        let map;
+        let marcadores = [];
+        
+        // Coordenadas de Macas, Ecuador
+        const COORD_MACAS = [-2.3065, -78.1134];
+        // Coordenadas EXACTAS de Zapatería Colombiano
+        const ZAPATERIA_COLOMBIANO = [-2.3040, -78.1100];
+        
+        // Inicializar mapa
+        function inicializarMapa() {
+            map = L.map('map').setView(COORD_MACAS, 15);
+            
+            // Capa de OpenStreetMap
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 18
+            }).addTo(map);
+            
+            // Marcador del centro
+            L.marker(COORD_MACAS)
+                .addTo(map)
+                .bindPopup('<b>Macas, Ecuador</b><br>Centro de la ciudad');
+                
+            // Marcador ESPECIAL para Zapatería Colombiano
+            L.marker(ZAPATERIA_COLOMBIANO, {
+                icon: L.divIcon({
+                    html: '<div style="background:#ffc107; color:#333; padding:8px; border-radius:50%; border:3px solid white; box-shadow:0 2px 5px rgba(0,0,0,0.3); font-weight:bold;">👞</div>',
+                    iconSize: [50, 50],
+                    className: 'zapateria-marker'
+                })
+            })
+            .addTo(map)
+            .bindPopup('<b>👞 Zapatería Colombiano</b><br>📍 Amazonas y Kiruba<br>Calzado de calidad y reparación')
+            .openPopup();
+                
+            console.log('✅ Mapa cargado con Zapatería Colombiano destacada');
+        }
+        
+        // Centrar en Macas
+        function centrarEnMacas() {
+            map.setView(COORD_MACAS, 15);
+        }
+        
+        // Ir directamente a Zapatería Colombiano
+        function irAZapateriaColombiano() {
+            map.setView(ZAPATERIA_COLOMBIANO, 17);
+            
+            // Resaltar el marcador
+            map.eachLayer(function(layer) {
+                if (layer instanceof L.Marker && layer.getLatLng().equals(ZAPATERIA_COLOMBIANO)) {
+                    layer.openPopup();
+                    layer.setZIndexOffset(1000);
+                }
+            });
+            
+            console.log('📍 Yendo a Zapatería Colombiano');
+        }
+        
+        // Marcar negocio en mapa
+        function marcarEnMapa(lat, lng, nombre, esZapateria = false) {
+            // Limpiar marcadores anteriores (excepto permanentes)
+            marcadores.forEach(m => map.removeLayer(m));
+            marcadores = [];
+            
+            // Crear nuevo marcador
+            const marcador = L.marker([lat, lng])
+                .addTo(map)
+                .bindPopup(`<b>${nombre}</b>`)
+                .openPopup();
+                
+            marcadores.push(marcador);
+            
+            // Centrar en ese negocio
+            map.setView([lat, lng], 16);
+            
+            if (esZapateria) {
+                console.log('👞 Zapatería Colombiano seleccionada');
+            }
+        }
+        
+        // Mostrar todos los negocios
+        function mostrarTodosNegocios() {
+            // Limpiar marcadores temporales
+            marcadores.forEach(m => map.removeLayer(m));
+            marcadores = [];
+            
+            // Negocios de ejemplo (Zapatería ya está permanente)
+            const negociosAdicionales = [
+                { lat: -2.3065, lng: -78.1134, nombre: "Restaurante El Sabor", icon: "🍴" },
+                { lat: -2.3070, lng: -78.1140, nombre: "Farmacia Macas", icon: "💊" },
+                { lat: -2.3055, lng: -78.1120, nombre: "Supermercado Central", icon: "🛒" }
+            ];
+            
+            // Agregar cada negocio
+            negociosAdicionales.forEach(negocio => {
+                const marcador = L.marker([negocio.lat, negocio.lng])
+                    .addTo(map)
+                    .bindPopup(`<b>${negocio.nombre}</b><br>${negocio.icon}`);
+                marcadores.push(marcador);
+            });
+            
+            // Ajustar vista para mostrar todos (incluyendo Zapatería)
+            const todosMarcadores = [...marcadores];
+            map.eachLayer(function(layer) {
+                if (layer instanceof L.Marker) {
+                    todosMarcadores.push(layer);
+                }
+            });
+            
+            const grupo = L.featureGroup(todosMarcadores);
+            map.fitBounds(grupo.getBounds().pad(0.1));
+        }
+        
+        // Cuando la página cargue
+        document.addEventListener('DOMContentLoaded', function() {
+            inicializarMapa();
+            console.log('🗺️ Mapa de MacasConecta listo con Zapatería Colombiano');
+            
+            // Auto-centrar en Zapatería después de 2 segundos
+            setTimeout(() => {
+                irAZapateriaColombiano();
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
