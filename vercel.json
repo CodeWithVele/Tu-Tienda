@@ -1,9 +1,11 @@
 ﻿{
+  "buildCommand": null,
+  "devCommand": null,
+  "installCommand": null,
+  "framework": null,
+  "outputDirectory": ".",
   "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+    { "source": "/(.*)", "destination": "/index.html" }
   ],
   "headers": [
     {
