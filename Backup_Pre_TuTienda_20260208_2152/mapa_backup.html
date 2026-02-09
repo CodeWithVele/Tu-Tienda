@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapa - MacasConecta</title>
+    <title>Mapa - Tu-Tienda</title>
     <style>
         * {
             margin: 0;
@@ -129,8 +129,8 @@
 </head>
 <body>
     <div class="header">
-        <button class="back-btn" onclick="window.location.href='index.html'">←</button>
-        <h1>🗺️ Mapa de Macas</h1>
+        <button class="back-btn" onclick="window.location.href='index.html'">?</button>
+        <h1>??? Mapa de Macas</h1>
         <p>Encuentra negocios en tu ciudad</p>
     </div>
     
@@ -139,45 +139,45 @@
     </div>
     
     <div class="negocios-list">
-        <h2 style="margin-bottom: 15px;">📍 Negocios en Macas</h2>
+        <h2 style="margin-bottom: 15px;">?? Negocios en Macas</h2>
         
         <div class="negocio-item" onclick="marcarEnMapa(-2.3065, -78.1134, 'Restaurante El Sabor')">
-            <div class="negocio-icon">🍴</div>
+            <div class="negocio-icon">??</div>
             <div class="negocio-info">
                 <h3>Restaurante El Sabor</h3>
-                <p>Av. Amazonas 123 • Comida típica</p>
+                <p>Av. Amazonas 123 � Comida t�pica</p>
             </div>
         </div>
         
         <div class="negocio-item" onclick="marcarEnMapa(-2.3070, -78.1140, 'Farmacia Macas')">
-            <div class="negocio-icon">💊</div>
+            <div class="negocio-icon">??</div>
             <div class="negocio-info">
                 <h3>Farmacia Macas</h3>
-                <p>Calle 10 de Agosto • 24 horas</p>
+                <p>Calle 10 de Agosto � 24 horas</p>
             </div>
         </div>
         
         <div class="negocio-item" onclick="marcarEnMapa(-2.3055, -78.1120, 'Supermercado Central')">
-            <div class="negocio-icon">🛒</div>
+            <div class="negocio-icon">??</div>
             <div class="negocio-info">
                 <h3>Supermercado Central</h3>
-                <p>Av. del Maestro • Abierto hasta 22:00</p>
+                <p>Av. del Maestro � Abierto hasta 22:00</p>
             </div>
         </div>
         
-        <div class="negocio-item" onclick="marcarEnMapa(-2.3080, -78.1150, 'Taller Mecánico Rápido')">
-            <div class="negocio-icon">🔧</div>
+        <div class="negocio-item" onclick="marcarEnMapa(-2.3080, -78.1150, 'Taller Mec�nico R�pido')">
+            <div class="negocio-icon">??</div>
             <div class="negocio-info">
-                <h3>Taller Mecánico Rápido</h3>
-                <p>Via a Puyo • Servicio express</p>
+                <h3>Taller Mec�nico R�pido</h3>
+                <p>Via a Puyo � Servicio express</p>
             </div>
         </div>
     </div>
     
     <div class="controls">
-        <button class="btn" onclick="centrarEnMacas()">📍 Centrar en Macas</button>
-        <button class="btn btn-secondary" onclick="mostrarTodosNegocios()">🏪 Mostrar todos</button>
-        <button class="btn" onclick="window.location.href='agregar.html'">➕ Agregar Negocio</button>
+        <button class="btn" onclick="centrarEnMacas()">?? Centrar en Macas</button>
+        <button class="btn btn-secondary" onclick="mostrarTodosNegocios()">?? Mostrar todos</button>
+        <button class="btn" onclick="window.location.href='agregar.html'">? Agregar Negocio</button>
     </div>
     
     <!-- Leaflet JS (OpenStreetMap) -->
@@ -197,7 +197,7 @@
             
             // Capa de OpenStreetMap
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors',
+                attribution: '� OpenStreetMap contributors',
                 maxZoom: 18
             }).addTo(map);
             
@@ -207,7 +207,7 @@
                 .bindPopup('<b>Macas, Ecuador</b><br>Centro de la ciudad')
                 .openPopup();
                 
-            console.log('✅ Mapa cargado');
+            console.log('? Mapa cargado');
         }
         
         // Centrar en Macas
@@ -241,10 +241,10 @@
             
             // Negocios de ejemplo
             const negocios = [
-                { lat: -2.3065, lng: -78.1134, nombre: "Restaurante El Sabor", icon: "🍴" },
-                { lat: -2.3070, lng: -78.1140, nombre: "Farmacia Macas", icon: "💊" },
-                { lat: -2.3055, lng: -78.1120, nombre: "Supermercado Central", icon: "🛒" },
-                { lat: -2.3080, lng: -78.1150, nombre: "Taller Mecánico Rápido", icon: "🔧" }
+                { lat: -2.3065, lng: -78.1134, nombre: "Restaurante El Sabor", icon: "??" },
+                { lat: -2.3070, lng: -78.1140, nombre: "Farmacia Macas", icon: "??" },
+                { lat: -2.3055, lng: -78.1120, nombre: "Supermercado Central", icon: "??" },
+                { lat: -2.3080, lng: -78.1150, nombre: "Taller Mec�nico R�pido", icon: "??" }
             ];
             
             // Agregar cada negocio
@@ -260,12 +260,13 @@
             map.fitBounds(grupo.getBounds().pad(0.1));
         }
         
-        // Cuando la página cargue
+        // Cuando la p�gina cargue
         document.addEventListener('DOMContentLoaded', function() {
             inicializarMapa();
-            console.log('🗺️ Mapa de MacasConecta listo');
+            console.log('??? Mapa de Tu-Tienda listo');
         });
     </script>
 </body>
 </html>
+
 

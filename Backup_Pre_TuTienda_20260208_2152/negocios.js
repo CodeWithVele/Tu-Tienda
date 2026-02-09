@@ -275,7 +275,7 @@ function loadFeaturedBusinesses() {
         {
             id: 1,
             name: "Zapatería Colombiano",
-            description: "¡FUNDADOR DE MACASCONECTA! ?? 35 años reparando calzado.",
+            description: "¡FUNDADOR DE Tu-Tienda! ?? 35 años reparando calzado.",
             category: "zapaterias",
             icon: "??",
             tags: ["Fundador", "35 años", "Especialista"],
@@ -355,3 +355,4 @@ if (document.readyState === 'loading') {
 } else {
     loadFeaturedBusinesses();
 }
+

@@ -1,9 +1,9 @@
-// script.js - FUNCIONALIDADES PRINCIPALES DE MACASCONECTA
-console.log("🚀 MacasConecta cargando...");
+// script.js - FUNCIONALIDADES PRINCIPALES DE Tu-Tienda
+console.log("🚀 Tu-Tienda cargando...");
 
 // Inicialización cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("✅ DOM cargado, iniciando MacasConecta...");
+    console.log("✅ DOM cargado, iniciando Tu-Tienda...");
     
     // Verificar si hay negocios cargados
     if (typeof window.negociosMacas === 'undefined') {
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Configurar menú de navegación
     configurarNavegacion();
     
-    console.log("🎉 MacasConecta completamente cargado");
+    console.log("🎉 Tu-Tienda completamente cargado");
 });
 
 // Función para cargar datos de respaldo si no hay negocios.js
@@ -262,7 +262,7 @@ function configurarCompartir() {
     if (btnCompartir) {
         btnCompartir.addEventListener('click', function() {
             const url = window.location.href;
-            const mensaje = "¡Mira esta app increíble para encontrar negocios en Macas! - MacasConecta";
+            const mensaje = "¡Mira esta app increíble para encontrar negocios en Macas! - Tu-Tienda";
             const whatsappURL = `https://wa.me/?text=${encodeURIComponent(mensaje + " " + url)}`;
             
             window.open(whatsappURL, '_blank');
@@ -292,7 +292,7 @@ function configurarNavegacion() {
 // Función para contactar negocio (global)
 window.contactarNegocio = function(telefono) {
     if (telefono && telefono.trim() !== '') {
-        const mensaje = "Hola, vi tu negocio en MacasConecta y me interesa...";
+        const mensaje = "Hola, vi tu negocio en Tu-Tienda y me interesa...";
         const url = `https://wa.me/593${telefono.replace(/\D/g, '')}?text=${encodeURIComponent(mensaje)}`;
         window.open(url, '_blank');
     } else {

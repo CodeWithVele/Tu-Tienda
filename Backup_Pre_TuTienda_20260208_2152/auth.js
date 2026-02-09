@@ -58,7 +58,7 @@ function darAccesoRapido() {
     const confirmar = confirm("¿Quieres acceder a todas las secciones privadas?\n\nSe habilitarán DM, Alertas y Mi Cuenta.");
     
     if (confirmar) {
-        const password = prompt("Ingresa la contraseña de MacasConecta:");
+        const password = prompt("Ingresa la contraseña de Tu-Tienda:");
         
         if (password === CONTRASEÑA_MAESTRA) {
             ['dm', 'alertas', 'cuenta'].forEach(seccion => {

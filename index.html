@@ -1,9 +1,12 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TuTienda - De vecinos, para vecinos</title>
+    <title>Tu-Tienda - Tu tienda online</title>
     
     <!-- PWA ESSENTIAL -->
     <link rel="manifest" href="manifest.json">
@@ -62,25 +65,25 @@
 </head>
 <body>
     <div class="container">
-        <h1>🏪 Tú-Tienda</h1>
+        <h1>?? T�-Tienda</h1>
         <p style="text-align: center; color: #666;">De vecinos, para vecinos en, Ecuador & LATAM</p>
         
         <div class="pwa-info">
-            <strong>📱 APP INSTALABLE:</strong> Esta app se puede instalar en tu celular como una app nativa.
+            <strong>?? APP INSTALABLE:</strong> Esta app se puede instalar en tu celular como una app nativa.
         </div>
         
         <div class="menu">
-            <a href="mapa.html">🗺️ Ver Mapa</a>
-            <a href="agregar.html">➕ Agregar Negocio</a>
-            <a href="negocios.html">📋 Lista de Negocios</a>
-            <a href="alerta.html">🚨 Alertas</a>
-            <a href="cuenta.html">👤 Mi Cuenta</a>
-            <a href="dm.html">💬 Mensajes</a>
+            <a href="mapa.html">??? Ver Mapa</a>
+            <a href="agregar.html">? Agregar Negocio</a>
+            <a href="negocios.html">?? Lista de Negocios</a>
+            <a href="alerta.html">?? Alertas</a>
+            <a href="cuenta.html">?? Mi Cuenta</a>
+            <a href="dm.html">?? Mensajes</a>
         </div>
         
         <div style="text-align: center; margin-top: 30px;">
             <button id="installBtn" style="background: #28a745; color: white; border: none; padding: 12px 25px; border-radius: 5px; font-size: 16px; cursor: pointer; display: none;">
-                📱 Instalar App
+                ?? Instalar App
             </button>
             <p id="pwaStatus" style="color: #666; font-size: 14px;"></p>
         </div>
@@ -88,22 +91,22 @@
     
     <script>
         // ====== PWA FUNCTIONALITY ======
-        console.log('🚀 TuTienda iniciando...');
+        console.log('?? TuTienda iniciando...');
         
         // 1. Registrar Service Worker
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js')
                 .then(registration => {
-                    console.log('✅ Service Worker registrado:', registration.scope);
-                    document.getElementById('pwaStatus').textContent = '✅ App lista para instalar';
+                    console.log('? Service Worker registrado:', registration.scope);
+                    document.getElementById('pwaStatus').textContent = '? App lista para instalar';
                 })
                 .catch(error => {
-                    console.log('❌ Error SW:', error);
-                    document.getElementById('pwaStatus').textContent = '⚠️ Funciona como web normal';
+                    console.log('? Error SW:', error);
+                    document.getElementById('pwaStatus').textContent = '?? Funciona como web normal';
                 });
         }
         
-        // 2. Instalación como App
+        // 2. Instalaci�n como App
         let deferredPrompt;
         const installBtn = document.getElementById('installBtn');
         
@@ -117,8 +120,8 @@
                 deferredPrompt.prompt();
                 deferredPrompt.userChoice.then(choice => {
                     if (choice.outcome === 'accepted') {
-                        console.log('🎉 Usuario instaló la app');
-                        document.getElementById('pwaStatus').textContent = '🎉 ¡App instalada!';
+                        console.log('?? Usuario instal� la app');
+                        document.getElementById('pwaStatus').textContent = '?? �App instalada!';
                     }
                     deferredPrompt = null;
                 });
@@ -126,9 +129,12 @@
         });
         
         // 3. Mensaje final
-        console.log('✅ TuTienda completamente cargada');
+        console.log('? TuTienda completamente cargada');
     </script>
-</body>
+    <script src="js/version.js"></script></body>
 </html>
+
+
+
 
 
