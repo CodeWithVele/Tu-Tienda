@@ -1,39 +1,39 @@
-// script.js - FUNCIONALIDADES PRINCIPALES DE Tu-Tienda
-console.log("🚀 Tu-Tienda cargando...");
+﻿// script.js - FUNCIONALIDADES PRINCIPALES DE Tu-Tienda
+console.log("ðŸš€ Tu-Tienda cargando...");
 
-// Inicialización cuando el DOM esté listo
+// InicializaciÃ³n cuando el DOM estÃ© listo
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("✅ DOM cargado, iniciando Tu-Tienda...");
+    console.log("âœ… DOM cargado, iniciando Tu-Tienda...");
     
     // Verificar si hay negocios cargados
     if (typeof window.negociosMacas === 'undefined') {
-        console.warn("⚠️ No se encontró negocios.js, cargando datos de respaldo...");
+        console.warn("âš ï¸ No se encontrÃ³ negocios.js, cargando datos de respaldo...");
         cargarDatosRespaldo();
     }
     
     // Inicializar contador de negocios
     actualizarContadorNegocios();
     
-    // Cargar negocios en la página principal
+    // Cargar negocios en la pÃ¡gina principal
     cargarNegociosInicio();
     
     // Configurar sistema de compartir
     configurarCompartir();
     
-    // Configurar menú de navegación
+    // Configurar menÃº de navegaciÃ³n
     configurarNavegacion();
     
-    console.log("🎉 Tu-Tienda completamente cargado");
+    console.log("ðŸŽ‰ Tu-Tienda completamente cargado");
 });
 
-// Función para cargar datos de respaldo si no hay negocios.js
+// FunciÃ³n para cargar datos de respaldo si no hay negocios.js
 function cargarDatosRespaldo() {
     window.negociosMacas = [
         {
             id: 1,
-            nombre: "Zapatería Colombiano",
-            categoria: "Reparación de Calzado",
-            descripcion: "¡Gracias por Preferirnos! 🌟 35 años reparando el calzado de Macas.",
+            nombre: "ZapaterÃ­a Colombiano",
+            categoria: "ReparaciÃ³n de Calzado",
+            descripcion: "Â¡Gracias por Preferirnos! ðŸŒŸ 35 aÃ±os reparando el calzado de Macas.",
             ubicacion: "Macas Centro",
             telefono: "0981342236",
             fundador: true
@@ -41,7 +41,7 @@ function cargarDatosRespaldo() {
     ];
 }
 
-// Función para actualizar el contador de negocios
+// FunciÃ³n para actualizar el contador de negocios
 function actualizarContadorNegocios() {
     const contador = document.getElementById('contadorNumero');
     if (contador && window.negociosMacas) {
@@ -49,7 +49,7 @@ function actualizarContadorNegocios() {
     }
 }
 
-// Función para cargar negocios en la página principal
+// FunciÃ³n para cargar negocios en la pÃ¡gina principal
 function cargarNegociosInicio() {
     const contenedor = document.getElementById('listaNegocios');
     if (!contenedor) return;
@@ -62,26 +62,26 @@ function cargarNegociosInicio() {
             <div class="sin-resultados">
                 <i class="fas fa-exclamation-circle"></i>
                 <h3>No hay negocios disponibles</h3>
-                <p>Pronto agregaremos más negocios de Macas.</p>
+                <p>Pronto agregaremos mÃ¡s negocios de Macas.</p>
             </div>
         `;
         return;
     }
-    //😒😒😒
+    //ðŸ˜’ðŸ˜’ðŸ˜’
     function cargarNegociosInicio() {
-    console.log("🔄 Cargando negocios en inicio...");
+    console.log("ðŸ”„ Cargando negocios en inicio...");
     console.log("Negocios disponibles:", window.negociosMacas);
     
     const contenedor = document.getElementById('listaNegocios');
     if (!contenedor) {
-        console.error("❌ No se encontró #listaNegocios");
+        console.error("âŒ No se encontrÃ³ #listaNegocios");
         return;
     }
     
-    // ... resto del código ...
+    // ... resto del cÃ³digo ...
 }
-    //😒😒😒
-    // Mostrar máximo 4 negocios destacados en la página principal
+    //ðŸ˜’ðŸ˜’ðŸ˜’
+    // Mostrar mÃ¡ximo 4 negocios destacados en la pÃ¡gina principal
     const negociosAMostrar = window.negociosMacas.slice(0, 4);
     
     negociosAMostrar.forEach(negocio => {
@@ -89,7 +89,7 @@ function cargarNegociosInicio() {
         contenedor.appendChild(tarjeta);
     });
     
-    // Si hay más de 4 negocios, agregar botón para ver todos
+    // Si hay mÃ¡s de 4 negocios, agregar botÃ³n para ver todos
     if (window.negociosMacas.length > 4) {
         const verTodosBtn = document.createElement('a');
         verTodosBtn.href = 'negocios.html';
@@ -101,7 +101,7 @@ function cargarNegociosInicio() {
     }
 }
 
-// Función para crear tarjeta de negocio
+// FunciÃ³n para crear tarjeta de negocio
 // function crearTarjetaNegocio(negocio) {
 //     const tarjeta = document.createElement('div');
 //     tarjeta.className = 'tarjeta-negocio';
@@ -111,7 +111,7 @@ function cargarNegociosInicio() {
 //             <span class="etiqueta-categoria">
 //                 <i class="fas fa-tag"></i> ${negocio.categoria}
 //             </span>
-//             ${negocio.fundador ? '<span class="etiqueta-destacado">🌟 FOUNDER</span>' : ''}
+//             ${negocio.fundador ? '<span class="etiqueta-destacado">ðŸŒŸ FOUNDER</span>' : ''}
 //         </div>
         
 //         <h3 class="nombre-negocio">
@@ -163,7 +163,7 @@ function cargarNegociosInicio() {
 //     tarjeta.innerHTML = contenidoHTML;
 //     return tarjeta;
 // }
-// REEMPLAZA la función crearTarjetaNegocio en script.js con esta versión:
+// REEMPLAZA la funciÃ³n crearTarjetaNegocio en script.js con esta versiÃ³n:
 
 function crearTarjetaNegocio(negocio) {
     const tarjeta = document.createElement('div');
@@ -181,8 +181,8 @@ function crearTarjetaNegocio(negocio) {
             <span class="etiqueta-categoria">
                 <i class="fas fa-tag"></i> ${negocio.categoria || 'Negocio'}
             </span>
-            ${negocio.fundador ? '<span class="etiqueta-destacado">🌟 FOUNDER</span>' : ''}
-            ${negocio.horario && negocio.horario.includes('24') ? '<span class="etiqueta-destacado" style="background: #dc3545; color: white;">🚨 24H</span>' : ''}
+            ${negocio.fundador ? '<span class="etiqueta-destacado">ðŸŒŸ FOUNDER</span>' : ''}
+            ${negocio.horario && negocio.horario.includes('24') ? '<span class="etiqueta-destacado" style="background: #dc3545; color: white;">ðŸš¨ 24H</span>' : ''}
         </div>
         
         <h3 class="nombre-negocio">
@@ -190,13 +190,13 @@ function crearTarjetaNegocio(negocio) {
         </h3>
         
         <p class="descripcion-negocio">
-            ${negocio.descripcion || 'Descripción no disponible.'}
+            ${negocio.descripcion || 'DescripciÃ³n no disponible.'}
         </p>
         
         <div class="detalles-negocio">
             <div class="detalle-item">
                 <i class="fas fa-map-marker-alt"></i>
-                <span>${negocio.ubicacion || 'Ubicación no disponible'}</span>
+                <span>${negocio.ubicacion || 'UbicaciÃ³n no disponible'}</span>
             </div>
             
             ${negocio.telefono ? `
@@ -262,7 +262,7 @@ function configurarCompartir() {
     if (btnCompartir) {
         btnCompartir.addEventListener('click', function() {
             const url = window.location.href;
-            const mensaje = "¡Mira esta app increíble para encontrar negocios en Macas! - Tu-Tienda";
+            const mensaje = "Â¡Mira esta app increÃ­ble para encontrar negocios en Macas! - Tu-Tienda";
             const whatsappURL = `https://wa.me/?text=${encodeURIComponent(mensaje + " " + url)}`;
             
             window.open(whatsappURL, '_blank');
@@ -270,41 +270,42 @@ function configurarCompartir() {
     }
 }
 
-// Configurar navegación del menú
+// Configurar navegaciÃ³n del menÃº
 function configurarNavegacion() {
-    // Verificar si ya tiene acceso para actualizar íconos
+    // Verificar si ya tiene acceso para actualizar Ã­conos
     if (typeof window.permisosPorSeccion !== 'undefined') {
         const dmIcon = document.querySelector('#dm-icono, .dm-notificacion');
         const alertasIcon = document.querySelector('#alertas-icono');
         
         if (dmIcon && window.permisosPorSeccion.dm) {
-            dmIcon.textContent = '💬';
+            dmIcon.textContent = 'ðŸ’¬';
             dmIcon.style.background = '#6a11cb';
         }
         
         if (alertasIcon && window.permisosPorSeccion.alertas) {
-            alertasIcon.textContent = '🔔';
+            alertasIcon.textContent = 'ðŸ””';
             alertasIcon.style.color = '#28a745';
         }
     }
 }
 
-// Función para contactar negocio (global)
+// FunciÃ³n para contactar negocio (global)
 window.contactarNegocio = function(telefono) {
     if (telefono && telefono.trim() !== '') {
         const mensaje = "Hola, vi tu negocio en Tu-Tienda y me interesa...";
         const url = `https://wa.me/593${telefono.replace(/\D/g, '')}?text=${encodeURIComponent(mensaje)}`;
         window.open(url, '_blank');
     } else {
-        alert('Este negocio no tiene número de contacto registrado.');
+        alert('Este negocio no tiene nÃºmero de contacto registrado.');
     }
 };
 
-// Función para ver en mapa (global)
+// FunciÃ³n para ver en mapa (global)
 window.verEnMapa = function(ubicacion) {
     const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ubicacion)}`;
     window.open(url, '_blank');
 };
 
 // Exportar para debugging
-console.log("📦 script.js cargado exitosamente");
+console.log("ðŸ“¦ script.js cargado exitosamente");
+

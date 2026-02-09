@@ -1,21 +1,21 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <!-- Meta tags para WhatsApp -->
 <meta property="og:title" content="Tu-Tienda">
-<meta property="og:description" content="Tu guía local de Macas. Encuentra negocios, servicios y más.">
+<meta property="og:description" content="Tu guÃ­a local de Macas. Encuentra negocios, servicios y mÃ¡s.">
 <meta property="og:image" content="https://ejemplo.com/logo-Tu-Tienda.jpg">
 <meta property="og:url" content="https://Tu-Tienda.com">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 
-<!-- Para WhatsApp específicamente -->
+<!-- Para WhatsApp especÃ­ficamente -->
 <meta property="og:site_name" content="Tu-Tienda">
     <meta charset="UTF-8">
     <!-- En el head de index.html -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <title>Tu-Tienda - Tu guía local de Macas</title>
+    <title>Tu-Tienda - Tu guÃ­a local de Macas</title>
     
     <!-- META PWA -->
     <meta name="theme-color" content="#28a745">
@@ -37,9 +37,9 @@
     <!-- Estilos propios -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- Estilos para el selector de países -->
+    <!-- Estilos para el selector de paÃ­ses -->
     <style>
-    /* Selector de países - Barra superior */
+    /* Selector de paÃ­ses - Barra superior */
     .country-selector-bar {
         position: sticky;
         top: 0;
@@ -79,7 +79,7 @@
         font-size: 18px;
     }
 
-    /* Dropdown de países */
+    /* Dropdown de paÃ­ses */
     .country-dropdown {
         display: none;
         position: absolute;
@@ -113,7 +113,7 @@
         }
     }
 
-    /* Opciones de países */
+    /* Opciones de paÃ­ses */
     .country-option {
         padding: 15px 20px;
         border-bottom: 1px solid #f0f0f0;
@@ -149,7 +149,7 @@
         font-size: 14px;
     }
 
-    /* Sección de ciudades */
+    /* SecciÃ³n de ciudades */
     .cities-section {
         padding: 15px;
         background: #f8f9fa;
@@ -226,7 +226,7 @@
 </head>
 
 <body>
-    <!-- Selector de países -->
+    <!-- Selector de paÃ­ses -->
     <div class="country-selector-bar" id="countrySelector">
         <button class="country-selector-btn">
             <i class="fas fa-globe-americas"></i>
@@ -234,23 +234,23 @@
             <i class="fas fa-chevron-down"></i>
         </button>
         <div class="country-dropdown">
-            <!-- Aquí irían las opciones de países -->
+            <!-- AquÃ­ irÃ­an las opciones de paÃ­ses -->
         </div>
     </div>
 
     <script>
-    // Recuperar selección de país/ciudad si existe
+    // Recuperar selecciÃ³n de paÃ­s/ciudad si existe
     const pais = localStorage.getItem('pais');
     const ciudad = localStorage.getItem('ciudad');
     
     if (pais && ciudad) {
-        // Puedes usar estos datos para personalizar la página
+        // Puedes usar estos datos para personalizar la pÃ¡gina
         console.log(`Usuario de ${ciudad}, ${pais}`);
         // Opcional: mostrar un saludo personalizado
         document.addEventListener('DOMContentLoaded', () => {
             const saludo = document.createElement('div');
             saludo.style.cssText = 'background:#4CAF50;color:white;padding:0.5rem;text-align:center;';
-            saludo.innerHTML = `🌍 Bienvenido desde ${ciudad}, ${pais} | <small><a href="#" onclick="localStorage.clear();location.reload()">Cambiar ubicación</a></small>`;
+            saludo.innerHTML = `ðŸŒ Bienvenido desde ${ciudad}, ${pais} | <small><a href="#" onclick="localStorage.clear();location.reload()">Cambiar ubicaciÃ³n</a></small>`;
             document.body.prepend(saludo);
         });
     }
@@ -260,11 +260,11 @@
     <header class="main-header">
         <div class="header-content">
             <div class="logo-circle">
-                <span class="logo-icon">🤝</span>
+                <span class="logo-icon">ðŸ¤</span>
             </div>
             <div class="header-text">
                 <h1 class="app-title">Tu-Tienda</h1>
-                <p class="app-subtitle">Tu guía local de Macas</p>
+                <p class="app-subtitle">Tu guÃ­a local de Macas</p>
             </div>
         </div>
         
@@ -284,7 +284,7 @@
         <a href="https://wa.me/593981342236?text=Hola%20Tu-Tienda" 
            class="btn-principal btn-azul" target="_blank">
             <i class="fas fa-headset"></i>
-            <span>SOPORTE RÁPIDO</span>
+            <span>SOPORTE RÃPIDO</span>
         </a>
     </div>
 
@@ -294,7 +294,7 @@
             <input type="text" 
                    id="search-input" 
                    class="buscador-input"
-                   placeholder="🔍 Buscar negocios (ej: restaurant, zapatería, farmacia...)" 
+                   placeholder="ðŸ” Buscar negocios (ej: restaurant, zapaterÃ­a, farmacia...)" 
                    aria-label="Buscar negocios">
             <button id="search-button" class="buscador-boton">
                 <i class="fas fa-search"></i> Buscar
@@ -302,7 +302,7 @@
         </div>
         
         <a href="#" id="show-all-link" class="categorias-link">
-            <i class="fas fa-check-circle"></i> Ver todas las categorías
+            <i class="fas fa-check-circle"></i> Ver todas las categorÃ­as
         </a>
         
         <div class="contador-negocios">
@@ -312,9 +312,9 @@
         </div>
     </div>
 
-    <!-- CATEGORÍAS POPULARES -->
+    <!-- CATEGORÃAS POPULARES -->
     <div class="categorias-populares">
-        <h3><i class="fas fa-tags"></i> Categorías populares</h3>
+        <h3><i class="fas fa-tags"></i> CategorÃ­as populares</h3>
         <div class="categorias-grid">
             <a href="#" class="categoria-btn" data-categoria="restaurante">
                 <i class="fas fa-utensils"></i> Restaurantes
@@ -323,7 +323,7 @@
                 <i class="fas fa-pills"></i> Farmacias
             </a>
             <a href="#" class="categoria-btn" data-categoria="zapateria">
-                <i class="fas fa-shoe-prints"></i> Zapaterías
+                <i class="fas fa-shoe-prints"></i> ZapaterÃ­as
             </a>
             <a href="#" class="categoria-btn" data-categoria="supermercado">
                 <i class="fas fa-shopping-cart"></i> Supermercados
@@ -335,7 +335,7 @@
                 <i class="fas fa-tools"></i> Talleres
             </a>
             <a href="#" class="categoria-btn" data-categoria="clinica">
-                <i class="fas fa-hospital"></i> Clínicas
+                <i class="fas fa-hospital"></i> ClÃ­nicas
             </a>
             <a href="#" class="categoria-btn" data-categoria="transporte">
                 <i class="fas fa-bus"></i> Transporte
@@ -345,7 +345,7 @@
 
     <!-- LISTA DE NEGOCIOS -->
     <main class="lista-negocios" id="listaNegocios">
-        <!-- Los negocios aparecerán aquí dinámicamente -->
+        <!-- Los negocios aparecerÃ¡n aquÃ­ dinÃ¡micamente -->
         <div class="cargando-negocios">
             <div class="spinner">
                 <i class="fas fa-circle-notch"></i>
@@ -354,11 +354,11 @@
         </div>
     </main>
 
-    <!-- SECCIÓN INGRESOS -->
+    <!-- SECCIÃ“N INGRESOS -->
     <section class="seccion-ingresos">
         <h2 class="ingresos-titulo">
             <i class="fas fa-money-bill-wave"></i>
-            ¡Gana dinero con Tu-Tienda!
+            Â¡Gana dinero con Tu-Tienda!
         </h2>
         
         <div class="opciones-ingreso">
@@ -375,20 +375,20 @@
                     <i class="fas fa-users"></i>
                 </div>
                 <h3>Recomienda y gana</h3>
-                <p>Gana $2 por cada negocio que se registre con tu código.</p>
+                <p>Gana $2 por cada negocio que se registre con tu cÃ³digo.</p>
             </div>
         </div>
         
         <div class="llamado-accion">
             <p><strong>OFERTA DE LANZAMIENTO:</strong></p>
-            <p class="oferta-especial">¡PRIMER MES 100% GRATIS PARA TODOS!</p>
+            <p class="oferta-especial">Â¡PRIMER MES 100% GRATIS PARA TODOS!</p>
         </div>
     </section>
 
-    <!-- PIE DE PÁGINA -->
+    <!-- PIE DE PÃGINA -->
     
 <!-- =========================================== -->
-<!-- SECCI�N: AGREGAR MI NEGOCIO - EN P�GINA PRINCIPAL -->
+<!-- SECCIÓN: AGREGAR MI NEGOCIO - EN PÁGINA PRINCIPAL -->
 <!-- =========================================== -->
 <section style="
     background: linear-gradient(135deg, #f8f9fa, #e9ecef);
@@ -399,7 +399,7 @@
 ">
     <div style="max-width: 800px; margin: 0 auto;">
         
-        <!-- T�TULO -->
+        <!-- TÍTULO -->
         <h2 style="
             color: #28a745;
             text-align: center;
@@ -410,7 +410,7 @@
             gap: 15px;
         ">
             <i class="fas fa-store" style="font-size: 32px;"></i>
-            �AGREGA TU NEGOCIO A Tu-Tienda!
+            ¡AGREGA TU NEGOCIO A Tu-Tienda!
         </h2>
         
         <p style="text-align: center; color: #666; margin-bottom: 30px; font-size: 16px;">
@@ -443,10 +443,10 @@
                        id="nombreNegocioIndex">
             </div>
             
-            <!-- Categor�a -->
+            <!-- Categoría -->
             <div style="margin-bottom: 25px;">
                 <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">
-                    <i class="fas fa-list"></i> Categor�a *
+                    <i class="fas fa-list"></i> Categoría *
                 </label>
                 <select style="
                            width: 100%;
@@ -457,17 +457,17 @@
                            background: white;
                        "
                        id="categoriaIndex">
-                    <option value="">Selecciona una categor�a</option>
+                    <option value="">Selecciona una categoría</option>
                     <option value="farmacia">?? Farmacia</option>
                     <option value="restaurante">??? Restaurante</option>
                     <option value="supermercado">?? Supermercado</option>
-                    <option value="taller">?? Taller Mec�nico</option>
+                    <option value="taller">?? Taller Mecánico</option>
                     <option value="taxi">?? Servicio de Taxi</option>
                     <option value="hotel">?? Hotel/Hospedaje</option>
-                    <option value="panaderia">?? Panader�a</option>
+                    <option value="panaderia">?? Panadería</option>
                 </select>
                 
-                <!-- Bot�n para ver categor�as -->
+                <!-- Botón para ver categorías -->
                 <button type="button" 
                         onclick="mostrarCategoriasIndex()"
                         style="
@@ -484,11 +484,11 @@
                             gap: 8px;
                         ">
                     <i class="fas fa-eye"></i>
-                    Ver todas las categor�as disponibles
+                    Ver todas las categorías disponibles
                 </button>
             </div>
             
-            <!-- Bot�n de acci�n -->
+            <!-- Botón de acción -->
             <div style="text-align: center;">
                 <button onclick="enviarSolicitudIndex()"
                         style="
@@ -512,7 +512,7 @@
                 </button>
                 
                 <p style="margin-top: 15px; color: #666; font-size: 14px;">
-                    <i class="fas fa-shield-alt"></i> Tu informaci�n est� segura. Te contactaremos en menos de 24h.
+                    <i class="fas fa-shield-alt"></i> Tu información está segura. Te contactaremos en menos de 24h.
                 </p>
             </div>
         </div>
@@ -529,42 +529,42 @@
                    gap: 8px;
                ">
                 <i class="fas fa-external-link-alt"></i>
-                �Necesitas el formulario completo con m�s opciones?
+                ¿Necesitas el formulario completo con más opciones?
             </a>
         </div>
     </div>
 </section>
 
-<!-- Script para la secci�n de agregar negocio -->
+<!-- Script para la sección de agregar negocio -->
 <script>
-// Funci�n para mostrar categor�as en index.html
+// Función para mostrar categorías en index.html
 function mostrarCategoriasIndex() {
     const categorias = [
         "?? Farmacia",
         "??? Restaurante", 
         "?? Supermercado",
-        "?? Taller Mec�nico",
+        "?? Taller Mecánico",
         "?? Servicio de Taxi",
         "?? Hotel/Hospedaje",
-        "?? Panader�a",
-        "?? Fruter�a", 
-        "?? Carnicer�a",
-        "?? Electr�nica",
+        "?? Panadería",
+        "?? Frutería", 
+        "?? Carnicería",
+        "?? Electrónica",
         "?? Tienda de Ropa",
-        "?? Peluquer�a/Belleza",
+        "?? Peluquería/Belleza",
         "??? Gimnasio/Deporte",
         "??? Reparaciones",
         "?? Otros Servicios"
     ];
     
-    alert("?? CATEGOR�AS DISPONIBLES:\n\n" + categorias.join("\n") + "\n\n?? Selecciona una en el men� desplegable.");
+    alert("?? CATEGORÍAS DISPONIBLES:\n\n" + categorias.join("\n") + "\n\n?? Selecciona una en el menú desplegable.");
     
     // Enfocar el select
     const select = document.getElementById('categoriaIndex');
     if (select) select.focus();
 }
 
-// Funci�n para enviar solicitud desde index.html
+// Función para enviar solicitud desde index.html
 function enviarSolicitudIndex() {
     const nombre = document.getElementById('nombreNegocioIndex').value;
     const categoria = document.getElementById('categoriaIndex').value;
@@ -574,7 +574,7 @@ function enviarSolicitudIndex() {
         return;
     }
     
-    const mensaje = \`? �Solicitud registrada!\n\n?? **\${nombre}** (\${categoria})\n\nNuestro equipo se comunicar� contigo en menos de 24 horas para activar tu mes GRATIS.\n\n�Bienvenido a Tu-Tienda!\`;
+    const mensaje = \`? ¡Solicitud registrada!\n\n?? **\${nombre}** (\${categoria})\n\nNuestro equipo se comunicará contigo en menos de 24 horas para activar tu mes GRATIS.\n\n¡Bienvenido a Tu-Tienda!\`;
     
     alert(mensaje);
     
@@ -589,11 +589,11 @@ function enviarSolicitudIndex() {
 
  class="main-footer">
         <div class="footer-contenido">
-            <p class="footer-derechos">© 2026 Tu-Tienda - Todos los derechos reservados</p>
-            <p class="footer-nota">🚨 Esta app es real y está activa en Macas</p>
+            <p class="footer-derechos">Â© 2026 Tu-Tienda - Todos los derechos reservados</p>
+            <p class="footer-nota">ðŸš¨ Esta app es real y estÃ¡ activa en Macas</p>
             
             <div class="footer-compartir">
-                <p>¿Te gusta la app? ¡Compártela!</p>
+                <p>Â¿Te gusta la app? Â¡CompÃ¡rtela!</p>
                 <button class="btn-compartir" id="btnCompartir">
                     <i class="fab fa-whatsapp"></i>
                     Compartir por WhatsApp
@@ -602,7 +602,7 @@ function enviarSolicitudIndex() {
         </div>
     
 <!-- =========================================== -->
-<!-- SECCI�N: AGREGAR MI NEGOCIO - EN P�GINA PRINCIPAL -->
+<!-- SECCIÓN: AGREGAR MI NEGOCIO - EN PÁGINA PRINCIPAL -->
 <!-- =========================================== -->
 <section style="
     background: linear-gradient(135deg, #f8f9fa, #e9ecef);
@@ -613,7 +613,7 @@ function enviarSolicitudIndex() {
 ">
     <div style="max-width: 800px; margin: 0 auto;">
         
-        <!-- T�TULO -->
+        <!-- TÍTULO -->
         <h2 style="
             color: #28a745;
             text-align: center;
@@ -624,7 +624,7 @@ function enviarSolicitudIndex() {
             gap: 15px;
         ">
             <i class="fas fa-store" style="font-size: 32px;"></i>
-            �AGREGA TU NEGOCIO A Tu-Tienda!
+            ¡AGREGA TU NEGOCIO A Tu-Tienda!
         </h2>
         
         <p style="text-align: center; color: #666; margin-bottom: 30px; font-size: 16px;">
@@ -657,10 +657,10 @@ function enviarSolicitudIndex() {
                        id="nombreNegocioIndex">
             </div>
             
-            <!-- Categor�a -->
+            <!-- Categoría -->
             <div style="margin-bottom: 25px;">
                 <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">
-                    <i class="fas fa-list"></i> Categor�a *
+                    <i class="fas fa-list"></i> Categoría *
                 </label>
                 <select style="
                            width: 100%;
@@ -671,17 +671,17 @@ function enviarSolicitudIndex() {
                            background: white;
                        "
                        id="categoriaIndex">
-                    <option value="">Selecciona una categor�a</option>
+                    <option value="">Selecciona una categoría</option>
                     <option value="farmacia">?? Farmacia</option>
                     <option value="restaurante">??? Restaurante</option>
                     <option value="supermercado">?? Supermercado</option>
-                    <option value="taller">?? Taller Mec�nico</option>
+                    <option value="taller">?? Taller Mecánico</option>
                     <option value="taxi">?? Servicio de Taxi</option>
                     <option value="hotel">?? Hotel/Hospedaje</option>
-                    <option value="panaderia">?? Panader�a</option>
+                    <option value="panaderia">?? Panadería</option>
                 </select>
                 
-                <!-- Bot�n para ver categor�as -->
+                <!-- Botón para ver categorías -->
                 <button type="button" 
                         onclick="mostrarCategoriasIndex()"
                         style="
@@ -698,11 +698,11 @@ function enviarSolicitudIndex() {
                             gap: 8px;
                         ">
                     <i class="fas fa-eye"></i>
-                    Ver todas las categor�as disponibles
+                    Ver todas las categorías disponibles
                 </button>
             </div>
             
-            <!-- Bot�n de acci�n -->
+            <!-- Botón de acción -->
             <div style="text-align: center;">
                 <button onclick="enviarSolicitudIndex()"
                         style="
@@ -726,7 +726,7 @@ function enviarSolicitudIndex() {
                 </button>
                 
                 <p style="margin-top: 15px; color: #666; font-size: 14px;">
-                    <i class="fas fa-shield-alt"></i> Tu informaci�n est� segura. Te contactaremos en menos de 24h.
+                    <i class="fas fa-shield-alt"></i> Tu información está segura. Te contactaremos en menos de 24h.
                 </p>
             </div>
         </div>
@@ -743,42 +743,42 @@ function enviarSolicitudIndex() {
                    gap: 8px;
                ">
                 <i class="fas fa-external-link-alt"></i>
-                �Necesitas el formulario completo con m�s opciones?
+                ¿Necesitas el formulario completo con más opciones?
             </a>
         </div>
     </div>
 </section>
 
-<!-- Script para la secci�n de agregar negocio -->
+<!-- Script para la sección de agregar negocio -->
 <script>
-// Funci�n para mostrar categor�as en index.html
+// Función para mostrar categorías en index.html
 function mostrarCategoriasIndex() {
     const categorias = [
         "?? Farmacia",
         "??? Restaurante", 
         "?? Supermercado",
-        "?? Taller Mec�nico",
+        "?? Taller Mecánico",
         "?? Servicio de Taxi",
         "?? Hotel/Hospedaje",
-        "?? Panader�a",
-        "?? Fruter�a", 
-        "?? Carnicer�a",
-        "?? Electr�nica",
+        "?? Panadería",
+        "?? Frutería", 
+        "?? Carnicería",
+        "?? Electrónica",
         "?? Tienda de Ropa",
-        "?? Peluquer�a/Belleza",
+        "?? Peluquería/Belleza",
         "??? Gimnasio/Deporte",
         "??? Reparaciones",
         "?? Otros Servicios"
     ];
     
-    alert("?? CATEGOR�AS DISPONIBLES:\n\n" + categorias.join("\n") + "\n\n?? Selecciona una en el men� desplegable.");
+    alert("?? CATEGORÍAS DISPONIBLES:\n\n" + categorias.join("\n") + "\n\n?? Selecciona una en el menú desplegable.");
     
     // Enfocar el select
     const select = document.getElementById('categoriaIndex');
     if (select) select.focus();
 }
 
-// Funci�n para enviar solicitud desde index.html
+// Función para enviar solicitud desde index.html
 function enviarSolicitudIndex() {
     const nombre = document.getElementById('nombreNegocioIndex').value;
     const categoria = document.getElementById('categoriaIndex').value;
@@ -788,7 +788,7 @@ function enviarSolicitudIndex() {
         return;
     }
     
-    const mensaje = \`? �Solicitud registrada!\n\n?? **\${nombre}** (\${categoria})\n\nNuestro equipo se comunicar� contigo en menos de 24 horas para activar tu mes GRATIS.\n\n�Bienvenido a Tu-Tienda!\`;
+    const mensaje = \`? ¡Solicitud registrada!\n\n?? **\${nombre}** (\${categoria})\n\nNuestro equipo se comunicará contigo en menos de 24 horas para activar tu mes GRATIS.\n\n¡Bienvenido a Tu-Tienda!\`;
     
     alert(mensaje);
     
@@ -803,7 +803,7 @@ function enviarSolicitudIndex() {
 
 
 
-    <!-- MENÚ INFERIOR -->
+    <!-- MENÃš INFERIOR -->
     <nav class="menu-inferior">
         <a href="index.html" class="menu-item menu-activo">
             <i class="fas fa-home"></i>
@@ -839,18 +839,18 @@ function enviarSolicitudIndex() {
 
     <!-- SCRIPT FINAL DE CARGA -->
     <script>
-    // SOLUCIÓN FINAL - Solo esto debe ejecutarse
+    // SOLUCIÃ“N FINAL - Solo esto debe ejecutarse
     document.addEventListener('DOMContentLoaded', function() {
-        console.log("🎯 INICIANDO CARGA DEFINITIVA");
+        console.log("ðŸŽ¯ INICIANDO CARGA DEFINITIVA");
         
-        // 1. Verificar que negocios.js se cargó
+        // 1. Verificar que negocios.js se cargÃ³
         if (typeof negociosMacas === 'undefined') {
-            console.error("❌ ERROR: negocios.js NO cargado");
+            console.error("âŒ ERROR: negocios.js NO cargado");
             mostrarErrorCarga();
             return;
         }
         
-        console.log(`✅ Base de datos OK: ${negociosMacas.length} negocios`);
+        console.log(`âœ… Base de datos OK: ${negociosMacas.length} negocios`);
         
         // 2. Mostrar los 9 negocios completos
         mostrarNegociosCompletos();
@@ -865,7 +865,7 @@ function enviarSolicitudIndex() {
         const contadorTexto = document.getElementById('contadorTexto');
         
         if (!listaNegocios) {
-            console.error("❌ No existe #listaNegocios");
+            console.error("âŒ No existe #listaNegocios");
             return;
         }
         
@@ -882,8 +882,8 @@ function enviarSolicitudIndex() {
             card.innerHTML = `
                 <div class="negocio-header">
                     <span class="negocio-categoria">${negocio.categoria}</span>
-                    ${negocio.fundador ? '<span class="negocio-fundador">🌟 FOUNDER</span>' : ''}
-                    ${negocio.horario && negocio.horario.includes('24') ? '<span class="negocio-fundador" style="background: #dc3545; color: white;">🚨 24H</span>' : ''}
+                    ${negocio.fundador ? '<span class="negocio-fundador">ðŸŒŸ FOUNDER</span>' : ''}
+                    ${negocio.horario && negocio.horario.includes('24') ? '<span class="negocio-fundador" style="background: #dc3545; color: white;">ðŸš¨ 24H</span>' : ''}
                 </div>
                 
                 <div class="negocio-body">
@@ -891,8 +891,8 @@ function enviarSolicitudIndex() {
                     <p class="negocio-descripcion">${negocio.descripcion}</p>
                     
                     <div class="negocio-detalles">
-                        <p><i class="fas fa-map-marker-alt"></i> <strong>Ubicación:</strong> ${negocio.ubicacion}</p>
-                        <p><i class="fas fa-phone"></i> <strong>Teléfono:</strong> ${negocio.telefono}</p>
+                        <p><i class="fas fa-map-marker-alt"></i> <strong>UbicaciÃ³n:</strong> ${negocio.ubicacion}</p>
+                        <p><i class="fas fa-phone"></i> <strong>TelÃ©fono:</strong> ${negocio.telefono}</p>
                         ${negocio.whatsapp ? `<p><i class="fab fa-whatsapp"></i> <strong>WhatsApp:</strong> ${negocio.whatsapp}</p>` : ''}
                         ${negocio.horario ? `<p><i class="fas fa-clock"></i> <strong>Horario:</strong> ${negocio.horario}</p>` : ''}
                     </div>
@@ -933,7 +933,7 @@ function enviarSolicitudIndex() {
             contadorTexto.textContent = 'negocios disponibles';
         }
         
-        console.log(`✅ Mostrados ${negociosMacas.length} negocios`);
+        console.log(`âœ… Mostrados ${negociosMacas.length} negocios`);
     }
     
     function configurarBuscadorSimple() {
@@ -944,7 +944,7 @@ function enviarSolicitudIndex() {
             searchButton.addEventListener('click', function() {
                 const termino = searchInput.value.trim();
                 if (termino) {
-                    // Redirigir a negocios.html con búsqueda
+                    // Redirigir a negocios.html con bÃºsqueda
                     window.location.href = `negocios.html?search=${encodeURIComponent(termino)}`;
                 }
             });
@@ -966,24 +966,24 @@ function enviarSolicitudIndex() {
             listaNegocios.innerHTML = `
                 <div class="sin-resultados">
                     <i class="fas fa-exclamation-triangle fa-3x" style="color: #dc3545;"></i>
-                    <h3 style="color: #dc3545;">Error crítico</h3>
+                    <h3 style="color: #dc3545;">Error crÃ­tico</h3>
                     <p>No se pudo cargar la base de datos de negocios.</p>
                     <p><small>Revisa que el archivo <code>negocios.js</code> exista en la carpeta</small></p>
                     <button onclick="location.reload()" class="btn-accion" style="margin-top: 15px;">
-                        <i class="fas fa-redo"></i> Recargar página
+                        <i class="fas fa-redo"></i> Recargar pÃ¡gina
                     </button>
                 </div>
             `;
         }
     }
     
-    // Forzar carga si DOM ya está cargado
+    // Forzar carga si DOM ya estÃ¡ cargado
     if (document.readyState === 'complete' || document.readyState === 'interactive') {
         setTimeout(init, 100);
     }
     
     function init() {
-        console.log("⚡ Ejecutando carga inmediata...");
+        console.log("âš¡ Ejecutando carga inmediata...");
         if (typeof negociosMacas !== 'undefined') {
             mostrarNegociosCompletos();
         }
@@ -994,7 +994,8 @@ function enviarSolicitudIndex() {
 <script src="negocios.js"></script>
 <script src="script.js"></script>
 <script src="auth.js"></script>
-<!-- Y luego el código que te di arriba -->
+<!-- Y luego el cÃ³digo que te di arriba -->
 </body>
 </html>
+
 

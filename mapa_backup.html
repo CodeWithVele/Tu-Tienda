@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+Ôªø<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -145,7 +145,7 @@
             <div class="negocio-icon">??</div>
             <div class="negocio-info">
                 <h3>Restaurante El Sabor</h3>
-                <p>Av. Amazonas 123 ï Comida tÌpica</p>
+                <p>Av. Amazonas 123 ‚Ä¢ Comida t√≠pica</p>
             </div>
         </div>
         
@@ -153,7 +153,7 @@
             <div class="negocio-icon">??</div>
             <div class="negocio-info">
                 <h3>Farmacia Macas</h3>
-                <p>Calle 10 de Agosto ï 24 horas</p>
+                <p>Calle 10 de Agosto ‚Ä¢ 24 horas</p>
             </div>
         </div>
         
@@ -161,15 +161,15 @@
             <div class="negocio-icon">??</div>
             <div class="negocio-info">
                 <h3>Supermercado Central</h3>
-                <p>Av. del Maestro ï Abierto hasta 22:00</p>
+                <p>Av. del Maestro ‚Ä¢ Abierto hasta 22:00</p>
             </div>
         </div>
         
-        <div class="negocio-item" onclick="marcarEnMapa(-2.3080, -78.1150, 'Taller Mec·nico R·pido')">
+        <div class="negocio-item" onclick="marcarEnMapa(-2.3080, -78.1150, 'Taller Mec√°nico R√°pido')">
             <div class="negocio-icon">??</div>
             <div class="negocio-info">
-                <h3>Taller Mec·nico R·pido</h3>
-                <p>Via a Puyo ï Servicio express</p>
+                <h3>Taller Mec√°nico R√°pido</h3>
+                <p>Via a Puyo ‚Ä¢ Servicio express</p>
             </div>
         </div>
     </div>
@@ -197,7 +197,7 @@
             
             // Capa de OpenStreetMap
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors',
+                attribution: '¬© OpenStreetMap contributors',
                 maxZoom: 18
             }).addTo(map);
             
@@ -244,7 +244,7 @@
                 { lat: -2.3065, lng: -78.1134, nombre: "Restaurante El Sabor", icon: "??" },
                 { lat: -2.3070, lng: -78.1140, nombre: "Farmacia Macas", icon: "??" },
                 { lat: -2.3055, lng: -78.1120, nombre: "Supermercado Central", icon: "??" },
-                { lat: -2.3080, lng: -78.1150, nombre: "Taller Mec·nico R·pido", icon: "??" }
+                { lat: -2.3080, lng: -78.1150, nombre: "Taller Mec√°nico R√°pido", icon: "??" }
             ];
             
             // Agregar cada negocio
@@ -260,7 +260,7 @@
             map.fitBounds(grupo.getBounds().pad(0.1));
         }
         
-        // Cuando la p·gina cargue
+        // Cuando la p√°gina cargue
         document.addEventListener('DOMContentLoaded', function() {
             inicializarMapa();
             console.log('??? Mapa de Tu-Tienda listo');
@@ -268,5 +268,6 @@
     </script>
 </body>
 </html>
+
 
 

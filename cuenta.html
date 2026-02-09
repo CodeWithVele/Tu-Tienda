@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -63,7 +63,7 @@
                 <i class="fas fa-key"></i> Control de Accesos
             </h3>
             <p class="descripcion-accesos">
-                Gestiona los permisos de cada sección privada. Puedes cerrar sesión individualmente.
+                Gestiona los permisos de cada secciÃ³n privada. Puedes cerrar sesiÃ³n individualmente.
             </p>
             
             <div class="lista-accesos">
@@ -80,9 +80,9 @@
                         </div>
                     </div>
                     <div class="acceso-estado">
-                        <div id="estado-dm" class="estado-conectado">✅ Conectado</div>
+                        <div id="estado-dm" class="estado-conectado">âœ… Conectado</div>
                         <button onclick="cerrarSesion('dm')" class="btn-cerrar-sesion dm">
-                            <i class="fas fa-lock"></i> Cerrar Sesión DM
+                            <i class="fas fa-lock"></i> Cerrar SesiÃ³n DM
                         </button>
                     </div>
                 </div>
@@ -99,9 +99,9 @@
                         </div>
                     </div>
                     <div class="acceso-estado">
-                        <div id="estado-alertas" class="estado-conectado">✅ Conectado</div>
+                        <div id="estado-alertas" class="estado-conectado">âœ… Conectado</div>
                         <button onclick="cerrarSesion('alertas')" class="btn-cerrar-sesion alertas">
-                            <i class="fas fa-lock"></i> Cerrar Sesión Alertas
+                            <i class="fas fa-lock"></i> Cerrar SesiÃ³n Alertas
                         </button>
                     </div>
                 </div>
@@ -114,20 +114,20 @@
                         </div>
                         <div class="acceso-detalles">
                             <h4 class="acceso-titulo">Mi Cuenta</h4>
-                            <p class="acceso-descripcion">Perfil y configuración</p>
+                            <p class="acceso-descripcion">Perfil y configuraciÃ³n</p>
                         </div>
                     </div>
                     <div class="acceso-estado">
-                        <div id="estado-cuenta" class="estado-conectado">✅ Conectado</div>
+                        <div id="estado-cuenta" class="estado-conectado">âœ… Conectado</div>
                         <button onclick="cerrarSesion('cuenta')" class="btn-cerrar-sesion cuenta">
-                            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión Total
+                            <i class="fas fa-sign-out-alt"></i> Cerrar SesiÃ³n Total
                         </button>
                     </div>
                 </div>
                 
             </div>
             
-            <!-- BOTÓN CERRAR TODO -->
+            <!-- BOTÃ“N CERRAR TODO -->
             <div class="cerrar-todo-contenedor">
                 <button onclick="cerrarTodasLasSesiones()" class="btn-cerrar-todo">
                     <i class="fas fa-power-off"></i> Cerrar Todas las Sesiones
@@ -135,14 +135,14 @@
             </div>
             
             <p class="info-acceso">
-                <i class="fas fa-info-circle"></i> Al cerrar sesión, necesitarás volver a ingresar la contraseña para acceder
+                <i class="fas fa-info-circle"></i> Al cerrar sesiÃ³n, necesitarÃ¡s volver a ingresar la contraseÃ±a para acceder
             </p>
         </section>
 
-        <!-- CONFIGURACIÓN -->
+        <!-- CONFIGURACIÃ“N -->
         <section class="seccion-configuracion">
             <h3 class="titulo-configuracion">
-                <i class="fas fa-cog"></i> Configuración
+                <i class="fas fa-cog"></i> ConfiguraciÃ³n
             </h3>
             
             <form class="form-configuracion">
@@ -176,7 +176,7 @@
                         <i class="fas fa-palette"></i> Tema
                     </label>
                     <select class="config-select">
-                        <option>Automático (según sistema)</option>
+                        <option>AutomÃ¡tico (segÃºn sistema)</option>
                         <option>Claro</option>
                         <option>Oscuro</option>
                     </select>
@@ -188,30 +188,30 @@
             </form>
         </section>
         
-        <!-- INFORMACIÓN ADICIONAL -->
+        <!-- INFORMACIÃ“N ADICIONAL -->
         <section class="info-adicional-cuenta">
             <div class="info-tarjeta">
                 <i class="fas fa-shield-alt info-icono" style="color: #6a11cb;"></i>
                 <h3>Privacidad</h3>
-                <p>Tus datos están protegidos y no se comparten con terceros.</p>
+                <p>Tus datos estÃ¡n protegidos y no se comparten con terceros.</p>
             </div>
             
             <div class="info-tarjeta">
                 <i class="fas fa-sync-alt info-icono" style="color: #28a745;"></i>
-                <h3>Sincronización</h3>
-                <p>Tus configuraciones se guardan automáticamente.</p>
+                <h3>SincronizaciÃ³n</h3>
+                <p>Tus configuraciones se guardan automÃ¡ticamente.</p>
             </div>
             
             <div class="info-tarjeta">
                 <i class="fas fa-headset info-icono" style="color: #ff9800;"></i>
                 <h3>Soporte</h3>
-                <p>¿Necesitas ayuda? Contáctanos por WhatsApp.</p>
+                <p>Â¿Necesitas ayuda? ContÃ¡ctanos por WhatsApp.</p>
             </div>
         </section>
         
     </main>
 
-    <!-- MENÚ INFERIOR -->
+    <!-- MENÃš INFERIOR -->
     <nav class="menu-inferior">
         <a href="index.html" class="menu-item">
             <i class="fas fa-home"></i>
@@ -241,9 +241,9 @@
 
     <!-- SCRIPT DE CUENTA -->
     <script>
-    // Función para cerrar sesión específica
+    // FunciÃ³n para cerrar sesiÃ³n especÃ­fica
     function cerrarSesion(seccion) {
-        const confirmar = confirm(`¿Estás seguro de cerrar sesión en ${seccion.toUpperCase()}?\n\nDeberás volver a ingresar la contraseña para acceder.`);
+        const confirmar = confirm(`Â¿EstÃ¡s seguro de cerrar sesiÃ³n en ${seccion.toUpperCase()}?\n\nDeberÃ¡s volver a ingresar la contraseÃ±a para acceder.`);
         
         if (confirmar) {
             // Remover permiso del localStorage
@@ -252,12 +252,12 @@
             // Actualizar estado visual
             const estadoElemento = document.getElementById(`estado-${seccion}`);
             if (estadoElemento) {
-                estadoElemento.textContent = '❌ Desconectado';
+                estadoElemento.textContent = 'âŒ Desconectado';
                 estadoElemento.className = 'estado-desconectado';
             }
             
-            // Mostrar mensaje de confirmación
-            alert(`✅ Sesión de ${seccion} cerrada exitosamente`);
+            // Mostrar mensaje de confirmaciÃ³n
+            alert(`âœ… SesiÃ³n de ${seccion} cerrada exitosamente`);
             
             // Si es la cuenta, redirigir al inicio
             if (seccion === 'cuenta') {
@@ -268,9 +268,9 @@
         }
     }
     
-    // Función para cerrar todas las sesiones
+    // FunciÃ³n para cerrar todas las sesiones
     function cerrarTodasLasSesiones() {
-        const confirmar = confirm('¿Cerrar TODAS las sesiones?\n\nSe cerrarán DM, Alertas y Cuenta. Volverás a la página de inicio.');
+        const confirmar = confirm('Â¿Cerrar TODAS las sesiones?\n\nSe cerrarÃ¡n DM, Alertas y Cuenta. VolverÃ¡s a la pÃ¡gina de inicio.');
         
         if (confirmar) {
             // Remover todos los permisos
@@ -282,24 +282,24 @@
             ['dm', 'alertas', 'cuenta'].forEach(seccion => {
                 const estadoElemento = document.getElementById(`estado-${seccion}`);
                 if (estadoElemento) {
-                    estadoElemento.textContent = '❌ Desconectado';
+                    estadoElemento.textContent = 'âŒ Desconectado';
                     estadoElemento.className = 'estado-desconectado';
                 }
             });
             
-            // Redirigir al inicio después de 2 segundos
+            // Redirigir al inicio despuÃ©s de 2 segundos
             setTimeout(() => {
-                alert('✅ Todas las sesiones han sido cerradas');
+                alert('âœ… Todas las sesiones han sido cerradas');
                 window.location.href = 'index.html';
             }, 1500);
         }
     }
     
-    // Función para guardar configuración
+    // FunciÃ³n para guardar configuraciÃ³n
     document.querySelector('.form-configuracion').addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // Guardar configuración en localStorage
+        // Guardar configuraciÃ³n en localStorage
         const notificaciones = this.querySelector('select').value;
         const zona = this.elements[1].value;
         const tema = this.elements[2].value;
@@ -313,11 +313,11 @@
         
         localStorage.setItem('configuracion_usuario', JSON.stringify(configuracion));
         
-        // Mostrar mensaje de confirmación
+        // Mostrar mensaje de confirmaciÃ³n
         const btn = this.querySelector('.btn-guardar-cambios');
         const textoOriginal = btn.innerHTML;
         
-        btn.innerHTML = '<i class="fas fa-check"></i> ¡Guardado!';
+        btn.innerHTML = '<i class="fas fa-check"></i> Â¡Guardado!';
         btn.style.background = '#28a745';
         
         setTimeout(() => {
@@ -325,12 +325,12 @@
             btn.style.background = '';
         }, 2000);
         
-        alert('✅ Configuración guardada exitosamente');
+        alert('âœ… ConfiguraciÃ³n guardada exitosamente');
     });
     
-    // Cargar configuración guardada al iniciar
+    // Cargar configuraciÃ³n guardada al iniciar
     document.addEventListener('DOMContentLoaded', function() {
-        // Cargar configuración si existe
+        // Cargar configuraciÃ³n si existe
         const configGuardada = localStorage.getItem('configuracion_usuario');
         if (configGuardada) {
             const config = JSON.parse(configGuardada);
@@ -354,10 +354,10 @@
             
             if (estadoElemento) {
                 if (estado === 'true') {
-                    estadoElemento.textContent = '✅ Conectado';
+                    estadoElemento.textContent = 'âœ… Conectado';
                     estadoElemento.className = 'estado-conectado';
                 } else {
-                    estadoElemento.textContent = '❌ Desconectado';
+                    estadoElemento.textContent = 'âŒ Desconectado';
                     estadoElemento.className = 'estado-desconectado';
                 }
             }
@@ -365,7 +365,7 @@
     });
     </script>
 
-    <!-- ESTILOS ESPECÍFICOS PARA CUENTA.HTML -->
+    <!-- ESTILOS ESPECÃFICOS PARA CUENTA.HTML -->
     <style>
     /* CONTENEDOR PRINCIPAL */
     .cuenta-contenedor {
@@ -375,7 +375,7 @@
         padding-bottom: 100px;
     }
     
-    /* BOTÓN VOLVER */
+    /* BOTÃ“N VOLVER */
     .btn-volver {
         color: white;
         text-decoration: none;
@@ -460,7 +460,7 @@
         font-size: 14px;
     }
     
-    /* SECCIÓN DE ACCESOS */
+    /* SECCIÃ“N DE ACCESOS */
     .seccion-accesos {
         background: #f8f9ff;
         padding: 25px;
@@ -629,7 +629,7 @@
         gap: 8px;
     }
     
-    /* CONFIGURACIÓN */
+    /* CONFIGURACIÃ“N */
     .seccion-configuracion {
         background: var(--blanco);
         padding: 25px;
@@ -709,7 +709,7 @@
         box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
     }
     
-    /* INFORMACIÓN ADICIONAL */
+    /* INFORMACIÃ“N ADICIONAL */
     .info-adicional-cuenta {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -808,8 +808,9 @@
     <a href="index.html" style="background:#28a745; color:white; padding:12px 25px; text-decoration:none; border-radius:8px; font-weight:bold;">
         ? Volver al Inicio
     </a>
-    <p style="margin-top:10px; color:#666; font-size:14px;">Tu-Tienda - Tu gu�a local</p>
+    <p style="margin-top:10px; color:#666; font-size:14px;">Tu-Tienda - Tu guía local</p>
 </div>
 </body>
 </html>
+
 

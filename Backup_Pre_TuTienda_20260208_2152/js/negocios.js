@@ -1,4 +1,4 @@
-// En script.js, modifica cargarNegociosInicio():
+﻿// En script.js, modifica cargarNegociosInicio():
 function cargarNegociosInicio() {
     const contenedor = document.getElementById('listaNegocios');
     if (!contenedor) return;
@@ -41,18 +41,18 @@ function cargarNegociosEnHTML() {
 }
 
 // negocios.js - BASE DE DATOS DE NEGOCIOS DE MACAS
-console.log("🏪 Cargando base de datos de negocios...");
+console.log("ðŸª Cargando base de datos de negocios...");
 
 const negociosMacas = [
     {
         id: 1,
-        nombre: "Zapatería Colombiano",
-        categoria: "Reparación de Calzado",
-        descripcion: "¡Gracias por Preferirnos! 🌟 35 años reparando el calzado de Macas. Especialista en cuero, cambio de suelas y arreglos urgentes.",
+        nombre: "ZapaterÃ­a Colombiano",
+        categoria: "ReparaciÃ³n de Calzado",
+        descripcion: "Â¡Gracias por Preferirnos! ðŸŒŸ 35 aÃ±os reparando el calzado de Macas. Especialista en cuero, cambio de suelas y arreglos urgentes.",
         ubicacion: "Macas Centro, a lado de la cooperativa JEP",
         telefono: "0981342236",
         whatsapp: "593981342236",
-        horario: "Lun-Sáb: 8:00-20:00 | Dom: 9:00-15:00",
+        horario: "Lun-SÃ¡b: 8:00-20:00 | Dom: 9:00-15:00",
         servicios: ["Cambio de suela", "Arreglo de cuero", "Zapatos escolares", "Tacones", "Botas", "Urgencias", "Cambio cierres"],
         fundador: true,
         destacado: true,
@@ -60,36 +60,36 @@ const negociosMacas = [
             lat: -2.3087,
             lng: -78.1114
         },
-        etiquetas: ["reparación", "calzado", "zapatería", "urgencias"]
+        etiquetas: ["reparaciÃ³n", "calzado", "zapaterÃ­a", "urgencias"]
     },
     {
         id: 2,
         nombre: "Restaurante El Sabor de Macas",
         categoria: "Restaurante",
-        descripcion: "Comida típica amazónica en un ambiente familiar. Especialidades en maito de pescado y chontacuro.",
+        descripcion: "Comida tÃ­pica amazÃ³nica en un ambiente familiar. Especialidades en maito de pescado y chontacuro.",
         ubicacion: "Av. Amazonas, frente al parque central",
         telefono: "0912345678",
         whatsapp: "593912345678",
-        horario: "Todos los días: 7:00-22:00",
-        servicios: ["Comida amazónica", "Maito de pescado", "Chontacuro", "Almuerzos ejecutivos", "Postres típicos"],
+        horario: "Todos los dÃ­as: 7:00-22:00",
+        servicios: ["Comida amazÃ³nica", "Maito de pescado", "Chontacuro", "Almuerzos ejecutivos", "Postres tÃ­picos"],
         fundador: false,
         destacado: true,
         coordenadas: {
             lat: -2.3065,
             lng: -78.1123
         },
-        etiquetas: ["restaurante", "comida", "amazónica", "maito"]
+        etiquetas: ["restaurante", "comida", "amazÃ³nica", "maito"]
     },
     {
         id: 3,
         nombre: "Farmacia Santa Marianita",
         categoria: "Farmacia",
-        descripcion: "Atención 24/7. Entrega a domicilio gratuita en el centro de Macas. Amplio stock de medicamentos.",
+        descripcion: "AtenciÃ³n 24/7. Entrega a domicilio gratuita en el centro de Macas. Amplio stock de medicamentos.",
         ubicacion: "Av. 10 de Agosto, frente al hospital",
         telefono: "0923456789",
         whatsapp: "593923456789",
-        horario: "24 horas, todos los días",
-        servicios: ["Medicamentos", "Primeros auxilios", "Entrega a domicilio", "Farmacéutico 24/7", "Productos de higiene"],
+        horario: "24 horas, todos los dÃ­as",
+        servicios: ["Medicamentos", "Primeros auxilios", "Entrega a domicilio", "FarmacÃ©utico 24/7", "Productos de higiene"],
         fundador: false,
         destacado: false,
         coordenadas: {
@@ -102,12 +102,12 @@ const negociosMacas = [
         id: 4,
         nombre: "Supermercado El Ahorro",
         categoria: "Supermercado",
-        descripcion: "Los mejores precios de la ciudad. Productos frescos, abarrotes y línea blanca.",
+        descripcion: "Los mejores precios de la ciudad. Productos frescos, abarrotes y lÃ­nea blanca.",
         ubicacion: "Av. Amazonas Km 1.5",
         telefono: "0934567890",
         whatsapp: "593934567890",
-        horario: "Lun-Sáb: 8:00-21:00 | Dom: 8:00-14:00",
-        servicios: ["Abarrotes", "Frutas y verduras", "Carnicería", "Productos de limpieza", "Electrodomésticos"],
+        horario: "Lun-SÃ¡b: 8:00-21:00 | Dom: 8:00-14:00",
+        servicios: ["Abarrotes", "Frutas y verduras", "CarnicerÃ­a", "Productos de limpieza", "ElectrodomÃ©sticos"],
         fundador: false,
         destacado: false,
         coordenadas: {
@@ -118,28 +118,28 @@ const negociosMacas = [
     },
     {
         id: 5,
-        nombre: "Taller Mecánico Rápido",
-        categoria: "Mecánica",
-        descripcion: "Mecánica general, cambio de aceite y reparación de frenos. Garantía en todos los trabajos.",
-        ubicacion: "Vía a Puyo Km 0.5",
+        nombre: "Taller MecÃ¡nico RÃ¡pido",
+        categoria: "MecÃ¡nica",
+        descripcion: "MecÃ¡nica general, cambio de aceite y reparaciÃ³n de frenos. GarantÃ­a en todos los trabajos.",
+        ubicacion: "VÃ­a a Puyo Km 0.5",
         telefono: "0945678901",
         whatsapp: "593945678901",
-        horario: "Lun-Vie: 8:00-18:00 | Sáb: 8:00-14:00",
-        servicios: ["Mecánica general", "Cambio de aceite", "Reparación de frenos", "Diagnóstico computarizado", "Llantas"],
+        horario: "Lun-Vie: 8:00-18:00 | SÃ¡b: 8:00-14:00",
+        servicios: ["MecÃ¡nica general", "Cambio de aceite", "ReparaciÃ³n de frenos", "DiagnÃ³stico computarizado", "Llantas"],
         fundador: false,
         destacado: false,
         coordenadas: {
             lat: -2.3120,
             lng: -78.1095
         },
-        etiquetas: ["mecánica", "taller", "reparación", "automóviles"]
+        etiquetas: ["mecÃ¡nica", "taller", "reparaciÃ³n", "automÃ³viles"]
     },
     {
         id: 6,
-        nombre: "Pizzería La Italiana",
+        nombre: "PizzerÃ­a La Italiana",
         categoria: "Restaurante",
         descripcion: "Pizza artesanal y pasta fresca. El mejor lugar para comida italiana en Macas.",
-        ubicacion: "Calle Bolívar, junto al mercado",
+        ubicacion: "Calle BolÃ­var, junto al mercado",
         telefono: "0956789012",
         whatsapp: "593956789012",
         horario: "Mar-Dom: 12:00-23:00 | Lun: Cerrado",
@@ -150,18 +150,18 @@ const negociosMacas = [
             lat: -2.3058,
             lng: -78.1137
         },
-        etiquetas: ["pizzería", "italiana", "comida rápida", "domicilio"]
+        etiquetas: ["pizzerÃ­a", "italiana", "comida rÃ¡pida", "domicilio"]
     },
     {
         id: 7,
-        nombre: "Clínica Veterinaria Peludos",
+        nombre: "ClÃ­nica Veterinaria Peludos",
         categoria: "Veterinaria",
-        descripcion: "Atención a mascotas. Vacunas, consultas y peluquería. Amor y cuidado profesional.",
+        descripcion: "AtenciÃ³n a mascotas. Vacunas, consultas y peluquerÃ­a. Amor y cuidado profesional.",
         ubicacion: "Calle Sucre 234",
         telefono: "0967890123",
         whatsapp: "593967890123",
-        horario: "Lun-Sáb: 9:00-19:00 | Dom: 10:00-14:00",
-        servicios: ["Consultas veterinarias", "Vacunación", "Peluquería canina", "Cirugías menores", "Hospitalización"],
+        horario: "Lun-SÃ¡b: 9:00-19:00 | Dom: 10:00-14:00",
+        servicios: ["Consultas veterinarias", "VacunaciÃ³n", "PeluquerÃ­a canina", "CirugÃ­as menores", "HospitalizaciÃ³n"],
         fundador: false,
         destacado: false,
         coordenadas: {
@@ -172,13 +172,13 @@ const negociosMacas = [
     },
     {
         id: 8,
-        nombre: "Lavandería Express",
-        categoria: "Lavandería",
+        nombre: "LavanderÃ­a Express",
+        categoria: "LavanderÃ­a",
         descripcion: "Lavado y planchado express en 2 horas. Servicio recogida y entrega a domicilio.",
         ubicacion: "Av. 29 de Mayo",
         telefono: "0978901234",
         whatsapp: "593978901234",
-        horario: "Lun-Sáb: 8:00-20:00 | Dom: 9:00-17:00",
+        horario: "Lun-SÃ¡b: 8:00-20:00 | Dom: 9:00-17:00",
         servicios: ["Lavado express", "Planchado", "Limpieza en seco", "Recogida a domicilio", "Entrega express"],
         fundador: false,
         destacado: false,
@@ -186,34 +186,34 @@ const negociosMacas = [
             lat: -2.3091,
             lng: -78.1163
         },
-        etiquetas: ["lavandería", "limpieza", "express", "domicilio"]
+        etiquetas: ["lavanderÃ­a", "limpieza", "express", "domicilio"]
     },
     {
         id: 9,
-        nombre: "Cafetería Aroma Andino",
-        categoria: "Cafetería",
-        descripcion: "Café orgánico de altura. Postres artesanales y ambiente acogedor para trabajar o estudiar.",
+        nombre: "CafeterÃ­a Aroma Andino",
+        categoria: "CafeterÃ­a",
+        descripcion: "CafÃ© orgÃ¡nico de altura. Postres artesanales y ambiente acogedor para trabajar o estudiar.",
         ubicacion: "Centro Comercial Macas",
         telefono: "0989012345",
         whatsapp: "593989012345",
         horario: "Lun-Dom: 7:00-22:00",
-        servicios: ["Café orgánico", "Postres artesanales", "WiFi gratis", "Ambiente de trabajo", "Reuniones"],
+        servicios: ["CafÃ© orgÃ¡nico", "Postres artesanales", "WiFi gratis", "Ambiente de trabajo", "Reuniones"],
         fundador: false,
         destacado: false,
         coordenadas: {
             lat: -2.3037,
             lng: -78.1158
         },
-        etiquetas: ["cafetería", "café", "postres", "wifi"]
+        etiquetas: ["cafeterÃ­a", "cafÃ©", "postres", "wifi"]
     }
 ];
 
-// Función para obtener todos los negocios
+// FunciÃ³n para obtener todos los negocios
 function obtenerTodosNegocios() {
     return negociosMacas;
 }
 
-// Función para buscar negocios por término
+// FunciÃ³n para buscar negocios por tÃ©rmino
 function buscarNegocios(termino) {
     const terminoLower = termino.toLowerCase();
     return negociosMacas.filter(negocio => 
@@ -224,24 +224,24 @@ function buscarNegocios(termino) {
     );
 }
 
-// Función para obtener negocios por categoría
+// FunciÃ³n para obtener negocios por categorÃ­a
 function obtenerNegociosPorCategoria(categoria) {
     return negociosMacas.filter(negocio => 
         negocio.categoria.toLowerCase() === categoria.toLowerCase()
     );
 }
 
-// Función para obtener negocios destacados
+// FunciÃ³n para obtener negocios destacados
 function obtenerNegociosDestacados() {
     return negociosMacas.filter(negocio => negocio.destacado);
 }
 
-// Función para obtener el negocio fundador
+// FunciÃ³n para obtener el negocio fundador
 function obtenerNegocioFundador() {
     return negociosMacas.find(negocio => negocio.fundador) || negociosMacas[0];
 }
 
-// Función para DM (versión simplificada)
+// FunciÃ³n para DM (versiÃ³n simplificada)
 function obtenerNegociosDM() {
     return negociosMacas.map(negocio => ({
         id: negocio.id,
@@ -264,8 +264,8 @@ window.obtenerNegociosDestacados = obtenerNegociosDestacados;
 window.obtenerNegocioFundador = obtenerNegocioFundador;
 window.obtenerNegociosDM = obtenerNegociosDM;
 
-console.log(`✅ Base de datos cargada: ${negociosMacas.length} negocios disponibles`);
-// NEGOCIOS DESTACADOS PARA LA P�GINA PRINCIPAL
+console.log(`âœ… Base de datos cargada: ${negociosMacas.length} negocios disponibles`);
+// NEGOCIOS DESTACADOS PARA LA PÁGINA PRINCIPAL
 function loadFeaturedBusinesses() {
     const featuredGrid = document.getElementById('featuredBusinesses');
     
@@ -274,26 +274,26 @@ function loadFeaturedBusinesses() {
     const featuredBusinesses = [
         {
             id: 1,
-            name: "Zapater�a Colombiano",
-            description: "�FUNDADOR DE Tu-Tienda! ?? 35 a�os reparando calzado.",
+            name: "Zapatería Colombiano",
+            description: "¡FUNDADOR DE Tu-Tienda! ?? 35 años reparando calzado.",
             category: "zapaterias",
             icon: "??",
-            tags: ["Fundador", "35 a�os", "Especialista"],
+            tags: ["Fundador", "35 años", "Especialista"],
             color: "#8e44ad"
         },
         {
             id: 2,
             name: "Restaurante El Sabor",
-            description: "Comida t�pica amaz�nica. Especialidades en ma�to de pescado.",
+            description: "Comida típica amazónica. Especialidades en maíto de pescado.",
             category: "restaurantes",
             icon: "???",
-            tags: ["Amaz�nico", "Familiar", "T�pico"],
+            tags: ["Amazónico", "Familiar", "Típico"],
             color: "#ff9800"
         },
         {
             id: 3,
             name: "Farmacia Santa Marianita",
-            description: "Atenci�n 24/7. Entrega a domicilio gratuita en el centro.",
+            description: "Atención 24/7. Entrega a domicilio gratuita en el centro.",
             category: "farmacias",
             icon: "??",
             tags: ["24/7", "Delivery", "Amplio stock"],
@@ -301,11 +301,11 @@ function loadFeaturedBusinesses() {
         },
         {
             id: 4,
-            name: "Taller Mec�nico R�pido",
-            description: "Mec�nica general, cambio de aceite. Garant�a en trabajos.",
+            name: "Taller Mecánico Rápido",
+            description: "Mecánica general, cambio de aceite. Garantía en trabajos.",
             category: "talleres",
             icon: "??",
-            tags: ["Garant�a", "R�pido", "Profesional"],
+            tags: ["Garantía", "Rápido", "Profesional"],
             color: "#34495e"
         }
     ];
@@ -325,7 +325,7 @@ function loadFeaturedBusinesses() {
         </div>
     `).join('');
     
-    // Agregar event listeners a las categor�as
+    // Agregar event listeners a las categorías
     document.querySelectorAll('.category-card').forEach(card => {
         card.addEventListener('click', function() {
             const category = this.dataset.category;
@@ -334,7 +334,7 @@ function loadFeaturedBusinesses() {
     });
 }
 
-// Funci�n auxiliar para oscurecer colores
+// Función auxiliar para oscurecer colores
 function darkenColor(color, percent) {
     let num = parseInt(color.replace("#", ""), 16);
     let amt = Math.round(2.55 * percent);
@@ -349,10 +349,11 @@ function darkenColor(color, percent) {
     return "#" + (0x1000000 + (R << 16) + (G << 8) + B).toString(16).slice(1);
 }
 
-// Cargar cuando el DOM est� listo
+// Cargar cuando el DOM esté listo
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', loadFeaturedBusinesses);
 } else {
     loadFeaturedBusinesses();
 }
+
 

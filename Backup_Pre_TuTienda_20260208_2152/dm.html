@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -23,7 +23,7 @@
             </a>
             <div class="header-text" style="text-align: left;">
                 <h1 class="app-title">Mensajes Directos</h1>
-                <p class="app-subtitle">Conéctate con negocios de Macas</p>
+                <p class="app-subtitle">ConÃ©ctate con negocios de Macas</p>
             </div>
         </div>
     </header>
@@ -35,8 +35,8 @@
         <section class="hero-dm">
             <div class="hero-content">
                 <i class="fas fa-comments hero-icon"></i>
-                <h1 class="hero-title">💬 Chatea Directo</h1>
-                <p class="hero-subtitle">Envía mensajes a negocios de Macas al instante</p>
+                <h1 class="hero-title">ðŸ’¬ Chatea Directo</h1>
+                <p class="hero-subtitle">EnvÃ­a mensajes a negocios de Macas al instante</p>
                 
                 <button onclick="chatearConTodos()" class="btn-hero">
                     <i class="fas fa-comments"></i>
@@ -50,7 +50,7 @@
             </div>
         </section>
 
-        <!-- SECCIÓN DE NEGOCIOS -->
+        <!-- SECCIÃ“N DE NEGOCIOS -->
         <section class="seccion-negocios-dm">
             <div class="seccion-header">
                 <h2 class="seccion-titulo">
@@ -66,11 +66,11 @@
             
             <!-- LISTA DE NEGOCIOS -->
             <div id="lista-negocios-dm" class="lista-negocios-dm">
-                <!-- Los negocios se cargan dinámicamente aquí -->
+                <!-- Los negocios se cargan dinÃ¡micamente aquÃ­ -->
             </div>
         </section>
 
-        <!-- BOTÓN CHATEAR FIJO -->
+        <!-- BOTÃ“N CHATEAR FIJO -->
         <div class="boton-chatear-fijo">
             <button onclick="chatearConTodos()" class="btn-chatear-grande">
                 <i class="fas fa-comments"></i>
@@ -80,44 +80,44 @@
             </button>
         </div>
 
-        <!-- MENSAJES RÁPIDOS -->
+        <!-- MENSAJES RÃPIDOS -->
         <section class="seccion-rapida">
             <h3 class="titulo-rapido">
-                <i class="fas fa-bolt"></i> Mensajes Rápidos
+                <i class="fas fa-bolt"></i> Mensajes RÃ¡pidos
             </h3>
             
             <button onclick="enviarMensajePredeterminado('disponibilidad')" class="btn-rapido btn-rapido-verde">
                 <i class="fas fa-question-circle"></i>
-                "¿Tienen disponibilidad ahora?"
+                "Â¿Tienen disponibilidad ahora?"
             </button>
             
             <button onclick="enviarMensajePredeterminado('precio')" class="btn-rapido btn-rapido-naranja">
                 <i class="fas fa-tag"></i>
-                "¿Cuál es su precio?"
+                "Â¿CuÃ¡l es su precio?"
             </button>
             
             <button onclick="enviarMensajePredeterminado('info')" class="btn-rapido btn-rapido-morado">
                 <i class="fas fa-info-circle"></i>
-                "Me gustaría más información"
+                "Me gustarÃ­a mÃ¡s informaciÃ³n"
             </button>
         </section>
         
         <!-- INSTRUCCIONES -->
         <section class="instrucciones-dm">
             <h4 class="titulo-instrucciones">
-                <i class="fas fa-lightbulb"></i> ¿Cómo funciona?
+                <i class="fas fa-lightbulb"></i> Â¿CÃ³mo funciona?
             </h4>
             <ol class="lista-instrucciones">
                 <li>Selecciona los negocios con los que quieres contactar</li>
-                <li>Escribe tu mensaje o usa uno de los mensajes rápidos</li>
-                <li>Los negocios recibirán tu mensaje por WhatsApp</li>
-                <li>Ellos te contactarán directamente</li>
+                <li>Escribe tu mensaje o usa uno de los mensajes rÃ¡pidos</li>
+                <li>Los negocios recibirÃ¡n tu mensaje por WhatsApp</li>
+                <li>Ellos te contactarÃ¡n directamente</li>
             </ol>
         </section>
         
     </main>
 
-    <!-- MENÚ INFERIOR -->
+    <!-- MENÃš INFERIOR -->
     <nav class="menu-inferior">
         <a href="index.html" class="menu-item">
             <i class="fas fa-home"></i>
@@ -132,7 +132,7 @@
         <a href="dm.html" class="menu-item menu-activo">
             <i class="fas fa-comment-dots"></i>
             <span>DM</span>
-            <span id="dm-icono" class="dm-notificacion">💬</span>
+            <span id="dm-icono" class="dm-notificacion">ðŸ’¬</span>
         </a>
         
         <a href="alertas.html" class="menu-item">
@@ -174,8 +174,8 @@
             negociosDM = [
                 {
                     id: 1,
-                    nombre: "Zapatería Colombiano",
-                    categoria: "Reparación de Calzado",
+                    nombre: "ZapaterÃ­a Colombiano",
+                    categoria: "ReparaciÃ³n de Calzado",
                     telefono: "0981342236",
                     icono: "fas fa-shoe-prints",
                     color: "#28a745",
@@ -240,13 +240,13 @@
                         <div class="dm-info">
                             <h3 class="dm-nombre">
                                 ${negocio.nombre}
-                                ${negocio.featured ? '<span class="dm-badge">⭐</span>' : ''}
+                                ${negocio.featured ? '<span class="dm-badge">â­</span>' : ''}
                             </h3>
                             <p class="dm-categoria">
                                 <i class="fas fa-tag"></i> ${negocio.categoria}
                             </p>
                             <p class="dm-telefono">
-                                <i class="fas fa-phone"></i> ${negocio.telefono || 'Sin teléfono'}
+                                <i class="fas fa-phone"></i> ${negocio.telefono || 'Sin telÃ©fono'}
                             </p>
                         </div>
                     </div>
@@ -276,7 +276,7 @@
         }
     }
 
-    // FUNCIONES BÁSICAS
+    // FUNCIONES BÃSICAS
     function toggleNegocio(id) {
         const negocio = negociosDM.find(n => n.id === id);
         if (negocio) {
@@ -289,15 +289,15 @@
         const negociosSeleccionados = negociosDM.filter(n => n.seleccionado);
         
         if (negociosSeleccionados.length === 0) {
-            alert("⚠️ Por favor, selecciona al menos un negocio para enviar mensaje.");
+            alert("âš ï¸ Por favor, selecciona al menos un negocio para enviar mensaje.");
             return;
         }
         
-        const mensaje = prompt(`📤 Escribe tu mensaje para ${negociosSeleccionados.length} negocio(s):`, 
-                              "Hola, estoy interesado en sus servicios. ¿Podrían contactarme?");
+        const mensaje = prompt(`ðŸ“¤ Escribe tu mensaje para ${negociosSeleccionados.length} negocio(s):`, 
+                              "Hola, estoy interesado en sus servicios. Â¿PodrÃ­an contactarme?");
         
         if (mensaje) {
-            // Simular envío a WhatsApp
+            // Simular envÃ­o a WhatsApp
             negociosSeleccionados.forEach(negocio => {
                 console.log(`Enviando a ${negocio.nombre} (${negocio.telefono}): ${mensaje}`);
             });
@@ -309,19 +309,19 @@
                 window.open(whatsappLink, '_blank');
             }
             
-            alert(`✅ MENSAJES ENVIADOS\n\n• A ${negociosSeleccionados.length} negocio(s)\n• Ellos te contactarán pronto por WhatsApp`);
+            alert(`âœ… MENSAJES ENVIADOS\n\nâ€¢ A ${negociosSeleccionados.length} negocio(s)\nâ€¢ Ellos te contactarÃ¡n pronto por WhatsApp`);
         }
     }
 
     function abrirChatIndividual(idNegocio) {
         const negocio = negociosDM.find(n => n.id === idNegocio);
         if (negocio) {
-            const mensaje = prompt(`💬 Escribe tu mensaje para ${negocio.nombre}:`, 
-                                  `Hola ${negocio.nombre}, me gustaría saber más sobre ${negocio.categoria.toLowerCase()}.`);
+            const mensaje = prompt(`ðŸ’¬ Escribe tu mensaje para ${negocio.nombre}:`, 
+                                  `Hola ${negocio.nombre}, me gustarÃ­a saber mÃ¡s sobre ${negocio.categoria.toLowerCase()}.`);
             if (mensaje && negocio.telefono) {
                 const whatsappLink = `https://wa.me/593${negocio.telefono.replace(/\D/g, '')}?text=${encodeURIComponent(mensaje)}`;
                 
-                if (confirm(`¿Enviar mensaje a ${negocio.nombre}?`)) {
+                if (confirm(`Â¿Enviar mensaje a ${negocio.nombre}?`)) {
                     window.open(whatsappLink, '_blank');
                 }
             }
@@ -330,16 +330,16 @@
 
     function enviarMensajePredeterminado(tipo = 'disponibilidad') {
         const mensajes = {
-            disponibilidad: "¿Tienen disponibilidad ahora?",
-            precio: "¿Cuál es su precio?",
-            info: "Me gustaría más información sobre sus servicios/productos."
+            disponibilidad: "Â¿Tienen disponibilidad ahora?",
+            precio: "Â¿CuÃ¡l es su precio?",
+            info: "Me gustarÃ­a mÃ¡s informaciÃ³n sobre sus servicios/productos."
         };
         
-        const mensaje = mensajes[tipo] || "Hola, me gustaría información.";
+        const mensaje = mensajes[tipo] || "Hola, me gustarÃ­a informaciÃ³n.";
         const negociosSeleccionados = negociosDM.filter(n => n.seleccionado);
         
         if (negociosSeleccionados.length === 0) {
-            alert("⚠️ Selecciona al menos un negocio primero.");
+            alert("âš ï¸ Selecciona al menos un negocio primero.");
             return;
         }
         
@@ -350,7 +350,7 @@
             window.open(whatsappLink, '_blank');
         }
         
-        alert(`✅ Mensaje enviado a ${negociosSeleccionados.length} negocio(s)`);
+        alert(`âœ… Mensaje enviado a ${negociosSeleccionados.length} negocio(s)`);
     }
 
     // Cargar negocios al iniciar
@@ -359,7 +359,7 @@
     });
     </script>
 
-    <!-- ESTILOS ESPECÍFICOS PARA DM -->
+    <!-- ESTILOS ESPECÃFICOS PARA DM -->
     <style>
     /* HERO SECTION */
     .hero-dm {
@@ -431,7 +431,7 @@
         margin-top: 15px;
     }
     
-    /* SECCIÓN NEGOCIOS */
+    /* SECCIÃ“N NEGOCIOS */
     .seccion-negocios-dm {
         margin-bottom: 40px;
     }
@@ -579,7 +579,7 @@
         transform: scale(1.05);
     }
     
-    /* BOTÓN CHATEAR FIJO */
+    /* BOTÃ“N CHATEAR FIJO */
     .boton-chatear-fijo {
         margin: 30px 0;
         text-align: center;
@@ -622,7 +622,7 @@
         font-weight: bold;
     }
     
-    /* MENSAJES RÁPIDOS */
+    /* MENSAJES RÃPIDOS */
     .seccion-rapida {
         background: #f8f9ff;
         padding: 25px;
@@ -764,8 +764,9 @@
     <a href="index.html" style="background:#28a745; color:white; padding:12px 25px; text-decoration:none; border-radius:8px; font-weight:bold;">
         ? Volver al Inicio
     </a>
-    <p style="margin-top:10px; color:#666; font-size:14px;">Tu-Tienda - Tu gu�a local</p>
+    <p style="margin-top:10px; color:#666; font-size:14px;">Tu-Tienda - Tu guía local</p>
 </div>
 </body>
 </html>
+
 

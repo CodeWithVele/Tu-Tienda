@@ -1,10 +1,10 @@
-// auth.js - Sistema de autenticación independiente por sección
-console.log("🔐 Sistema de autenticación cargado");
+﻿// auth.js - Sistema de autenticaciÃ³n independiente por secciÃ³n
+console.log("ðŸ” Sistema de autenticaciÃ³n cargado");
 
-// Usar tu contraseña original
-const CONTRASEÑA_MAESTRA = "macas2024"; 
+// Usar tu contraseÃ±a original
+const CONTRASEÃ‘A_MAESTRA = "macas2024"; 
 
-// Permisos por sección
+// Permisos por secciÃ³n
 const permisosPorSeccion = {
     'dm': false,
     'alertas': false,
@@ -13,62 +13,62 @@ const permisosPorSeccion = {
     'ubicacion': false
 };
 
-// Función principal de verificación
+// FunciÃ³n principal de verificaciÃ³n
 function verificarAcceso(seccion) {
-    console.log(`🔐 Verificando acceso a: ${seccion}`);
+    console.log(`ðŸ” Verificando acceso a: ${seccion}`);
     
     // Si ya tiene permiso
     if (permisosPorSeccion[seccion] === true) {
-        console.log(`✅ Ya tiene acceso a ${seccion}`);
+        console.log(`âœ… Ya tiene acceso a ${seccion}`);
         return true;
     }
     
-    // Si está guardado en localStorage
+    // Si estÃ¡ guardado en localStorage
     if (localStorage.getItem(`permiso_${seccion}`) === 'true') {
-        console.log(`✅ Permiso encontrado en localStorage para ${seccion}`);
+        console.log(`âœ… Permiso encontrado en localStorage para ${seccion}`);
         permisosPorSeccion[seccion] = true;
         return true;
     }
     
-    // Pedir contraseña
+    // Pedir contraseÃ±a
     const password = prompt(
-        `🔒 ACCESO PRIVADO - ${seccion.toUpperCase()}\n\n` +
-        `Ingresa la contraseña para acceder a esta sección:\n` +
-        `(Contraseña: ${CONTRASEÑA_MAESTRA})`
+        `ðŸ”’ ACCESO PRIVADO - ${seccion.toUpperCase()}\n\n` +
+        `Ingresa la contraseÃ±a para acceder a esta secciÃ³n:\n` +
+        `(ContraseÃ±a: ${CONTRASEÃ‘A_MAESTRA})`
     );
     
-    if (password === CONTRASEÑA_MAESTRA) {
+    if (password === CONTRASEÃ‘A_MAESTRA) {
         // Acceso concedido
         permisosPorSeccion[seccion] = true;
         localStorage.setItem(`permiso_${seccion}`, 'true');
         
-        console.log(`✅ Acceso CONCEDIDO a ${seccion}`);
-        alert(`✅ ¡Acceso concedido! Ahora puedes usar ${seccion}.`);
+        console.log(`âœ… Acceso CONCEDIDO a ${seccion}`);
+        alert(`âœ… Â¡Acceso concedido! Ahora puedes usar ${seccion}.`);
         return true;
     } else {
         // Acceso denegado
-        console.log(`❌ Acceso DENEGADO a ${seccion}`);
-        alert('❌ Contraseña incorrecta. Acceso denegado.');
+        console.log(`âŒ Acceso DENEGADO a ${seccion}`);
+        alert('âŒ ContraseÃ±a incorrecta. Acceso denegado.');
         return false;
     }
 }
 
-// Función para dar acceso rápido desde index.html
+// FunciÃ³n para dar acceso rÃ¡pido desde index.html
 function darAccesoRapido() {
-    const confirmar = confirm("¿Quieres acceder a todas las secciones privadas?\n\nSe habilitarán DM, Alertas y Mi Cuenta.");
+    const confirmar = confirm("Â¿Quieres acceder a todas las secciones privadas?\n\nSe habilitarÃ¡n DM, Alertas y Mi Cuenta.");
     
     if (confirmar) {
-        const password = prompt("Ingresa la contraseña de Tu-Tienda:");
+        const password = prompt("Ingresa la contraseÃ±a de Tu-Tienda:");
         
-        if (password === CONTRASEÑA_MAESTRA) {
+        if (password === CONTRASEÃ‘A_MAESTRA) {
             ['dm', 'alertas', 'cuenta'].forEach(seccion => {
                 permisosPorSeccion[seccion] = true;
                 localStorage.setItem(`permiso_${seccion}`, 'true');
             });
-            alert('✅ ¡Acceso concedido a todas las secciones!');
+            alert('âœ… Â¡Acceso concedido a todas las secciones!');
             return true;
         } else {
-            alert('❌ Contraseña incorrecta');
+            alert('âŒ ContraseÃ±a incorrecta');
             return false;
         }
     }
@@ -77,26 +77,26 @@ function darAccesoRapido() {
 
 // Cargar permisos guardados al iniciar
 function cargarPermisos() {
-    console.log("📋 Cargando permisos guardados...");
+    console.log("ðŸ“‹ Cargando permisos guardados...");
     
     Object.keys(permisosPorSeccion).forEach(seccion => {
         if (localStorage.getItem(`permiso_${seccion}`) === 'true') {
             permisosPorSeccion[seccion] = true;
-            console.log(`   ✅ ${seccion}: PERMITIDO`);
+            console.log(`   âœ… ${seccion}: PERMITIDO`);
         } else {
-            console.log(`   ❌ ${seccion}: BLOQUEADO`);
+            console.log(`   âŒ ${seccion}: BLOQUEADO`);
         }
     });
 }
 
-// Cerrar sesión de una sección específica
+// Cerrar sesiÃ³n de una secciÃ³n especÃ­fica
 function cerrarSesion(seccion) {
-    if (confirm(`¿Seguro que quieres cerrar sesión de ${seccion.toUpperCase()}?`)) {
+    if (confirm(`Â¿Seguro que quieres cerrar sesiÃ³n de ${seccion.toUpperCase()}?`)) {
         permisosPorSeccion[seccion] = false;
         localStorage.removeItem(`permiso_${seccion}`);
         
-        console.log(`🔓 Sesión cerrada para ${seccion}`);
-        alert(`🔓 Sesión cerrada para ${seccion}. Necesitarás la contraseña para volver a acceder.`);
+        console.log(`ðŸ”“ SesiÃ³n cerrada para ${seccion}`);
+        alert(`ðŸ”“ SesiÃ³n cerrada para ${seccion}. NecesitarÃ¡s la contraseÃ±a para volver a acceder.`);
         
         return true;
     }
@@ -105,22 +105,22 @@ function cerrarSesion(seccion) {
 
 // Cerrar todas las sesiones
 function cerrarTodasLasSesiones() {
-    if (confirm('¿Cerrar TODAS las sesiones? Volverás a necesitar contraseñas para todo.')) {
+    if (confirm('Â¿Cerrar TODAS las sesiones? VolverÃ¡s a necesitar contraseÃ±as para todo.')) {
         Object.keys(permisosPorSeccion).forEach(seccion => {
             localStorage.removeItem(`permiso_${seccion}`);
         });
-        alert('✅ Todas las sesiones cerradas.');
+        alert('âœ… Todas las sesiones cerradas.');
         return true;
     }
     return false;
 }
 
-// Verificar si ya tiene algún acceso
+// Verificar si ya tiene algÃºn acceso
 function tieneAlgunAcceso() {
     return permisosPorSeccion.dm || permisosPorSeccion.alertas || permisosPorSeccion.cuenta;
 }
 
-// Inicializar al cargar la página
+// Inicializar al cargar la pÃ¡gina
 document.addEventListener('DOMContentLoaded', cargarPermisos);
 
 // Exportar funciones para usar en otros archivos
@@ -130,4 +130,5 @@ window.cerrarSesion = cerrarSesion;
 window.cerrarTodasLasSesiones = cerrarTodasLasSesiones;
 window.tieneAlgunAcceso = tieneAlgunAcceso;
 window.permisosPorSeccion = permisosPorSeccion;
-window.CONTRASEÑA_MAESTRA = CONTRASEÑA_MAESTRA;
+window.CONTRASEÃ‘A_MAESTRA = CONTRASEÃ‘A_MAESTRA;
+

@@ -14,3 +14,4 @@ if (localStorage.getItem('app_version') !== APP_VERSION) {
         window.location.reload(true);
     }, 2000);
 }
+

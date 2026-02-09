@@ -1,0 +1,23 @@
+﻿🔥 INSTRUCCIONES PARA USUARIOS (COMPARTIR):
+
+¡HOLA! 👋 Nuestra app ahora se llama:
+
+    🛍️  T U - T I E N D A  🛍️
+
+Para ver los cambios en tu celular:
+
+1️⃣ CIERRA COMPLETAMENTE TU NAVEGADOR
+   (Deslizar para cerrar en multitarea)
+
+2️⃣ BORRA CACHÉ:
+   • CHROME: Menú → Configuración → Privacidad → "Borrar datos de navegación" → Marca "Caché" → BORRAR
+   • SAFARI: Ajustes → Safari → "Borrar historial y datos"
+
+3️⃣ VISITA NUEVAMENTE:
+   https://codewithvele.github.io/Tu-Tienda/
+
+4️⃣ SI USAS PWA:
+   • Desinstala "MacasConecta"
+   • Agrega "Tu-Tienda" a la pantalla de inicio
+
+¡Gracias por la actualización! 🎉

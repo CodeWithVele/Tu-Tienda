@@ -1,4 +1,4 @@
-// Service Worker para Tu-Tienda
+﻿// Service Worker para Tu-Tienda
 const CACHE_NAME = "Tu-Tienda-v1";
 
 self.addEventListener("install", event => {
@@ -8,4 +8,5 @@ self.addEventListener("install", event => {
 self.addEventListener("fetch", event => {
   event.respondWith(fetch(event.request));
 });
+
 
