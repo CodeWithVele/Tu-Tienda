@@ -48,7 +48,18 @@ root {
     --texto-oscuro: #2d3436;
     --texto-claro: #636e72;
     --blanco: #ffffff;
+      /* VARIABLES QUE FALTABAN */
+    --verde-macas: #2ecc71;
+    --verde-claro: #a8e6cf;
+    --verde-oscuro: #27ae60;
+    --azul: #3498db;
+    --azul-claro: #cce5ff;
+    --rojo: #dc3545;
+    --amarillo: #ffc107;
+    --amarillo-claro: #fff3cd;
 }
+
+  
 
     /* SOMBRAS */
     --sombra-suave: 0 2px 10px rgba(0, 0, 0, 0.1);
