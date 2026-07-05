@@ -25,7 +25,7 @@
         .container {
             max-width: 800px;
             margin: 0 auto;
-            background: white;
+            background: #d6f4db;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -90,23 +90,20 @@
     </div>
     
     <script>
-        // ====== PWA FUNCTIONALITY ======
-        console.log('?? TuTienda iniciando...');
+        console.log('TuTienda iniciando...');
         
-        // 1. Registrar Service Worker
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js')
                 .then(registration => {
-                    console.log('? Service Worker registrado:', registration.scope);
+                    console.log('Service Worker registrado:', registration.scope);
                     document.getElementById('pwaStatus').textContent = '📲 App lista para instalar';
                 })
                 .catch(error => {
-                    console.log('? Error SW:', error);
-                    document.getElementById('pwaStatus').textContent = '?? Funciona como web normal';
+                    console.log('Error SW:', error);
+                    document.getElementById('pwaStatus').textContent = '📱 Funciona como web normal';
                 });
         }
         
-        // 2. Instalación como App
         let deferredPrompt;
         const installBtn = document.getElementById('installBtn');
         
@@ -120,28 +117,14 @@
                 deferredPrompt.prompt();
                 deferredPrompt.userChoice.then(choice => {
                     if (choice.outcome === 'accepted') {
-                        console.log('?? Usuario instaló la app');
-                        document.getElementById('pwaStatus').textContent = '?? ¡App instalada!';
+                        console.log('Usuario instaló la app');
+                        document.getElementById('pwaStatus').textContent = '✅ ¡App instalada!';
                     }
                     deferredPrompt = null;
                 });
             });
         });
-        
-        // 3. Mensaje final
-        console.log('? TuTienda completamente cargada');
     </script>
-    <script src="js/version.js"></script></body>
+    <script src="js/version.js"></script>
+</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
