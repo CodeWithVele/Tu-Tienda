@@ -1,15 +1,15 @@
 /* ============================================
    RESET Y CONFIGURACI√ìN B√ÅSICA
-   ============================================ */
-* {
+   /* ============================================ */
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-:root {
-    /* COLORES PRINCIPALES */
-    --verde-macas: #28a745;
+ *//*:root { */
+    COLORES PRINCIPALES 
+    /* --verde-macas: #28a745;
     --verde-claro: #d4edda;
     --verde-oscuro: #218838;
     --azul: #007bff;
@@ -23,7 +23,33 @@
     --texto-oscuro: #212529;
     --texto-claro: #6c757d;
     --blanco: #ffffff;
-    
+
+                /* Remplazo */ /* Remplazo */
+   
+    :root {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+root {
+    /* COLORES PRINCIPALES */
+    --verde-macas: #2ecc71;
+    --verde-claro: #a8e6cf;
+    --verde-oscuro: #27ae60;
+    --azul: #3498db;
+    --azul-claro: #cce5ff;
+    --rojo: #dc3545;
+    --amarillo: #ffc107;
+    --amarillo-claro: #fff3cd;
+    --gris-claro: #f8f9fa;
+    --gris-medio: #e9ecef;
+    --gris-oscuro: #343a40;
+    --texto-oscuro: #2d3436;
+    --texto-claro: #636e72;
+    --blanco: #ffffff;
+}
+
     /* SOMBRAS */
     --sombra-suave: 0 2px 10px rgba(0, 0, 0, 0.1);
     --sombra-media: 0 4px 15px rgba(0, 0, 0, 0.15);
@@ -754,7 +780,7 @@ body {
 /* ESTILOS MEJORADOS PARA Tu-Tienda v2.0   */
 /* =========================================== */
 
-/* SELECTOR DE UBICACI”N */
+/* SELECTOR DE UBICACIÔøΩN */
 .location-selector {
     position: relative;
     background: white;
@@ -1004,7 +1030,7 @@ body {
     color: #2575fc;
 }
 
-/* CATEGORÕAS */
+/* CATEGORÔøΩAS */
 .categories-section, .featured-section, .support-section {
     padding: 0 20px;
     margin-bottom: 30px;
@@ -1071,7 +1097,7 @@ body {
     font-weight: 600;
 }
 
-/* Colores para categorÌas */
+/* Colores para categorÔøΩas */
 .restaurant { background: linear-gradient(135deg, #ff9800, #f57c00); }
 .shoes { background: linear-gradient(135deg, #8e44ad, #9b59b6); }
 .pharmacy { background: linear-gradient(135deg, #4CAF50, #2E7D32); }
@@ -1217,7 +1243,7 @@ body {
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* SOPORTE R¡PIDO */
+/* SOPORTE RÔøΩPIDO */
 .support-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
@@ -1262,7 +1288,7 @@ body {
 .email { border-color: #ff9800; color: #ff9800; }
 .chat { border-color: #9c27b0; color: #9c27b0; }
 
-/* BARRA DE NAVEGACI”N MEJORADA */
+/* BARRA DE NAVEGACIÔøΩN MEJORADA */
 .bottom-nav {
     position: fixed;
     bottom: 0;
