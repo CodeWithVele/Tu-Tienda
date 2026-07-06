@@ -16,18 +16,21 @@
         .btn-volver:hover { background: rgba(255,255,255,0.3); transform: scale(1.1); }
         .app-title { color: white; font-size: 22px; font-weight: 700; margin: 0; }
         .app-subtitle { color: rgba(255,255,255,0.9); font-size: 14px; margin: 0; }
+
         .dm-contenedor { max-width: 820px; margin: 20px auto; padding: 0 20px; }
         .chat-list { background: white; border-radius: 24px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
-        .chat-item { display: flex; align-items: center; gap: 16px; padding: 16px 20px; border-bottom: 1px solid #f1f5f9; text-decoration: none; transition: 0.3s; }
+        .chat-item { display: flex; align-items: center; gap: 16px; padding: 16px 20px; border-bottom: 1px solid #f1f5f9; text-decoration: none; transition: 0.3s; cursor: pointer; }
         .chat-item:hover { background: #f8fafc; }
-        .chat-item .avatar { width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #2ecc71, #27ae60); display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; flex-shrink: 0; }
+        .chat-item:last-child { border-bottom: none; }
+        .chat-item .avatar { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; flex-shrink: 0; }
         .chat-item .info { flex: 1; }
         .chat-item .info h4 { color: #0f172a; font-size: 16px; margin: 0; }
-        .chat-item .info p { color: #94a3b8; font-size: 14px; margin: 2px 0 0; }
+        .chat-item .info p { color: #94a3b8; font-size: 14px; margin: 2px 0 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px; }
         .chat-item .tiempo { color: #94a3b8; font-size: 12px; }
         .chat-item .badge { background: #2ecc71; color: white; border-radius: 50%; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
         .chat-empty { text-align: center; padding: 40px; color: #94a3b8; }
         .chat-empty i { font-size: 48px; margin-bottom: 16px; color: #e2e8f0; }
+
         .menu-inferior { position: fixed; bottom: 0; left: 0; right: 0; background: white; display: flex; justify-content: space-around; padding: 12px 0 14px; box-shadow: 0 -4px 20px rgba(0,0,0,0.06); border-top: 1px solid #f1f5f9; max-width: 820px; margin: 0 auto; z-index: 100; }
         .menu-item { display: flex; flex-direction: column; align-items: center; color: #94a3b8; text-decoration: none; font-size: 12px; font-weight: 500; gap: 2px; transition: 0.2s; }
         .menu-item i { font-size: 22px; }
@@ -44,45 +47,60 @@
     </header>
     <main class="dm-contenedor">
         <div class="chat-list">
-            <a href="#" class="chat-item">
-                <div class="avatar"><i class="fas fa-store"></i></div>
+            <!-- Chat 1 - Zapatería Colombiano -->
+            <div class="chat-item" onclick="alert('📱 Abriendo conversación con Zapatería Colombiano...')">
+                <div class="avatar" style="background: linear-gradient(135deg, #f59e0b, #d97706);"><i class="fas fa-store"></i></div>
                 <div class="info">
                     <h4>Zapatería Colombiano</h4>
                     <p>Gracias por tu mensaje, te esperamos.</p>
                 </div>
                 <span class="tiempo">12:30</span>
                 <span class="badge">3</span>
-            </a>
-            <a href="#" class="chat-item">
-                <div class="avatar" style="background: linear-gradient(135deg, #f59e0b, #d97706);"><i class="fas fa-utensils"></i></div>
+            </div>
+
+            <!-- Chat 2 - Restaurante El Sabor -->
+            <div class="chat-item" onclick="alert('🍽️ Abriendo conversación con Restaurante El Sabor...')">
+                <div class="avatar" style="background: linear-gradient(135deg, #ef4444, #dc2626);"><i class="fas fa-utensils"></i></div>
                 <div class="info">
                     <h4>Restaurante El Sabor</h4>
                     <p>Confirmamos tu reserva para hoy.</p>
                 </div>
                 <span class="tiempo">Ayer</span>
-            </a>
-            <a href="#" class="chat-item">
+            </div>
+
+            <!-- Chat 3 - Farmacia Macas -->
+            <div class="chat-item" onclick="alert('💊 Abriendo conversación con Farmacia Macas...')">
                 <div class="avatar" style="background: linear-gradient(135deg, #3b82f6, #2563eb);"><i class="fas fa-hospital"></i></div>
                 <div class="info">
                     <h4>Farmacia Macas</h4>
                     <p>Tu pedido está listo para retirar.</p>
                 </div>
                 <span class="tiempo">Ayer</span>
-            </a>
-            <a href="#" class="chat-item">
-                <div class="avatar" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);"><i class="fas fa-user"></i></div>
+                <span class="badge">1</span>
+            </div>
+
+            <!-- Chat 4 - Soporte Tu-Tienda -->
+            <div class="chat-item" onclick="alert('🛠️ Abriendo conversación con Soporte Tu-Tienda...')">
+                <div class="avatar" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);"><i class="fas fa-user-circle"></i></div>
                 <div class="info">
                     <h4>Soporte Tu-Tienda</h4>
                     <p>¿En qué podemos ayudarte?</p>
                 </div>
                 <span class="tiempo">2 días</span>
-            </a>
-            <div class="chat-empty">
-                <i class="fas fa-comment-dots"></i>
-                <p>No tienes conversaciones activas</p>
+            </div>
+
+            <!-- Chat 5 - Supermercado Central -->
+            <div class="chat-item" onclick="alert('🛒 Abriendo conversación con Supermercado Central...')">
+                <div class="avatar" style="background: linear-gradient(135deg, #10b981, #059669);"><i class="fas fa-shopping-cart"></i></div>
+                <div class="info">
+                    <h4>Supermercado Central</h4>
+                    <p>Ofertas especiales esta semana.</p>
+                </div>
+                <span class="tiempo">3 días</span>
             </div>
         </div>
     </main>
+
     <nav class="menu-inferior">
         <a href="index.html" class="menu-item"><i class="fas fa-home"></i><span>Inicio</span></a>
         <a href="mapa.html" class="menu-item"><i class="fas fa-map"></i><span>Mapa</span></a>
@@ -90,5 +108,31 @@
         <a href="alerta.html" class="menu-item"><i class="fas fa-bell"></i><span>Alertas</span></a>
         <a href="cuenta.html" class="menu-item"><i class="fas fa-user"></i><span>Cuenta</span></a>
     </nav>
+
+    <script>
+        // ============================================
+        // MOSTRAR MENSAJE SI NO HAY CHATS (opcional)
+        // ============================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const chats = document.querySelectorAll('.chat-item');
+            if (chats.length === 0) {
+                const container = document.querySelector('.chat-list');
+                container.innerHTML = `
+                    <div class="chat-empty">
+                        <i class="fas fa-comment-dots"></i>
+                        <p>No tienes conversaciones activas</p>
+                        <p style="font-size:13px; color:#cbd5e1;">Cuando contactes a un negocio, aparecerá aquí.</p>
+                    </div>
+                `;
+            }
+        });
+
+        // ============================================
+        // FUNCIÓN PARA ABRIR CHAT (SIMULACIÓN)
+        // ============================================
+        function abrirChat(nombre) {
+            alert('💬 Abriendo conversación con ' + nombre + '...\n\n(En una versión futura, aquí se mostrarían los mensajes reales)');
+        }
+    </script>
 </body>
 </html>

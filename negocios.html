@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -18,9 +19,9 @@
         .app-subtitle { color: rgba(255,255,255,0.9); font-size: 14px; margin: 0; }
         .negocios-contenedor { max-width: 820px; margin: 20px auto; padding: 0 20px; }
         .negocio-card { background: white; border-radius: 24px; padding: 28px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); border: 1px solid #f1f5f9; }
+        .negocio-card .categoria { color: #2ecc71; font-weight: 600; font-size: 14px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
         .negocio-card h2 { color: #0f172a; font-size: 24px; display: flex; align-items: center; gap: 10px; }
         .negocio-card h2 i { color: #f59e0b; }
-        .negocio-card .categoria { color: #2ecc71; font-weight: 600; font-size: 14px; margin-bottom: 8px; }
         .negocio-card .descripcion { color: #475569; margin: 12px 0; line-height: 1.6; }
         .negocio-card .detalle { display: flex; align-items: center; gap: 10px; color: #64748b; font-size: 14px; margin: 8px 0; }
         .negocio-card .detalle i { width: 20px; color: #2ecc71; }
@@ -32,8 +33,8 @@
         .btn-llamar:hover { background: #27ae60; transform: translateY(-2px); }
         .btn-whatsapp { background: #25D366; color: white; }
         .btn-whatsapp:hover { background: #20b85f; transform: translateY(-2px); }
-        .btn-mapa { background: #3b82f6; color: white; }
-        .btn-mapa:hover { background: #2563eb; transform: translateY(-2px); }
+        .btn-ubicacion { background: #3b82f6; color: white; }
+        .btn-ubicacion:hover { background: #2563eb; transform: translateY(-2px); }
         .btn-dm { background: linear-gradient(135deg, #6a11cb, #2575fc); color: white; }
         .btn-dm:hover { transform: translateY(-2px); }
         .menu-inferior { position: fixed; bottom: 0; left: 0; right: 0; background: white; display: flex; justify-content: space-around; padding: 12px 0 14px; box-shadow: 0 -4px 20px rgba(0,0,0,0.06); border-top: 1px solid #f1f5f9; max-width: 820px; margin: 0 auto; z-index: 100; }
@@ -53,7 +54,7 @@
     </header>
     <main class="negocios-contenedor">
         <div class="negocio-card">
-            <span class="categoria"><i class="fas fa-tag"></i> Reparación de Calzado • Fundado 1985</span>
+            <div class="categoria"><i class="fas fa-tag"></i> Reparación de Calzado • Fundado 1985</div>
             <h2><i class="fas fa-star" style="color:#f59e0b;"></i> Zapatería Colombiano</h2>
             <p class="descripcion">Gracias por Preferirnos! Más de 35 años reparando el calzado de Macas. Especialista en cuero, cambio de suelas y arreglos urgentes.</p>
             <div class="detalle"><i class="fas fa-map-marker-alt"></i> Macas Centro, a lado de la cooperativa JEP</div>
@@ -71,7 +72,7 @@
             <div class="botones-accion">
                 <a href="tel:0981342236" class="btn-accion btn-llamar"><i class="fas fa-phone"></i> LLAMAR</a>
                 <a href="https://wa.me/593981342236" target="_blank" class="btn-accion btn-whatsapp"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
-                <a href="mapa.html" class="btn-accion btn-mapa"><i class="fas fa-map"></i> MAPA</a>
+                <a href="https://maps.google.com/?q=-2.3087,-78.1117" target="_blank" class="btn-accion btn-ubicacion"><i class="fas fa-location-dot"></i> UBICACIÓN</a>
                 <a href="dm.html" class="btn-accion btn-dm"><i class="fas fa-comment"></i> DM</a>
             </div>
         </div>

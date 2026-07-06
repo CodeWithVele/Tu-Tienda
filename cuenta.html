@@ -8,53 +8,276 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; min-height: 100vh; padding-bottom: 80px; }
-        .main-header { background: linear-gradient(135deg, #2ecc71, #27ae60); padding: 16px 20px; border-radius: 0 0 24px 24px; box-shadow: 0 4px 20px rgba(46,204,113,0.3); }
-        .header-content { display: flex; align-items: center; max-width: 820px; margin: 0 auto; gap: 15px; }
-        .btn-volver { color: white; text-decoration: none; font-size: 20px; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; transition: 0.3s; }
-        .btn-volver:hover { background: rgba(255,255,255,0.3); transform: scale(1.1); }
-        .app-title { color: white; font-size: 22px; font-weight: 700; margin: 0; }
-        .app-subtitle { color: rgba(255,255,255,0.9); font-size: 14px; margin: 0; }
-        .cuenta-contenedor { max-width: 820px; margin: 20px auto; padding: 0 20px; }
-        .perfil-card { background: white; border-radius: 24px; padding: 30px; text-align: center; box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
-        .avatar { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #2ecc71, #27ae60); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 36px; color: white; }
-        .perfil-card h2 { color: #0f172a; font-size: 22px; }
-        .perfil-card p { color: #64748b; }
-        .opciones { margin-top: 24px; display: flex; flex-direction: column; gap: 12px; }
-        .opcion { display: flex; align-items: center; gap: 16px; padding: 16px 20px; background: #f8fafc; border-radius: 16px; text-decoration: none; color: #0f172a; transition: 0.3s; border: 1px solid #f1f5f9; }
-        .opcion:hover { background: #f1f5f9; transform: translateX(4px); }
-        .opcion i { width: 24px; color: #2ecc71; font-size: 18px; }
-        .opcion span { flex: 1; font-weight: 500; }
-        .opcion .flecha { color: #94a3b8; }
-        .menu-inferior { position: fixed; bottom: 0; left: 0; right: 0; background: white; display: flex; justify-content: space-around; padding: 12px 0 14px; box-shadow: 0 -4px 20px rgba(0,0,0,0.06); border-top: 1px solid #f1f5f9; max-width: 820px; margin: 0 auto; z-index: 100; }
-        .menu-item { display: flex; flex-direction: column; align-items: center; color: #94a3b8; text-decoration: none; font-size: 12px; font-weight: 500; gap: 2px; transition: 0.2s; }
-        .menu-item i { font-size: 22px; }
-        .menu-item:hover { color: #2ecc71; }
-        .menu-activo { color: #2ecc71; }
+        /* ===== RESET ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            background: #f0f2f5;
+            min-height: 100vh;
+            padding-bottom: 80px;
+            color: #1e293b;
+        }
+
+        /* ===== HEADER ===== */
+        .main-header {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            padding: 16px 20px;
+            border-radius: 0 0 24px 24px;
+            box-shadow: 0 4px 20px rgba(46, 204, 113, 0.3);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            max-width: 820px;
+            margin: 0 auto;
+            gap: 15px;
+        }
+
+        .btn-volver {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+
+        .btn-volver:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .app-title {
+            color: white;
+            font-size: 22px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .app-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* ===== CONTENEDOR ===== */
+        .cuenta-contenedor {
+            max-width: 820px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        /* ===== TARJETA DE PERFIL ===== */
+        .perfil-card {
+            background: white;
+            border-radius: 24px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 36px;
+            color: white;
+        }
+
+        .perfil-card h2 {
+            color: #0f172a;
+            font-size: 22px;
+        }
+
+        .perfil-card p {
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        /* ===== OPCIONES ===== */
+        .opciones {
+            margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .opcion {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            background: #f8fafc;
+            border-radius: 16px;
+            text-decoration: none;
+            color: #0f172a;
+            transition: 0.3s;
+            border: 1px solid #f1f5f9;
+            cursor: pointer;
+        }
+
+        .opcion:hover {
+            background: #f1f5f9;
+            transform: translateX(4px);
+        }
+
+        .opcion i {
+            width: 24px;
+            color: #2ecc71;
+            font-size: 18px;
+        }
+
+        .opcion span {
+            flex: 1;
+            font-weight: 500;
+            text-align: left;
+        }
+
+        .opcion .flecha {
+            color: #94a3b8;
+        }
+
+        .opcion.cerrar-sesion {
+            border-color: #fee2e2;
+        }
+
+        .opcion.cerrar-sesion i {
+            color: #ef4444;
+        }
+
+        .opcion.cerrar-sesion span {
+            color: #ef4444;
+        }
+
+        /* ===== MENÚ INFERIOR ===== */
+        .menu-inferior {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0 14px;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.06);
+            border-top: 1px solid #f1f5f9;
+            max-width: 820px;
+            margin: 0 auto;
+            z-index: 100;
+        }
+
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+            gap: 2px;
+            transition: 0.2s;
+        }
+
+        .menu-item i {
+            font-size: 22px;
+        }
+
+        .menu-item:hover {
+            color: #2ecc71;
+        }
+
+        .menu-activo {
+            color: #2ecc71;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 640px) {
+            .perfil-card {
+                padding: 20px;
+            }
+
+            .opcion {
+                padding: 14px 16px;
+            }
+        }
     </style>
 </head>
 <body>
+
+    <!-- HEADER -->
     <header class="main-header">
         <div class="header-content">
             <a href="index.html" class="btn-volver"><i class="fas fa-arrow-left"></i></a>
-            <div><h1 class="app-title">👤 Mi Cuenta</h1><p class="app-subtitle">Gestiona tu perfil</p></div>
+            <div>
+                <h1 class="app-title">👤 Mi Cuenta</h1>
+                <p class="app-subtitle">Gestiona tu perfil</p>
+            </div>
         </div>
     </header>
+
+    <!-- CONTENIDO -->
     <main class="cuenta-contenedor">
         <div class="perfil-card">
             <div class="avatar"><i class="fas fa-user"></i></div>
-            <h2>Usuario Macas</h2>
-            <p>📧 usuario@tutienda.com</p>
+            <h2 id="nombreUsuario">Usuario Macas</h2>
+            <p id="emailUsuario">📧 usuario@tutienda.com</p>
+
             <div class="opciones">
-                <a href="#" class="opcion"><i class="fas fa-user-edit"></i><span>Editar perfil</span><i class="fas fa-chevron-right flecha"></i></a>
-                <a href="#" class="opcion"><i class="fas fa-store"></i><span>Mis negocios</span><i class="fas fa-chevron-right flecha"></i></a>
-                <a href="#" class="opcion"><i class="fas fa-bell"></i><span>Notificaciones</span><i class="fas fa-chevron-right flecha"></i></a>
-                <a href="#" class="opcion"><i class="fas fa-cog"></i><span>Configuración</span><i class="fas fa-chevron-right flecha"></i></a>
-                <a href="index.html" class="opcion" style="border-color: #fee2e2;"><i class="fas fa-sign-out-alt" style="color:#ef4444;"></i><span style="color:#ef4444;">Cerrar sesión</span><i class="fas fa-chevron-right flecha"></i></a>
+                <!-- Editar perfil -->
+                <a href="#" class="opcion" onclick="editarPerfil()">
+                    <i class="fas fa-user-edit"></i>
+                    <span>Editar perfil</span>
+                    <i class="fas fa-chevron-right flecha"></i>
+                </a>
+
+                <!-- Mis negocios -->
+                <a href="#" class="opcion" onclick="misNegocios()">
+                    <i class="fas fa-store"></i>
+                    <span>Mis negocios</span>
+                    <i class="fas fa-chevron-right flecha"></i>
+                </a>
+
+                <!-- Notificaciones -->
+                <a href="#" class="opcion" onclick="notificaciones()">
+                    <i class="fas fa-bell"></i>
+                    <span>Notificaciones</span>
+                    <i class="fas fa-chevron-right flecha"></i>
+                </a>
+
+                <!-- Configuración -->
+                <a href="#" class="opcion" onclick="configuracion()">
+                    <i class="fas fa-cog"></i>
+                    <span>Configuración</span>
+                    <i class="fas fa-chevron-right flecha"></i>
+                </a>
+
+                <!-- Cerrar sesión -->
+                <a href="#" class="opcion cerrar-sesion" onclick="cerrarSesion()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Cerrar sesión</span>
+                    <i class="fas fa-chevron-right flecha"></i>
+                </a>
             </div>
         </div>
     </main>
+
+    <!-- MENÚ INFERIOR -->
     <nav class="menu-inferior">
         <a href="index.html" class="menu-item"><i class="fas fa-home"></i><span>Inicio</span></a>
         <a href="mapa.html" class="menu-item"><i class="fas fa-map"></i><span>Mapa</span></a>
@@ -62,5 +285,106 @@
         <a href="alerta.html" class="menu-item"><i class="fas fa-bell"></i><span>Alertas</span></a>
         <a href="cuenta.html" class="menu-item menu-activo"><i class="fas fa-user"></i><span>Cuenta</span></a>
     </nav>
+
+    <!-- ===== SCRIPTS CON FUNCIONALIDAD ===== -->
+    <script>
+        // ============================================
+        // 1. CERRAR SESIÓN
+        // ============================================
+        function cerrarSesion() {
+            if (confirm('¿Estás seguro de que quieres cerrar sesión?')) {
+                // Limpiar datos del usuario (simulación)
+                localStorage.clear();
+                sessionStorage.clear();
+
+                // Mostrar mensaje y redirigir
+                alert('✅ Sesión cerrada correctamente. Serás redirigido al inicio.');
+                window.location.href = 'index.html';
+            }
+        }
+
+        // ============================================
+        // 2. EDITAR PERFIL
+        // ============================================
+        function editarPerfil() {
+            const nombreActual = document.getElementById('nombreUsuario').textContent;
+            const emailActual = document.getElementById('emailUsuario').textContent.replace('📧 ', '');
+
+            const nuevoNombre = prompt('✏️ Ingresa tu nuevo nombre:', nombreActual);
+            if (nuevoNombre !== null && nuevoNombre.trim() !== '') {
+                document.getElementById('nombreUsuario').textContent = nuevoNombre.trim();
+                localStorage.setItem('nombreUsuario', nuevoNombre.trim());
+            }
+
+            const nuevoEmail = prompt('✏️ Ingresa tu nuevo email:', emailActual);
+            if (nuevoEmail !== null && nuevoEmail.trim() !== '') {
+                document.getElementById('emailUsuario').textContent = '📧 ' + nuevoEmail.trim();
+                localStorage.setItem('emailUsuario', nuevoEmail.trim());
+            }
+
+            alert('✅ Perfil actualizado correctamente.');
+        }
+
+        // ============================================
+        // 3. MIS NEGOCIOS
+        // ============================================
+        function misNegocios() {
+            alert('📋 Aquí aparecerán los negocios que has registrado.\n\nActualmente no tienes negocios registrados.');
+            // Redirigir a agregar negocio
+            if (confirm('¿Quieres agregar un negocio ahora?')) {
+                window.location.href = 'agregar.html';
+            }
+        }
+
+        // ============================================
+        // 4. NOTIFICACIONES
+        // ============================================
+        function notificaciones() {
+            alert('🔔 No tienes notificaciones nuevas.\n\nLas notificaciones aparecerán aquí cuando recibas mensajes o alertas.');
+        }
+
+        // ============================================
+        // 5. CONFIGURACIÓN
+        // ============================================
+        function configuracion() {
+            const temaActual = localStorage.getItem('tema') || 'claro';
+            const nuevoTema = confirm('🌙 ¿Quieres cambiar al modo oscuro?\n\n(Actualmente estás en modo ' + temaActual + ')');
+
+            if (nuevoTema) {
+                document.body.style.background = '#0f172a';
+                document.body.style.color = '#f1f5f9';
+                localStorage.setItem('tema', 'oscuro');
+                alert('🌙 Modo oscuro activado.');
+            } else {
+                document.body.style.background = '#f0f2f5';
+                document.body.style.color = '#1e293b';
+                localStorage.setItem('tema', 'claro');
+                alert('☀️ Modo claro activado.');
+            }
+        }
+
+        // ============================================
+        // 6. CARGAR DATOS GUARDADOS (al abrir la página)
+        // ============================================
+        window.addEventListener('DOMContentLoaded', function() {
+            const nombreGuardado = localStorage.getItem('nombreUsuario');
+            const emailGuardado = localStorage.getItem('emailUsuario');
+
+            if (nombreGuardado) {
+                document.getElementById('nombreUsuario').textContent = nombreGuardado;
+            }
+
+            if (emailGuardado) {
+                document.getElementById('emailUsuario').textContent = '📧 ' + emailGuardado;
+            }
+
+            const temaGuardado = localStorage.getItem('tema');
+            if (temaGuardado === 'oscuro') {
+                document.body.style.background = '#0f172a';
+                document.body.style.color = '#f1f5f9';
+            }
+        });
+    </script>
+
 </body>
 </html>
