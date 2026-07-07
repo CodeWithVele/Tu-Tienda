@@ -170,6 +170,12 @@
             const horario = document.getElementById('horarioNegocio').value;
             const descripcion = document.getElementById('descripcionNegocio').value;
             
+            // Validar que el nombre no esté vacío
+            if (!nombre || nombre.trim() === '') {
+                alert('⚠️ Por favor, ingresa el nombre del negocio.');
+                return;
+            }
+            
             // Obtener lista de negocios existentes (o crear una nueva)
             let negocios = JSON.parse(localStorage.getItem('negocios')) || [];
             
