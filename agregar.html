@@ -157,48 +157,49 @@
         });
 
         // ============================================
-        // 3. FUNCIÓN PROFESIONAL PARA GUARDAR NEGOCIOS
-        // ============================================
-        function guardarNegocio(datos) {
-            let negocios = JSON.parse(localStorage.getItem('negocios')) || [];
-            const nuevoNegocio = {
-                id: Date.now(),
-                ...datos,
-                fechaRegistro: new Date().toISOString()
-            };
-            negocios.push(nuevoNegocio);
-            localStorage.setItem('negocios', JSON.stringify(negocios));
-            return nuevoNegocio;
-        }
-
-        // ============================================
-        // 4. FUNCIÓN PARA MOSTRAR MENSAJE DE ÉXITO
-        // ============================================
-        function mostrarExito(negocio) {
-            const total = JSON.parse(localStorage.getItem('negocios')).length;
-            const mensaje = `✅ ¡Negocio registrado exitosamente!\n\n📝 ${negocio.nombre}\n📂 ${negocio.categoria}\n📍 ${negocio.direccion}\n📞 ${negocio.telefono}\n🕐 ${negocio.horario}\n\n📊 Total: ${total} negocios`;
-            alert(mensaje);
-        }
-
-        // ============================================
-        // 5. ENVÍO DEL FORMULARIO (CON FUNCIÓN PROFESIONAL)
+        // 3. ENVÍO DEL FORMULARIO (GUARDAR NEGOCIO)
         // ============================================
         document.getElementById('formularioNegocio').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const datos = {
-                nombre: document.getElementById('nombreNegocio').value,
-                categoria: document.getElementById('categoriaNegocio').value,
-                direccion: document.getElementById('direccionNegocio').value,
-                telefono: document.getElementById('telefonoNegocio').value,
-                horario: document.getElementById('horarioNegocio').value,
-                descripcion: document.getElementById('descripcionNegocio').value
+            // 1. Obtener valores del formulario
+            const nombre = document.getElementById('nombreNegocio').value;
+            const categoria = document.getElementById('categoriaNegocio').value;
+            const direccion = document.getElementById('direccionNegocio').value;
+            const telefono = document.getElementById('telefonoNegocio').value;
+            const horario = document.getElementById('horarioNegocio').value;
+            const descripcion = document.getElementById('descripcionNegocio').value;
+            
+            // 2. Obtener lista de negocios existentes (o crear una nueva)
+            let negocios = JSON.parse(localStorage.getItem('negocios')) || [];
+            
+            // 3. Crear objeto del negocio
+            const nuevoNegocio = {
+                nombre: nombre,
+                categoria: categoria,
+                direccion: direccion,
+                telefono: telefono,
+                horario: horario,
+                descripcion: descripcion,
+                fecha: new Date().toISOString()
             };
             
-            const negocioGuardado = guardarNegocio(datos);
-            mostrarExito(negocioGuardado);
-            this.reset();
+            // 4. Agregar a la lista y guardar en localStorage
+            negocios.push(nuevoNegocio);
+            localStorage.setItem('negocios', JSON.stringify(negocios));
             
+            // 5. Mostrar mensaje de éxito
+            let mensaje = "✅ ¡Negocio registrado exitosamente!\n\n";
+            mensaje += "📝 " + nombre + "\n";
+            mensaje += "📂 " + categoria + "\n";
+            mensaje += "📍 " + direccion + "\n";
+            mensaje += "📞 " + telefono + "\n";
+            mensaje += "🕐 " + horario + "\n";
+            mensaje += "\n📊 Total de negocios registrados: " + negocios.length;
+            
+            alert(mensaje);
+            
+            // 6. Redirigir al inicio después de 3 segundos
             setTimeout(() => {
                 window.location.href = 'index.html';
             }, 3000);
