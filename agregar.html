@@ -38,15 +38,6 @@
         .btn-enviar:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(46,204,113,0.3); }
         .btn-cancelar { background: #f1f5f9; color: #1e293b; border: 2px solid #e2e8f0; padding: 16px; border-radius: 40px; font-size: 16px; font-weight: 600; text-decoration: none; text-align: center; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; }
         .btn-cancelar:hover { background: #e2e8f0; }
-        .seccion-pago { background: #f8fafc; border-radius: 16px; padding: 20px; margin-top: 20px; border: 2px dashed #2ecc71; text-align: center; }
-        .seccion-pago h3 { color: #0f172a; margin-bottom: 8px; }
-        .seccion-pago p { color: #64748b; font-size: 14px; margin-bottom: 16px; }
-        .btn-paypal { background: #0070ba; color: white; border: none; padding: 14px 28px; border-radius: 40px; font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; gap: 10px; }
-        .btn-paypal:hover { background: #005ea6; transform: scale(1.02); }
-        .btn-paypal i { font-size: 20px; }
-        .mensaje-pago { display: none; background: #d1fae5; color: #065f46; padding: 16px; border-radius: 12px; margin-top: 16px; font-weight: 600; border: 1px solid #a7f3d0; }
-        .mensaje-pago i { margin-right: 8px; }
-        .mensaje-pago.mostrar { display: block; }
         .menu-inferior { position: fixed; bottom: 0; left: 0; right: 0; background: white; display: flex; justify-content: space-around; padding: 12px 0 14px; box-shadow: 0 -4px 20px rgba(0,0,0,0.06); border-top: 1px solid #f1f5f9; max-width: 820px; margin: 0 auto; z-index: 100; }
         .menu-item { display: flex; flex-direction: column; align-items: center; color: #94a3b8; text-decoration: none; font-size: 12px; font-weight: 500; gap: 2px; transition: 0.2s; }
         .menu-item i { font-size: 22px; }
@@ -59,7 +50,7 @@
     <header class="main-header">
         <div class="header-content">
             <a href="index.html" class="btn-volver"><i class="fas fa-arrow-left"></i></a>
-            <div><h1 class="app-title">Agregar Mi Negocio</h1><p class="app-subtitle">¡Conéctate con Tu-Tienda!</p></div>
+            <div><h1 class="app-title">Agregar Mi Negocio</h1><p class="app-subtitle">¡Conéctate con Macas!</p></div>
         </div>
     </header>
 
@@ -126,19 +117,6 @@
                     <label class="form-label"><i class="fas fa-align-left"></i> Descripción (Opcional)</label>
                     <textarea id="descripcionNegocio" class="form-input form-textarea" placeholder="Describe tu negocio..."></textarea>
                 </div>
-
-                <!-- SECCIÓN DE PAGO -->
-                <div class="seccion-pago">
-                    <h3><i class="fas fa-credit-card" style="color:#2ecc71;"></i> Pago de Suscripción</h3>
-                    <p>El primer mes es <strong>GRATIS</strong>. Luego solo <strong>$2 mensuales</strong>.</p>
-                    <p style="font-size:13px; color:#94a3b8;"><i class="fas fa-lock"></i> Pago seguro con PayPal</p>
-                    <button type="button" id="btnPagar" class="btn-paypal" onclick="iniciarPago()">
-                        <i class="fab fa-paypal"></i> Pagar $2 con PayPal
-                    </button>
-                    <div id="mensajePago" class="mensaje-pago">
-                        <i class="fas fa-check-circle"></i> ¡Pago completado! Tu negocio está activo.
-                    </div>
-                </div>
                 
                 <div class="form-botones">
                     <button type="submit" class="btn-enviar"><i class="fas fa-paper-plane"></i> ENVIAR SOLICITUD</button>
@@ -157,49 +135,9 @@
     </nav>
 
     <script>
-        // ======== FUNCIÓN DE PAGO CON PAYPAL ========
-        function iniciarPago() {
-            const btn = document.getElementById('btnPagar');
-            const mensaje = document.getElementById('mensajePago');
-            
-            // Simular proceso de pago (en producción se conecta a PayPal)
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
-            btn.disabled = true;
-            
-            setTimeout(() => {
-                // Simular pago exitoso
-                btn.innerHTML = '<i class="fas fa-check"></i> ¡Pago completado!';
-                btn.style.background = '#059669';
-                mensaje.classList.add('mostrar');
-                
-                // Guardar estado de pago en localStorage
-                localStorage.setItem('pago_realizado', 'true');
-                localStorage.setItem('fecha_pago', new Date().toISOString());
-                
-                // Mostrar alerta de éxito
-                alert('✅ ¡Pago de $2 completado!\n\nTu negocio ahora tiene visibilidad completa en Tu-Tienda por 1 mes.');
-            }, 3000);
-        }
-
-        // ======== ENVÍO DEL FORMULARIO ========
-        document.getElementById('formularioNegocio').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const nombre = document.getElementById('nombreNegocio').value;
-            const categoria = document.getElementById('categoriaNegocio').value;
-            const pagoRealizado = localStorage.getItem('pago_realizado');
-            
-            if (!pagoRealizado) {
-                alert('⚠️ Debes completar el pago de $2 para activar tu negocio.\n\nEl primer mes es GRATIS, pero necesitas registrar tu método de pago.');
-                document.getElementById('btnPagar').style.animation = 'shake 0.5s';
-                return;
-            }
-            
-            alert('✅ ¡Solicitud enviada exitosamente!\n\n📝 ' + nombre + '\n📂 ' + categoria + '\n\nTu negocio está activo por 1 mes.\n¡Gracias por unirte a Tu-Tienda! 🎉');
-            setTimeout(() => { window.location.href = 'index.html'; }, 2500);
-        });
-
-        // ======== FUNCIÓN PARA MOSTRAR CATEGORÍAS ========
+        // ============================================
+        // 1. MOSTRAR CATEGORÍAS
+        // ============================================
         function mostrarTodasCategorias() {
             const select = document.getElementById('categoriaNegocio');
             let mensaje = "TODAS LAS CATEGORIAS DISPONIBLES:\n\n";
@@ -211,32 +149,60 @@
             select.focus();
         }
 
-        // ======== ANIMACIÓN DE SHAKE PARA EL BOTÓN ========
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes shake {
-                0%, 100% { transform: translateX(0); }
-                25% { transform: translateX(-10px); }
-                75% { transform: translateX(10px); }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // ======== VALIDACIÓN DE TELÉFONO ========
+        // ============================================
+        // 2. VALIDACIÓN DE TELÉFONO
+        // ============================================
         document.getElementById('telefonoNegocio').addEventListener('input', function(e) {
             this.value = this.value.replace(/\D/g, '');
         });
 
-        // ======== VERIFICAR ESTADO DE PAGO AL CARGAR ========
-        window.addEventListener('load', function() {
-            const pagoRealizado = localStorage.getItem('pago_realizado');
-            if (pagoRealizado) {
-                const mensaje = document.getElementById('mensajePago');
-                mensaje.classList.add('mostrar');
-                document.getElementById('btnPagar').innerHTML = '<i class="fas fa-check"></i> Pago vigente';
-                document.getElementById('btnPagar').style.background = '#059669';
-                document.getElementById('btnPagar').disabled = true;
-            }
+        // ============================================
+        // 3. ENVÍO DEL FORMULARIO (GUARDAR NEGOCIO)
+        // ============================================
+        document.getElementById('formularioNegocio').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Obtener valores del formulario
+            const nombre = document.getElementById('nombreNegocio').value;
+            const categoria = document.getElementById('categoriaNegocio').value;
+            const direccion = document.getElementById('direccionNegocio').value;
+            const telefono = document.getElementById('telefonoNegocio').value;
+            const horario = document.getElementById('horarioNegocio').value;
+            const descripcion = document.getElementById('descripcionNegocio').value;
+            
+            // Obtener lista de negocios existentes (o crear una nueva)
+            let negocios = JSON.parse(localStorage.getItem('negocios')) || [];
+            
+            // Crear objeto del negocio
+            const nuevoNegocio = {
+                nombre: nombre,
+                categoria: categoria,
+                direccion: direccion,
+                telefono: telefono,
+                horario: horario,
+                descripcion: descripcion,
+                fecha: new Date().toISOString()
+            };
+            
+            // Agregar a la lista y guardar en localStorage
+            negocios.push(nuevoNegocio);
+            localStorage.setItem('negocios', JSON.stringify(negocios));
+            
+            // Mostrar mensaje de éxito con los datos guardados
+            let mensaje = "✅ ¡Negocio registrado exitosamente!\n\n";
+            mensaje += "📝 " + nombre + "\n";
+            mensaje += "📂 " + categoria + "\n";
+            mensaje += "📍 " + direccion + "\n";
+            mensaje += "📞 " + telefono + "\n";
+            mensaje += "🕐 " + horario + "\n";
+            mensaje += "\n📊 Total de negocios registrados: " + negocios.length;
+            
+            alert(mensaje);
+            
+            // Redirigir al inicio después de 3 segundos
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 3000);
         });
     </script>
 </body>
