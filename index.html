@@ -1,133 +1,698 @@
 ﻿<!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tu-Tienda - Tu tienda online</title>
+    <title>Tu-Tienda</title>
     
-    <!-- PWA ESSENTIAL -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#28a745">
-    
-    <!-- Icono -->
-    <link rel="icon" href="icon-192.png">
-    
+    <!-- Estilos -->
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
-            padding: 20px;
-            background: #f5f5f5;
+            padding: 0;
+            box-sizing: border-box;
         }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #f5f0eb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #d6f4db;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            max-width: 900px;
+            width: 100%;
+            background: linear-gradient(145deg, #fff9f0, #fef7ed);
+            padding: 40px 35px;
+            border-radius: 32px;
+            box-shadow: 0 20px 60px rgba(120, 80, 50, 0.06);
+            transition: all 0.3s ease;
         }
-        h1 {
-            color: #28a745;
+
+        .header {
             text-align: center;
+            border-bottom: 2px solid #f0e8e0;
+            padding-bottom: 25px;
+            margin-bottom: 15px;
         }
-        .menu {
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 15px;
+        }
+
+        .logo-circle {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(145deg, #28a745, #1b5e20);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 30px rgba(40, 167, 69, 0.30);
+            flex-shrink: 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .logo-circle:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 40px rgba(40, 167, 69, 0.40);
+        }
+
+        .logo-letter {
+            font-size: 3.8rem;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: -3px;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin-top: -4px;
+        }
+
+        .logo-text {
+            text-align: left;
+        }
+
+        .logo-text h1 {
+            color: #1b5e20;
+            font-size: 2.6rem;
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text .subtitulo {
+            color: #388e3c;
+            font-size: 1rem;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e8f5e9;
+            padding: 8px 24px;
+            border-radius: 50px;
+            margin-top: 12px;
+            border: 1px solid #a5d6a7;
+            font-size: 0.9rem;
+            color: #1b5e20;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .badge:hover {
+            background: #c8e6c9;
+            transform: translateY(-1px);
+        }
+        .badge strong {
+            font-weight: 700;
+        }
+
+        .frase-local {
+            text-align: center;
+            padding: 26px 24px;
+            background: linear-gradient(135deg, #f8f2eb, #f5ede4);
+            border-radius: 24px;
+            margin: 30px 0 35px;
+            border-left: 6px solid #d4a574;
+            transition: box-shadow 0.3s ease;
+        }
+        .frase-local:hover {
+            box-shadow: 0 4px 20px rgba(180, 130, 80, 0.06);
+        }
+
+        .frase-local p {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4a3520;
+            margin: 0;
+        }
+
+        .frase-local small {
+            color: #7a5a3a;
+            font-size: 0.95rem;
+            display: block;
+            margin-top: 6px;
+            font-weight: 400;
+        }
+
+        .grid-actions {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 30px 0;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin: 25px 0 35px;
         }
-        .menu a {
-            background: #28a745;
-            color: white;
-            padding: 20px;
+
+        .card {
+            background: linear-gradient(145deg, #ffffff, #fefaf5);
+            border-radius: 24px;
+            padding: 34px 20px 30px;
             text-align: center;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: 0.3s;
+            box-shadow: 0 4px 20px rgba(180, 130, 80, 0.06);
+            border: 1.5px solid #f5ede4;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            overflow: hidden;
         }
-        .menu a:hover {
-            background: #218838;
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+        .card:hover::after {
+            opacity: 1;
+        }
+
+        .card:active {
+            transform: scale(0.97);
+            transition-duration: 0.08s;
+        }
+
+        .card .icon {
+            font-size: 3.8rem;
+            display: block;
+            margin-bottom: 14px;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .card:hover .icon {
+            transform: scale(1.10) rotate(-3deg);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 6px 0 8px;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .card-verde {
+            background: linear-gradient(145deg, #f1f8e9, #e8f5e9);
+            border-color: #c8e6c9;
+        }
+        .card-verde h3 { color: #2e7d32; }
+        .card-verde p { color: #4c7a4c; }
+        .card-verde:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(46, 125, 50, 0.12);
+            border-color: #4CAF50;
+            background: #f6faf2;
+        }
+
+        .card-azul {
+            background: linear-gradient(145deg, #e3f2fd, #e8f4f8);
+            border-color: #bbdefb;
+        }
+        .card-azul h3 { color: #1565c0; }
+        .card-azul p { color: #4a6a8a; }
+        .card-azul:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(21, 101, 192, 0.10);
+            border-color: #42a5f5;
+            background: #f0f8ff;
+        }
+
+        .card-marron {
+            background: linear-gradient(145deg, #f5f0eb, #f0e8e0);
+            border-color: #e0d5c8;
+        }
+        .card-marron h3 { color: #6d4c41; }
+        .card-marron p { color: #7a6a5a; }
+        .card-marron:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(109, 76, 65, 0.10);
+            border-color: #a1887f;
+            background: #fcf8f5;
+        }
+
+        .card-magenta {
+            background: linear-gradient(145deg, #fce4ec, #fce8f0);
+            border-color: #f8bbd0;
+        }
+        .card-magenta h3 { color: #ad1457; }
+        .card-magenta p { color: #7a4a5a; }
+        .card-magenta:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(173, 20, 87, 0.10);
+            border-color: #ec407a;
+            background: #fef5f8;
+        }
+
+        .menu-mas {
+            text-align: center;
+            margin: 10px 0 30px;
+        }
+
+        .menu-mas button {
+            background: #ffffff;
+            border: 2px solid #e8ddd0;
+            padding: 14px 44px;
+            border-radius: 60px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #4a3520;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .menu-mas button:hover {
+            background: #f5ede4;
+            border-color: #d4a574;
+            color: #3a2a1a;
             transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(180, 130, 80, 0.10);
         }
-        .pwa-info {
-            background: #e9f7ef;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            border-left: 4px solid #28a745;
+
+        .menu-mas button:active {
+            transform: scale(0.96);
+            transition-duration: 0.08s;
+        }
+
+        .dropdown-container {
+            display: none;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            padding: 12px;
+            margin-top: 16px;
+            border: 1px solid #f0e8e0;
+            max-width: 320px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: slideDown 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dropdown-container.show {
+            display: block;
+        }
+
+        .dropdown-container button {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            width: 100%;
+            padding: 14px 20px;
+            border: none;
+            background: none;
+            text-align: left;
+            font-size: 1rem;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            color: #4a3a2a;
+            font-weight: 500;
+        }
+
+        .dropdown-container button:hover {
+            background: #f5ede4;
+            color: #2a1a0a;
+            transform: translateX(4px);
+        }
+
+        .dropdown-container button:active {
+            transform: scale(0.98);
+            background: #e8ddd0;
+        }
+
+        .dropdown-container .close-btn {
+            justify-content: center;
+            margin-top: 6px;
+            color: #8a7a6a;
+            font-weight: 600;
+            border-top: 1px solid #f0e8e0;
+            border-radius: 0;
+            padding-top: 16px;
+        }
+        .dropdown-container .close-btn:hover {
+            background: none;
+            color: #3a2a1a;
+            transform: none;
+        }
+
+        .footer {
+            text-align: center;
+            padding-top: 25px;
+            color: #8a7a6a;
+            font-size: 0.85rem;
+            font-weight: 400;
+            border-top: 1.5px solid #f0e8e0;
+            margin-top: 10px;
+            letter-spacing: 0.3px;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 24px 18px;
+                border-radius: 24px;
+                background: linear-gradient(145deg, #fffaf5, #fef8f0);
+            }
+
+            .logo-container {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+            .logo-text {
+                text-align: center;
+            }
+            .logo-text h1 {
+                font-size: 2rem;
+            }
+            .logo-circle {
+                width: 75px;
+                height: 75px;
+            }
+            .logo-letter {
+                font-size: 3rem;
+            }
+
+            .grid-actions {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+
+            .card {
+                padding: 22px 14px 20px;
+                border-radius: 20px;
+            }
+            .card .icon {
+                font-size: 2.8rem;
+            }
+            .card h3 {
+                font-size: 1.05rem;
+            }
+            .card p {
+                font-size: 0.78rem;
+            }
+
+            .frase-local p {
+                font-size: 1.2rem;
+            }
+            .frase-local small {
+                font-size: 0.8rem;
+            }
+
+            .badge {
+                font-size: 0.75rem;
+                padding: 5px 16px;
+            }
+
+            .menu-mas button {
+                padding: 12px 28px;
+                font-size: 0.95rem;
+            }
+            .dropdown-container {
+                max-width: 280px;
+            }
+            .dropdown-container button {
+                font-size: 0.9rem;
+                padding: 12px 16px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .grid-actions {
+                gap: 10px;
+            }
+            .card {
+                padding: 16px 10px 14px;
+            }
+            .card .icon {
+                font-size: 2.2rem;
+            }
+            .card h3 {
+                font-size: 0.85rem;
+            }
+            .card p {
+                font-size: 0.7rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🛍️ Tú-Tienda</h1>
-        <p style="text-align: center; color: #666;">De vecinos, para vecinos en, Ecuador & LATAM</p>
-        
-        <div class="pwa-info">
-            <strong>📱 APP INSTALABLE:</strong> Esta app se puede instalar en tu celular como una app nativa.
+        <!-- HEADER -->
+        <div class="header">
+            <div class="logo-container">
+                <div class="logo-circle">
+                    <span class="logo-letter">T</span>
+                </div>
+                <div class="logo-text">
+                    <h1>Tu-Tienda</h1>
+                    <p class="subtitulo">De vecinos, para vecinos en Ecuador & LATAM</p>
+                </div>
+            </div>
+            <div class="badge">
+                📱 <strong>App instalable</strong> - Instala en tu celular como app nativa
+            </div>
         </div>
-        
-        <div class="menu">
-            <a href="mapa.html">📍 Ver Mapa</a>
-            <a href="agregar.html">➕ Agregar Negocio</a>
-            <a href="negocios.html">🏪 Lista de Negocios</a>
-            <a href="alerta.html">⚠️ Alertas</a>
-            <a href="cuenta.html">👤 Mi Cuenta</a>
-            <a href="dm.html">💬 Mensajes</a>
-            <a href="pagos.html" class="menu-item">
-    <i class="fas fa-credit-card"></i><span>Pagos</span>
-</a>
+
+        <!-- FRASE LOCAL -->
+        <div class="frase-local">
+            <p>🌟 Apoyemos lo local</p>
+            <small>Tu compra ayuda a crecer a los negocios de tu comunidad</small>
         </div>
-        
-        <div style="text-align: center; margin-top: 30px;">
-            <button id="installBtn" style="background: #28a745; color: white; border: none; padding: 12px 25px; border-radius: 5px; font-size: 16px; cursor: pointer; display: none;">
-                🔹 Instalar App
-            </button>
-            <p id="pwaStatus" style="color: #666; font-size: 14px;"></p>
+
+        <!-- TARJETAS -->
+        <div class="grid-actions">
+            <div class="card card-verde" onclick="verNegocios()">
+                <span class="icon">🛍️</span>
+                <h3>Ver negocios</h3>
+                <p>Explora todos los negocios registrados cerca de ti</p>
+            </div>
+            <div class="card card-azul" onclick="registrarNegocio()">
+                <span class="icon">➕</span>
+                <h3>Registrar negocio</h3>
+                <p>Agrega tu negocio en pocos pasos</p>
+            </div>
+            <div class="card card-marron" onclick="buscar()">
+                <span class="icon">🔍</span>
+                <h3>Buscar</h3>
+                <p>Busca negocios por nombre, categoría o ubicación</p>
+            </div>
+            <div class="card card-magenta" onclick="ayuda()">
+                <span class="icon">📞</span>
+                <h3>Ayuda</h3>
+                <p>Obtén ayuda, preguntas frecuentes y soporte</p>
+            </div>
+        </div>
+
+        <!-- MENÚ -->
+        <div class="menu-mas">
+            <button id="btnMore">⚙️ Más opciones</button>
+            <div id="dropdownMenu" class="dropdown-container">
+                <button onclick="verMapa()">🗺️ Ver mapa</button>
+                <button onclick="verLista()">📋 Lista de negocios</button>
+                <button onclick="verAlertas()">🚨 Alertas</button>
+                <button onclick="verCuenta()">👤 Mi cuenta</button>
+                <button onclick="verMensajes()">💬 Mensajes</button>
+                <button onclick="verPagos()">💳 Pagos</button>
+                <button class="close-btn" onclick="cerrarMenu()">✕ Cerrar</button>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <p>📍 Tu-Tienda • Hecho con ❤️ para la comunidad</p>
         </div>
     </div>
+
+    <!-- ========================================== -->
+    <!-- FIREBASE - CONFIGURACIÓN                   -->
+    <!-- ========================================== -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     
     <script>
-        console.log('TuTienda iniciando...');
+        // ========================================== //
+        // CONFIGURACIÓN DE FIREBASE                  //
+        // ========================================== //
         
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js')
-                .then(registration => {
-                    console.log('Service Worker registrado:', registration.scope);
-                    document.getElementById('pwaStatus').textContent = '📲 App lista para instalar';
-                })
-                .catch(error => {
-                    console.log('Error SW:', error);
-                    document.getElementById('pwaStatus').textContent = '📱 Funciona como web normal';
+        const firebaseConfig = {
+            apiKey: "AIzaSyAKD90d5babKYV3_nZ6jU5BLrAeLK2uUyY",
+            authDomain: "tu-tienda-2025.firebaseapp.com",
+            projectId: "tu-tienda-2025",
+            storageBucket: "tu-tienda-2025.firebasestorage.app",
+            messagingSenderId: "993401776159",
+            appId: "1:993401776159:web:502ef3d151b762c8abcd2a"
+        };
+
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+        console.log("✅ Firebase inicializado correctamente");
+
+        // ========================================== //
+        // FUNCIONES DE FIRESTORE                     //
+        // ========================================== //
+
+        // Guardar negocio
+        async function guardarNegocioEnFirestore(negocio) {
+            try {
+                const db = firebase.firestore();
+                await db.collection("negocios").add({
+                    nombre: negocio.nombre,
+                    categoria: negocio.categoria,
+                    ubicacion: negocio.ubicacion,
+                    descripcion: negocio.descripcion,
+                    telefono: negocio.telefono,
+                    email: negocio.email,
+                    fecha: new Date()
                 });
+                console.log("✅ Negocio guardado en Firestore");
+                return true;
+            } catch (error) {
+                console.error("❌ Error al guardar:", error);
+                return false;
+            }
         }
-        
-        let deferredPrompt;
-        const installBtn = document.getElementById('installBtn');
-        
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            installBtn.style.display = 'block';
-            
-            installBtn.addEventListener('click', () => {
-                installBtn.style.display = 'none';
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then(choice => {
-                    if (choice.outcome === 'accepted') {
-                        console.log('Usuario instaló la app');
-                        document.getElementById('pwaStatus').textContent = '✅ ¡App instalada!';
-                    }
-                    deferredPrompt = null;
+
+        // Obtener negocios
+        async function obtenerNegociosDeFirestore() {
+            try {
+                const db = firebase.firestore();
+                const snapshot = await db.collection("negocios").get();
+                const negocios = [];
+                snapshot.forEach(doc => {
+                    negocios.push({ id: doc.id, ...doc.data() });
                 });
-            });
+                console.log("📦 Negocios obtenidos:", negocios.length);
+                return negocios;
+            } catch (error) {
+                console.error("❌ Error al obtener:", error);
+                return [];
+            }
+        }
+
+        // ========================================== //
+        // FUNCIONES DE NAVEGACIÓN                    //
+        // ========================================== //
+
+        function verNegocios() { 
+            window.location.href = 'negocios.html'; 
+        }
+        function registrarNegocio() { 
+            window.location.href = 'agregar.html'; 
+        }
+        function buscar() { 
+            alert('🔍 Buscar negocios - Próximamente'); 
+        }
+        function ayuda() { 
+            alert('📞 Centro de ayuda - Próximamente'); 
+        }
+        function verMapa() { 
+            window.location.href = 'mapa.html'; 
+        }
+        function verLista() { 
+            window.location.href = 'negocios.html'; 
+        }
+        function verAlertas() { 
+            window.location.href = 'alerta.html'; 
+        }
+        function verCuenta() { 
+            window.location.href = 'cuenta.html'; 
+        }
+        function verMensajes() { 
+            window.location.href = 'dm.html'; 
+        }
+        function verPagos() { 
+            window.location.href = 'pagos.html'; 
+        }
+
+        // ========================================== //
+        // MENÚ DESPLEGABLE                           //
+        // ========================================== //
+
+        let menuAbierto = false;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('btnMore');
+            const menu = document.getElementById('dropdownMenu');
+
+            if (btn && menu) {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    menu.classList.toggle('show');
+                    menuAbierto = menu.classList.contains('show');
+                    btn.textContent = menuAbierto ? '✕ Cerrar opciones' : '⚙️ Más opciones';
+                });
+
+                document.addEventListener('click', function(e) {
+                    if (!btn.contains(e.target) && !menu.contains(e.target)) {
+                        cerrarMenu();
+                    }
+                });
+
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') cerrarMenu();
+                });
+            }
         });
+
+        function cerrarMenu() {
+            const menu = document.getElementById('dropdownMenu');
+            const btn = document.getElementById('btnMore');
+            if (menu) menu.classList.remove('show');
+            menuAbierto = false;
+            if (btn) btn.textContent = '⚙️ Más opciones';
+        }
+
+        // Cerrar menú al hacer clic en cualquier opción
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdown = document.getElementById('dropdownMenu');
+            if (dropdown) {
+                dropdown.querySelectorAll('button:not(.close-btn)').forEach(function(btn) {
+                    btn.addEventListener('click', cerrarMenu);
+                });
+            }
+        });
+
+        // ========================================== //
+        // PRUEBA AUTOMÁTICA AL CARGAR               //
+        // ========================================== //
+
+        console.log("🚀 Tu-Tienda cargada correctamente");
+        console.log("💡 Prueba en la consola: await obtenerNegociosDeFirestore()");
+
+        // Hacer las funciones accesibles globalmente
+        window.obtenerNegociosDeFirestore = obtenerNegociosDeFirestore;
+        window.guardarNegocioEnFirestore = guardarNegocioEnFirestore;
+
     </script>
-    <script src="js/version.js"></script>
 </body>
 </html>

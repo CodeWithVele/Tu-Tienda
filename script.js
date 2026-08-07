@@ -1,311 +1,484 @@
-﻿// script.js - FUNCIONALIDADES PRINCIPALES DE Tu-Tienda
-console.log("ðŸš€ Tu-Tienda cargando...");
-
-// InicializaciÃ³n cuando el DOM estÃ© listo
-document.addEventListener('DOMContentLoaded', function() {
-    console.log("âœ… DOM cargado, iniciando Tu-Tienda...");
-    
-    // Verificar si hay negocios cargados
-    if (typeof window.negociosMacas === 'undefined') {
-        console.warn("âš ï¸ No se encontrÃ³ negocios.js, cargando datos de respaldo...");
-        cargarDatosRespaldo();
-    }
-    
-    // Inicializar contador de negocios
-    actualizarContadorNegocios();
-    
-    // Cargar negocios en la pÃ¡gina principal
-    cargarNegociosInicio();
-    
-    // Configurar sistema de compartir
-    configurarCompartir();
-    
-    // Configurar menÃº de navegaciÃ³n
-    configurarNavegacion();
-    
-    console.log("ðŸŽ‰ Tu-Tienda completamente cargado");
-});
-
-// FunciÃ³n para cargar datos de respaldo si no hay negocios.js
-function cargarDatosRespaldo() {
-    window.negociosMacas = [
-        {
-            id: 1,
-            nombre: "ZapaterÃ­a Colombiano",
-            categoria: "ReparaciÃ³n de Calzado",
-            descripcion: "Â¡Gracias por Preferirnos! ðŸŒŸ 35 aÃ±os reparando el calzado de Macas.",
-            ubicacion: "Macas Centro",
-            telefono: "0981342236",
-            fundador: true
-        }
-    ];
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-// FunciÃ³n para actualizar el contador de negocios
-function actualizarContadorNegocios() {
-    const contador = document.getElementById('contadorNumero');
-    if (contador && window.negociosMacas) {
-        contador.textContent = window.negociosMacas.length;
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: #f5f0eb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    width: 100%;
+    background: linear-gradient(145deg, #fff9f0, #fef7ed);
+    padding: 40px 35px;
+    border-radius: 32px;
+    box-shadow: 0 20px 60px rgba(120, 80, 50, 0.06);
+    transition: all 0.3s ease;
+}
+
+.header {
+    text-align: center;
+    border-bottom: 2px solid #f0e8e0;
+    padding-bottom: 25px;
+    margin-bottom: 15px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 15px;
+}
+
+.logo-circle {
+    width: 90px;
+    height: 90px;
+    background: linear-gradient(145deg, #28a745, #1b5e20);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 30px rgba(40, 167, 69, 0.30);
+    flex-shrink: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.logo-circle:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 40px rgba(40, 167, 69, 0.40);
+}
+
+.logo-letter {
+    font-size: 3.8rem;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: -3px;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin-top: -4px;
+}
+
+.logo-text {
+    text-align: left;
+}
+
+.logo-text h1 {
+    color: #1b5e20;
+    font-size: 2.6rem;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.logo-text .subtitulo {
+    color: #388e3c;
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.badge {
+    display: inline-block;
+    background: #e8f5e9;
+    padding: 8px 24px;
+    border-radius: 50px;
+    margin-top: 12px;
+    border: 1px solid #a5d6a7;
+    font-size: 0.9rem;
+    color: #1b5e20;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+.badge:hover {
+    background: #c8e6c9;
+    transform: translateY(-1px);
+}
+.badge strong {
+    font-weight: 700;
+}
+
+.frase-local {
+    text-align: center;
+    padding: 26px 24px;
+    background: linear-gradient(135deg, #f8f2eb, #f5ede4);
+    border-radius: 24px;
+    margin: 30px 0 35px;
+    border-left: 6px solid #d4a574;
+    transition: box-shadow 0.3s ease;
+}
+.frase-local:hover {
+    box-shadow: 0 4px 20px rgba(180, 130, 80, 0.06);
+}
+
+.frase-local p {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #4a3520;
+    margin: 0;
+}
+
+.frase-local small {
+    color: #7a5a3a;
+    font-size: 0.95rem;
+    display: block;
+    margin-top: 6px;
+    font-weight: 400;
+}
+
+/* ======================================== */
+/* GRID Y TARJETAS CON COLORES PERSONALIZADOS */
+/* ======================================== */
+
+.grid-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin: 25px 0 35px;
+}
+
+/* ESTILO BASE DE TODAS LAS TARJETAS */
+.card {
+    border-radius: 24px;
+    padding: 34px 20px 30px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    border: 1.5px solid transparent;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+.card:hover::after {
+    opacity: 1;
+}
+
+.card:active {
+    transform: scale(0.97);
+    transition-duration: 0.08s;
+}
+
+.card .icon {
+    font-size: 3.8rem;
+    display: block;
+    margin-bottom: 14px;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.card:hover .icon {
+    transform: scale(1.10) rotate(-3deg);
+}
+
+.card h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 6px 0 8px;
+}
+
+.card p {
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* --- 1. TARJETA "VER NEGOCIOS" (Verde como "Apoyemos lo local") --- */
+.card-verde {
+    background: linear-gradient(145deg, #f1f8e9, #e8f5e9);
+    border-color: #c8e6c9;
+}
+.card-verde h3 {
+    color: #2e7d32;
+}
+.card-verde p {
+    color: #4c7a4c;
+}
+.card-verde:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 48px rgba(46, 125, 50, 0.12);
+    border-color: #4CAF50;
+    background: #f6faf2;
+}
+
+/* --- 2. TARJETA "REGISTRAR NEGOCIO" (Azul suave) --- */
+.card-azul {
+    background: linear-gradient(145deg, #e3f2fd, #e8f4f8);
+    border-color: #bbdefb;
+}
+.card-azul h3 {
+    color: #1565c0;
+}
+.card-azul p {
+    color: #4a6a8a;
+}
+.card-azul:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 48px rgba(21, 101, 192, 0.10);
+    border-color: #42a5f5;
+    background: #f0f8ff;
+}
+
+/* --- 3. TARJETA "BUSCAR" (Marrón suave) --- */
+.card-marron {
+    background: linear-gradient(145deg, #f5f0eb, #f0e8e0);
+    border-color: #e0d5c8;
+}
+.card-marron h3 {
+    color: #6d4c41;
+}
+.card-marron p {
+    color: #7a6a5a;
+}
+.card-marron:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 48px rgba(109, 76, 65, 0.10);
+    border-color: #a1887f;
+    background: #fcf8f5;
+}
+
+/* --- 4. TARJETA "AYUDA" (Magenta suave) --- */
+.card-magenta {
+    background: linear-gradient(145deg, #fce4ec, #fce8f0);
+    border-color: #f8bbd0;
+}
+.card-magenta h3 {
+    color: #ad1457;
+}
+.card-magenta p {
+    color: #7a4a5a;
+}
+.card-magenta:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 48px rgba(173, 20, 87, 0.10);
+    border-color: #ec407a;
+    background: #fef5f8;
+}
+
+/* ======================================== */
+/* MENÚ Y FOOTER */
+/* ======================================== */
+
+.menu-mas {
+    text-align: center;
+    margin: 10px 0 30px;
+}
+
+.menu-mas button {
+    background: #ffffff;
+    border: 2px solid #e8ddd0;
+    padding: 14px 44px;
+    border-radius: 60px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #4a3520;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu-mas button:hover {
+    background: #f5ede4;
+    border-color: #d4a574;
+    color: #3a2a1a;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(180, 130, 80, 0.10);
+}
+
+.menu-mas button:active {
+    transform: scale(0.96);
+    transition-duration: 0.08s;
+}
+
+.dropdown-container {
+    display: none;
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+    padding: 12px;
+    margin-top: 16px;
+    border: 1px solid #f0e8e0;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: slideDown 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-// FunciÃ³n para cargar negocios en la pÃ¡gina principal
-function cargarNegociosInicio() {
-    const contenedor = document.getElementById('listaNegocios');
-    if (!contenedor) return;
-    
-    // Limpiar mensaje de carga
-    contenedor.innerHTML = '';
-    
-    if (!window.negociosMacas || window.negociosMacas.length === 0) {
-        contenedor.innerHTML = `
-            <div class="sin-resultados">
-                <i class="fas fa-exclamation-circle"></i>
-                <h3>No hay negocios disponibles</h3>
-                <p>Pronto agregaremos mÃ¡s negocios de Macas.</p>
-            </div>
-        `;
-        return;
-    }
-    //ðŸ˜’ðŸ˜’ðŸ˜’
-    function cargarNegociosInicio() {
-    console.log("ðŸ”„ Cargando negocios en inicio...");
-    console.log("Negocios disponibles:", window.negociosMacas);
-    
-    const contenedor = document.getElementById('listaNegocios');
-    if (!contenedor) {
-        console.error("âŒ No se encontrÃ³ #listaNegocios");
-        return;
-    }
-    
-    // ... resto del cÃ³digo ...
-}
-    //ðŸ˜’ðŸ˜’ðŸ˜’
-    // Mostrar mÃ¡ximo 4 negocios destacados en la pÃ¡gina principal
-    const negociosAMostrar = window.negociosMacas.slice(0, 4);
-    
-    negociosAMostrar.forEach(negocio => {
-        const tarjeta = crearTarjetaNegocio(negocio);
-        contenedor.appendChild(tarjeta);
-    });
-    
-    // Si hay mÃ¡s de 4 negocios, agregar botÃ³n para ver todos
-    if (window.negociosMacas.length > 4) {
-        const verTodosBtn = document.createElement('a');
-        verTodosBtn.href = 'negocios.html';
-        verTodosBtn.className = 'btn-ver-todos';
-        verTodosBtn.innerHTML = `
-            <i class="fas fa-list"></i> Ver todos los ${window.negociosMacas.length} negocios
-        `;
-        contenedor.appendChild(verTodosBtn);
-    }
+.dropdown-container.show {
+    display: block;
 }
 
-// FunciÃ³n para crear tarjeta de negocio
-// function crearTarjetaNegocio(negocio) {
-//     const tarjeta = document.createElement('div');
-//     tarjeta.className = 'tarjeta-negocio';
-    
-//     const contenidoHTML = `
-//         <div class="encabezado-tarjeta">
-//             <span class="etiqueta-categoria">
-//                 <i class="fas fa-tag"></i> ${negocio.categoria}
-//             </span>
-//             ${negocio.fundador ? '<span class="etiqueta-destacado">ðŸŒŸ FOUNDER</span>' : ''}
-//         </div>
-        
-//         <h3 class="nombre-negocio">
-//             ${negocio.nombre}
-//         </h3>
-        
-//         <p class="descripcion-negocio">
-//             ${negocio.descripcion}
-//         </p>
-        
-//         <div class="detalles-negocio">
-//             <div class="detalle-item">
-//                 <i class="fas fa-map-marker-alt"></i>
-//                 <span>${negocio.ubicacion}</span>
-//             </div>
-//             ${negocio.telefono ? `
-//             <div class="detalle-item">
-//                 <i class="fas fa-phone"></i>
-//                 <span>${negocio.telefono}</span>
-//             </div>
-//             ` : ''}
-//             ${negocio.horario ? `
-//             <div class="detalle-item">
-//                 <i class="fas fa-clock"></i>
-//                 <span>${negocio.horario}</span>
-//             </div>
-//             ` : ''}
-//         </div>
-        
-//         <div class="botones-accion">
-//             ${negocio.telefono ? `
-//             <a href="tel:${negocio.telefono}" class="btn-accion btn-llamar">
-//                 <i class="fas fa-phone"></i> LLAMAR
-//             </a>
-//             ` : ''}
-            
-//             ${negocio.whatsapp ? `
-//             <a href="https://wa.me/${negocio.whatsapp}" class="btn-accion btn-whatsapp" target="_blank">
-//                 <i class="fab fa-whatsapp"></i> WHATSAPP
-//             </a>
-//             ` : ''}
-            
-//             <a href="dm.html?negocio=${negocio.id}" class="btn-accion btn-dm">
-//                 <i class="fas fa-comment-dots"></i> DM
-//             </a>
-//         </div>
-//     `;
-    
-//     tarjeta.innerHTML = contenidoHTML;
-//     return tarjeta;
-// }
-// REEMPLAZA la funciÃ³n crearTarjetaNegocio en script.js con esta versiÃ³n:
-
-function crearTarjetaNegocio(negocio) {
-    const tarjeta = document.createElement('div');
-    tarjeta.className = 'negocio-card';
-    tarjeta.setAttribute('data-category', negocio.etiquetas ? negocio.etiquetas[0] : 'general');
-    tarjeta.setAttribute('data-keywords', negocio.etiquetas ? negocio.etiquetas.join(' ') : '');
-    
-    // Generar servicios/etiquetas
-    const serviciosHTML = negocio.servicios ? negocio.servicios.map(servicio => 
-        `<span class="etiqueta-item">${servicio}</span>`
-    ).join('') : '';
-    
-    const contenidoHTML = `
-        <div class="negocio-header">
-            <span class="etiqueta-categoria">
-                <i class="fas fa-tag"></i> ${negocio.categoria || 'Negocio'}
-            </span>
-            ${negocio.fundador ? '<span class="etiqueta-destacado">ðŸŒŸ FOUNDER</span>' : ''}
-            ${negocio.horario && negocio.horario.includes('24') ? '<span class="etiqueta-destacado" style="background: #dc3545; color: white;">ðŸš¨ 24H</span>' : ''}
-        </div>
-        
-        <h3 class="nombre-negocio">
-            ${negocio.nombre || 'Negocio sin nombre'}
-        </h3>
-        
-        <p class="descripcion-negocio">
-            ${negocio.descripcion || 'DescripciÃ³n no disponible.'}
-        </p>
-        
-        <div class="detalles-negocio">
-            <div class="detalle-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <span>${negocio.ubicacion || 'UbicaciÃ³n no disponible'}</span>
-            </div>
-            
-            ${negocio.telefono ? `
-            <div class="detalle-item">
-                <i class="fas fa-phone"></i>
-                <span>${negocio.telefono}</span>
-            </div>
-            ` : ''}
-            
-            ${negocio.whatsapp ? `
-            <div class="detalle-item">
-                <i class="fab fa-whatsapp"></i>
-                <span>${negocio.whatsapp}</span>
-            </div>
-            ` : ''}
-            
-            ${negocio.horario ? `
-            <div class="detalle-item">
-                <i class="fas fa-clock"></i>
-                <span>${negocio.horario}</span>
-            </div>
-            ` : ''}
-        </div>
-        
-        ${serviciosHTML ? `
-        <div class="etiquetas-negocio" style="margin-top: 15px;">
-            ${serviciosHTML}
-        </div>
-        ` : ''}
-        
-        <div class="botones-accion">
-            ${negocio.telefono ? `
-            <a href="tel:${negocio.telefono}" class="btn-accion btn-llamar">
-                <i class="fas fa-phone"></i> LLAMAR
-            </a>
-            ` : ''}
-            
-            ${negocio.whatsapp ? `
-            <a href="https://wa.me/${negocio.whatsapp}" class="btn-accion btn-whatsapp" target="_blank">
-                <i class="fab fa-whatsapp"></i> WHATSAPP
-            </a>
-            ` : ''}
-            
-            <a href="dm.html?negocio=${negocio.id}" class="btn-accion btn-dm">
-                <i class="fas fa-comment-dots"></i> DM
-            </a>
-            
-            ${negocio.coordenadas ? `
-            <a href="mapa.html?lat=${negocio.coordenadas.lat}&lng=${negocio.coordenadas.lng}" class="btn-accion btn-mapa">
-                <i class="fas fa-map-marker-alt"></i> MAPA
-            </a>
-            ` : ''}
-        </div>
-    `;
-    
-    tarjeta.innerHTML = contenidoHTML;
-    return tarjeta;
+.dropdown-container button {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    padding: 14px 20px;
+    border: none;
+    background: none;
+    text-align: left;
+    font-size: 1rem;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    color: #4a3a2a;
+    font-weight: 500;
 }
 
-// Configurar sistema de compartir
-function configurarCompartir() {
-    const btnCompartir = document.getElementById('btnCompartir');
-    if (btnCompartir) {
-        btnCompartir.addEventListener('click', function() {
-            const url = window.location.href;
-            const mensaje = "Â¡Mira esta app increÃ­ble para encontrar negocios en Macas! - Tu-Tienda";
-            const whatsappURL = `https://wa.me/?text=${encodeURIComponent(mensaje + " " + url)}`;
-            
-            window.open(whatsappURL, '_blank');
-        });
+.dropdown-container button:hover {
+    background: #f5ede4;
+    color: #2a1a0a;
+    transform: translateX(4px);
+}
+
+.dropdown-container button:active {
+    transform: scale(0.98);
+    background: #e8ddd0;
+}
+
+.dropdown-container .close-btn {
+    justify-content: center;
+    margin-top: 6px;
+    color: #8a7a6a;
+    font-weight: 600;
+    border-top: 1px solid #f0e8e0;
+    border-radius: 0;
+    padding-top: 16px;
+}
+.dropdown-container .close-btn:hover {
+    background: none;
+    color: #3a2a1a;
+    transform: none;
+}
+
+.footer {
+    text-align: center;
+    padding-top: 25px;
+    color: #8a7a6a;
+    font-size: 0.85rem;
+    font-weight: 400;
+    border-top: 1.5px solid #f0e8e0;
+    margin-top: 10px;
+    letter-spacing: 0.3px;
+}
+
+@media (max-width: 640px) {
+    .container {
+        padding: 24px 18px;
+        border-radius: 24px;
+        background: linear-gradient(145deg, #fffaf5, #fef8f0);
+    }
+
+    .logo-container {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+    .logo-text {
+        text-align: center;
+    }
+    .logo-text h1 {
+        font-size: 2rem;
+    }
+    .logo-circle {
+        width: 75px;
+        height: 75px;
+    }
+    .logo-letter {
+        font-size: 3rem;
+    }
+
+    .grid-actions {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    .card {
+        padding: 22px 14px 20px;
+        border-radius: 20px;
+    }
+    .card .icon {
+        font-size: 2.8rem;
+    }
+    .card h3 {
+        font-size: 1.05rem;
+    }
+    .card p {
+        font-size: 0.78rem;
+    }
+
+    .frase-local p {
+        font-size: 1.2rem;
+    }
+    .frase-local small {
+        font-size: 0.8rem;
+    }
+
+    .badge {
+        font-size: 0.75rem;
+        padding: 5px 16px;
+    }
+
+    .menu-mas button {
+        padding: 12px 28px;
+        font-size: 0.95rem;
+    }
+    .dropdown-container {
+        max-width: 280px;
+    }
+    .dropdown-container button {
+        font-size: 0.9rem;
+        padding: 12px 16px;
     }
 }
 
-// Configurar navegaciÃ³n del menÃº
-function configurarNavegacion() {
-    // Verificar si ya tiene acceso para actualizar Ã­conos
-    if (typeof window.permisosPorSeccion !== 'undefined') {
-        const dmIcon = document.querySelector('#dm-icono, .dm-notificacion');
-        const alertasIcon = document.querySelector('#alertas-icono');
-        
-        if (dmIcon && window.permisosPorSeccion.dm) {
-            dmIcon.textContent = 'ðŸ’¬';
-            dmIcon.style.background = '#6a11cb';
-        }
-        
-        if (alertasIcon && window.permisosPorSeccion.alertas) {
-            alertasIcon.textContent = 'ðŸ””';
-            alertasIcon.style.color = '#28a745';
-        }
+@media (max-width: 400px) {
+    .grid-actions {
+        gap: 10px;
+    }
+    .card {
+        padding: 16px 10px 14px;
+    }
+    .card .icon {
+        font-size: 2.2rem;
+    }
+    .card h3 {
+        font-size: 0.85rem;
+    }
+    .card p {
+        font-size: 0.7rem;
     }
 }
-
-// FunciÃ³n para contactar negocio (global)
-window.contactarNegocio = function(telefono) {
-    if (telefono && telefono.trim() !== '') {
-        const mensaje = "Hola, vi tu negocio en Tu-Tienda y me interesa...";
-        const url = `https://wa.me/593${telefono.replace(/\D/g, '')}?text=${encodeURIComponent(mensaje)}`;
-        window.open(url, '_blank');
-    } else {
-        alert('Este negocio no tiene nÃºmero de contacto registrado.');
-    }
-};
-
-// FunciÃ³n para ver en mapa (global)
-window.verEnMapa = function(ubicacion) {
-    const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ubicacion)}`;
-    window.open(url, '_blank');
-};
-
-// Exportar para debugging
-console.log("ðŸ“¦ script.js cargado exitosamente");
-
