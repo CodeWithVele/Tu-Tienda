@@ -5,7 +5,7 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAKD9Od5babKYV3_nZ6jU5BLrAeLK2uUyY",
+  apiKey: process.env.GOOGLE_API_KEY,  // ← CAMBIADO: usa variable de entorno
   authDomain: "tu-tienda-2025.firebaseapp.com",
   projectId: "tu-tienda-2025",
   storageBucket: "tu-tienda-2025.firebasestorage.app",
