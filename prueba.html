@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prueba Firebase</title>
+</head>
+<body>
+    <h1>Probando Firebase...</h1>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script>
+        console.log("Firebase cargado:", typeof firebase);
+        if (typeof firebase !== 'undefined') {
+            console.log("✅ Firebase está funcionando!");
+        } else {
+            console.log("❌ Firebase no se cargó.");
+        }
+    </script>
+</body>
+</html>

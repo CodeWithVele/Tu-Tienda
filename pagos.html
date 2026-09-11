@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu-Tienda Pagos - Hazlo fácil</title>
+    <meta name="theme-color" content="#2ecc71">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; min-height: 100vh; padding-bottom: 80px; }
+        .main-header { background: linear-gradient(135deg, #2ecc71, #27ae60); padding: 16px 20px; border-radius: 0 0 24px 24px; box-shadow: 0 4px 20px rgba(46,204,113,0.3); }
+        .header-content { display: flex; align-items: center; max-width: 820px; margin: 0 auto; gap: 15px; }
+        .btn-volver { color: white; text-decoration: none; font-size: 20px; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+        .btn-volver:hover { background: rgba(255,255,255,0.3); transform: scale(1.1); }
+        .app-title { color: white; font-size: 22px; font-weight: 700; margin: 0; }
+        .app-subtitle { color: rgba(255,255,255,0.9); font-size: 14px; margin: 0; }
+
+        .pagos-contenedor { max-width: 820px; margin: 20px auto; padding: 0 20px; }
+        .tarjeta-pago { background: white; border-radius: 24px; padding: 24px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); border: 1px solid #f1f5f9; margin-bottom: 16px; }
+        .tarjeta-pago h3 { color: #0f172a; display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+        .tarjeta-pago h3 i { color: #2ecc71; font-size: 24px; }
+        .tarjeta-pago p { color: #64748b; font-size: 14px; margin-bottom: 16px; }
+
+        .opciones-pago { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+        .btn-opcion { padding: 16px; border-radius: 16px; border: 2px solid #e2e8f0; background: white; cursor: pointer; transition: 0.3s; text-align: center; font-weight: 600; }
+        .btn-opcion:hover { border-color: #2ecc71; transform: scale(1.02); }
+        .btn-opcion i { font-size: 28px; display: block; margin-bottom: 8px; }
+        .btn-opcion .icono-transferencia { color: #3b82f6; }
+        .btn-opcion .icono-neki { color: #8b5cf6; }
+        .btn-opcion .icono-western { color: #f59e0b; }
+        .btn-opcion .icono-efectivo { color: #10b981; }
+
+        .form-pago { display: none; margin-top: 16px; padding: 16px; background: #f8fafc; border-radius: 16px; }
+        .form-pago.mostrar { display: block; }
+        .form-pago label { font-weight: 600; color: #0f172a; display: block; margin-bottom: 4px; }
+        .form-pago input, .form-pago select { width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 16px; background: white; margin-bottom: 12px; }
+        .form-pago input:focus, .form-pago select:focus { border-color: #2ecc71; outline: none; }
+        .btn-confirmar { background: #2ecc71; color: white; border: none; padding: 14px; border-radius: 40px; font-weight: 700; cursor: pointer; width: 100%; transition: 0.3s; }
+        .btn-confirmar:hover { transform: scale(1.02); }
+
+        .mensaje-exito { background: #d1fae5; color: #065f46; padding: 16px; border-radius: 12px; margin-top: 16px; font-weight: 600; border: 1px solid #a7f3d0; display: none; }
+        .mensaje-exito.mostrar { display: block; }
+
+        .menu-inferior { position: fixed; bottom: 0; left: 0; right: 0; background: white; display: flex; justify-content: space-around; padding: 12px 0 14px; box-shadow: 0 -4px 20px rgba(0,0,0,0.06); border-top: 1px solid #f1f5f9; max-width: 820px; margin: 0 auto; z-index: 100; }
+        .menu-item { display: flex; flex-direction: column; align-items: center; color: #94a3b8; text-decoration: none; font-size: 12px; font-weight: 500; gap: 2px; transition: 0.2s; }
+        .menu-item i { font-size: 22px; }
+        .menu-item:hover { color: #2ecc71; }
+        .menu-activo { color: #2ecc71; }
+        @media (max-width: 640px) { .opciones-pago { grid-template-columns: 1fr 1fr; } }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <a href="index.html" class="btn-volver"><i class="fas fa-arrow-left"></i></a>
+            <div><h1 class="app-title">💳 Tu-Tienda Pagos</h1><p class="app-subtitle">Paga, recarga y transfiere desde tu celular</p></div>
+        </div>
+    </header>
+
+    <main class="pagos-contenedor">
+        <!-- ========================================== -->
+        <!-- 1. PAGAR SUSCRIPCIÓN DEL NEGOCIO -->
+        <!-- ========================================== -->
+        <div class="tarjeta-pago">
+            <h3><i class="fas fa-store"></i> Pagar suscripción</h3>
+            <p>Activa o renueva tu negocio en Tu-Tienda por <strong>$2 mensuales</strong>.</p>
+            <div class="opciones-pago">
+                <button class="btn-opcion" onclick="mostrarFormulario('suscripcion', 'transferencia')">
+                    <i class="fas fa-university icono-transferencia"></i> Transferencia
+                </button>
+                <button class="btn-opcion" onclick="mostrarFormulario('suscripcion', 'neki')">
+                    <i class="fas fa-mobile-alt icono-neki"></i> Neki
+                </button>
+                <button class="btn-opcion" onclick="mostrarFormulario('suscripcion', 'western')">
+                    <i class="fas fa-globe-americas icono-western"></i> Western Union
+                </button>
+            </div>
+            <div id="formSuscripcion" class="form-pago">
+                <label>📌 Datos del negocio</label>
+                <input type="text" id="nombreNegocioPago" placeholder="Nombre del negocio" required>
+                <button class="btn-confirmar" onclick="confirmarPago('suscripcion', 2)">Confirmar pago $2</button>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 2. RECARGAR CELULAR -->
+        <!-- ========================================== -->
+        <div class="tarjeta-pago">
+            <h3><i class="fas fa-mobile-alt"></i> Recargar celular</h3>
+            <p>Elige tu operadora y monto. Paga con transferencia o Neki.</p>
+            <div class="opciones-pago">
+                <button class="btn-opcion" onclick="mostrarFormulario('recarga', 'transferencia')">
+                    <i class="fas fa-university icono-transferencia"></i> Transferencia
+                </button>
+                <button class="btn-opcion" onclick="mostrarFormulario('recarga', 'neki')">
+                    <i class="fas fa-mobile-alt icono-neki"></i> Neki
+                </button>
+            </div>
+            <div id="formRecarga" class="form-pago">
+                <label>📌 Datos de la recarga</label>
+                <select id="operadora">
+                    <option value="claro">Claro</option>
+                    <option value="movistar">Movistar</option>
+                    <option value="cnt">CNT</option>
+                    <option value="tuenti">Tuenti</option>
+                </select>
+                <input type="tel" id="numeroCelular" placeholder="Número de celular (10 dígitos)" required>
+                <select id="montoRecarga">
+                    <option value="1">$1</option>
+                    <option value="2">$2</option>
+                    <option value="3">$3</option>
+                    <option value="5">$5</option>
+                    <option value="10">$10</option>
+                    <option value="15">$15</option>
+                    <option value="20">$20</option>
+                </select>
+                <button class="btn-confirmar" onclick="confirmarPago('recarga', document.getElementById('montoRecarga').value)">Confirmar recarga</button>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 3. TRANSFERIR A BANCOS -->
+        <!-- ========================================== -->
+        <div class="tarjeta-pago">
+            <h3><i class="fas fa-university"></i> Transferir a bancos</h3>
+            <p>Envía dinero a cualquier banco o cooperativa de Ecuador.</p>
+            <div class="opciones-pago">
+                <button class="btn-opcion" onclick="mostrarFormulario('transferencia', 'transferencia')">
+                    <i class="fas fa-university icono-transferencia"></i> Transferencia
+                </button>
+                <button class="btn-opcion" onclick="mostrarFormulario('transferencia', 'neki')">
+                    <i class="fas fa-mobile-alt icono-neki"></i> Neki
+                </button>
+            </div>
+            <div id="formTransferencia" class="form-pago">
+                <label>📌 Datos de la transferencia</label>
+                <select id="bancoDestino">
+                    <option value="pichincha">Banco Pichincha</option>
+                    <option value="guayaquil">Banco Guayaquil</option>
+                    <option value="bolivariano">Banco Bolivariano</option>
+                    <option value="pacífico">Banco Pacífico</option>
+                    <option value="internacional">Banco Internacional</option>
+                    <option value="cooperativa">Cooperativa</option>
+                    <option value="otro">Otro</option>
+                </select>
+                <input type="text" id="numeroCuenta" placeholder="Número de cuenta" required>
+                <input type="text" id="titularCuenta" placeholder="Titular de la cuenta" required>
+                <input type="number" id="montoTransferencia" placeholder="Monto a transferir" min="1" required>
+                <button class="btn-confirmar" onclick="confirmarPago('transferencia', document.getElementById('montoTransferencia').value)">Confirmar transferencia</button>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 4. COMPRAS EN TIENDAS -->
+        <!-- ========================================== -->
+        <div class="tarjeta-pago">
+            <h3><i class="fas fa-shopping-cart"></i> Comprar en tiendas</h3>
+            <p>Elige productos y paga con transferencia o Neki.</p>
+            <div class="opciones-pago">
+                <button class="btn-opcion" onclick="mostrarFormulario('compra', 'transferencia')">
+                    <i class="fas fa-university icono-transferencia"></i> Transferencia
+                </button>
+                <button class="btn-opcion" onclick="mostrarFormulario('compra', 'neki')">
+                    <i class="fas fa-mobile-alt icono-neki"></i> Neki
+                </button>
+            </div>
+            <div id="formCompra" class="form-pago">
+                <label>📌 Datos de la compra</label>
+                <input type="text" id="nombreProducto" placeholder="Producto o servicio" required>
+                <input type="number" id="montoCompra" placeholder="Monto total" min="1" required>
+                <input type="text" id="tiendaNombre" placeholder="Nombre de la tienda" required>
+                <button class="btn-confirmar" onclick="confirmarPago('compra', document.getElementById('montoCompra').value)">Confirmar compra</button>
+            </div>
+        </div>
+
+        <!-- Mensaje de éxito global -->
+        <div id="mensajeExito" class="mensaje-exito">
+            <i class="fas fa-check-circle"></i> ¡Pago confirmado! Tu transacción ha sido procesada.
+        </div>
+    </main>
+
+    <nav class="menu-inferior">
+        <a href="index.html" class="menu-item"><i class="fas fa-home"></i><span>Inicio</span></a>
+        <a href="mapa.html" class="menu-item"><i class="fas fa-map"></i><span>Mapa</span></a>
+        <a href="dm.html" class="menu-item"><i class="fas fa-comment-dots"></i><span>DM</span></a>
+        <a href="alerta.html" class="menu-item"><i class="fas fa-bell"></i><span>Alertas</span></a>
+        <a href="cuenta.html" class="menu-item"><i class="fas fa-user"></i><span>Cuenta</span></a>
+    </nav>
+
+    <script>
+        // ============================================
+        // 1. MOSTRAR FORMULARIO DE PAGO
+        // ============================================
+        function mostrarFormulario(tipo, metodo) {
+            // Ocultar todos los formularios
+            document.querySelectorAll('.form-pago').forEach(el => el.classList.remove('mostrar'));
+            
+            // Mostrar el formulario correspondiente
+            const formMap = {
+                'suscripcion': 'formSuscripcion',
+                'recarga': 'formRecarga',
+                'transferencia': 'formTransferencia',
+                'compra': 'formCompra'
+            };
+            
+            const formElement = document.getElementById(formMap[tipo]);
+            if (formElement) {
+                formElement.classList.add('mostrar');
+            }
+            
+            // Guardar el método de pago
+            localStorage.setItem('metodoPago', metodo);
+            localStorage.setItem('tipoPago', tipo);
+        }
+
+        // ============================================
+        // 2. CONFIRMAR PAGO
+        // ============================================
+        function confirmarPago(tipo, monto) {
+            // Validar que se haya seleccionado un método de pago
+            const metodo = localStorage.getItem('metodoPago');
+            if (!metodo) {
+                alert('⚠️ Por favor, selecciona un método de pago primero.');
+                return;
+            }
+            
+            // Validar que el monto sea válido
+            if (!monto || monto <= 0) {
+                alert('⚠️ El monto debe ser mayor a $0.');
+                return;
+            }
+            
+            // Mostrar mensaje de éxito
+            const mensaje = document.getElementById('mensajeExito');
+            mensaje.classList.add('mostrar');
+            mensaje.innerHTML = `<i class="fas fa-check-circle"></i> ¡Pago confirmado! Tu transacción de $${monto} por ${tipo} ha sido procesada.`;
+            
+            // Guardar en localStorage
+            const fechaActual = new Date();
+            localStorage.setItem('ultimo_pago', JSON.stringify({
+                tipo: tipo,
+                monto: monto,
+                metodo: metodo,
+                fecha: fechaActual.toISOString()
+            }));
+            
+            // Deshabilitar botones
+            document.querySelectorAll('.btn-confirmar').forEach(btn => btn.disabled = true);
+            
+            alert(`✅ ¡Pago confirmado!\n\nTipo: ${tipo}\nMonto: $${monto}\nMétodo: ${metodo}\n\n¡Gracias por usar Tu-Tienda Pagos! 🎉`);
+            
+            // Reiniciar después de 5 segundos
+            setTimeout(() => {
+                document.querySelectorAll('.btn-confirmar').forEach(btn => btn.disabled = false);
+                document.querySelectorAll('.form-pago').forEach(el => el.classList.remove('mostrar'));
+                mensaje.classList.remove('mostrar');
+            }, 5000);
+        }
+
+        // ============================================
+        // 3. VALIDACIONES BÁSICAS
+        // ============================================
+        document.getElementById('numeroCelular')?.addEventListener('input', function(e) {
+            this.value = this.value.replace(/\D/g, '').slice(0, 10);
+        });
+
+        document.getElementById('numeroCuenta')?.addEventListener('input', function(e) {
+            this.value = this.value.replace(/\D/g, '');
+        });
+
+        // ============================================
+        // 4. CARGAR ESTADO AL INICIAR
+        // ============================================
+        window.addEventListener('load', function() {
+            const ultimoPago = localStorage.getItem('ultimo_pago');
+            if (ultimoPago) {
+                const pago = JSON.parse(ultimoPago);
+                const fecha = new Date(pago.fecha);
+                console.log(`Último pago: ${pago.tipo} - $${pago.monto} - ${fecha.toLocaleDateString()}`);
+            }
+        });
+    </script>
+</body>
+</html>

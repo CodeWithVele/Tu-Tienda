@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa - Tu-Tienda</title>
+    <meta name="theme-color" content="#2ecc71">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; min-height: 100vh; padding-bottom: 80px; }
+        .main-header { background: linear-gradient(135deg, #2ecc71, #27ae60); padding: 16px 20px; border-radius: 0 0 24px 24px; box-shadow: 0 4px 20px rgba(46,204,113,0.3); }
+        .header-content { display: flex; align-items: center; max-width: 820px; margin: 0 auto; gap: 15px; }
+        .btn-volver { color: white; text-decoration: none; font-size: 20px; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+        .btn-volver:hover { background: rgba(255,255,255,0.3); transform: scale(1.1); }
+        .app-title { color: white; font-size: 22px; font-weight: 700; margin: 0; }
+        .app-subtitle { color: rgba(255,255,255,0.9); font-size: 14px; margin: 0; }
+        .mapa-contenedor { max-width: 820px; margin: 20px auto; padding: 0 20px; }
+        #map { height: 350px; border-radius: 24px; box-shadow: 0 8px 30px rgba(0,0,0,0.12); border: 2px solid white; }
+        .info-mapa { background: white; border-radius: 20px; padding: 20px; margin-top: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.06); }
+        .info-mapa h3 { color: #0f172a; margin-bottom: 8px; font-size: 18px; }
+        .info-mapa p { color: #64748b; font-size: 14px; margin: 6px 0; }
+        .info-mapa p i { color: #2ecc71; width: 20px; }
+        .btn-ubicacion { display: inline-block; background: #3b82f6; color: white; padding: 12px 24px; border-radius: 40px; text-decoration: none; font-weight: 600; font-size: 15px; margin-top: 12px; transition: 0.3s; border: none; cursor: pointer; }
+        .btn-ubicacion:hover { background: #2563eb; transform: translateY(-2px); }
+        .btn-ubicacion i { margin-right: 8px; }
+        .menu-inferior { position: fixed; bottom: 0; left: 0; right: 0; background: white; display: flex; justify-content: space-around; padding: 12px 0 14px; box-shadow: 0 -4px 20px rgba(0,0,0,0.06); border-top: 1px solid #f1f5f9; max-width: 820px; margin: 0 auto; z-index: 100; }
+        .menu-item { display: flex; flex-direction: column; align-items: center; color: #94a3b8; text-decoration: none; font-size: 12px; font-weight: 500; gap: 2px; transition: 0.2s; }
+        .menu-item i { font-size: 22px; }
+        .menu-item:hover { color: #2ecc71; }
+        .menu-activo { color: #2ecc71; }
+        @media (max-width: 640px) { #map { height: 250px; } }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <a href="index.html" class="btn-volver"><i class="fas fa-arrow-left"></i></a>
+            <div><h1 class="app-title">📍 Mapa de Macas</h1><p class="app-subtitle">Encuentra negocios en tu ciudad</p></div>
+        </div>
+    </header>
+    <main class="mapa-contenedor">
+        <div id="map"></div>
+        <div class="info-mapa">
+            <h3><i class="fas fa-store" style="color:#2ecc71;"></i> Negocios en Macas</h3>
+            <p><i class="fas fa-map-pin"></i> <strong>Zapatería Colombiano</strong> - Amazonas y Kiruba</p>
+            <p><i class="fas fa-map-pin"></i> <strong>Restaurante El Sabor</strong> - Av. Amazonas 123</p>
+            <p><i class="fas fa-map-pin"></i> <strong>Farmacia Macas</strong> - Calle 10 de Agosto</p>
+            <p><i class="fas fa-map-pin"></i> <strong>Supermercado Central</strong> - Av. del Maestro</p>
+            <a href="https://maps.google.com/?q=-2.3087,-78.1117" target="_blank" class="btn-ubicacion">
+                <i class="fas fa-location-dot"></i> Ver todas las ubicaciones en Google Maps
+            </a>
+        </div>
+    </main>
+    <nav class="menu-inferior">
+        <a href="index.html" class="menu-item"><i class="fas fa-home"></i><span>Inicio</span></a>
+        <a href="mapa.html" class="menu-item menu-activo"><i class="fas fa-map"></i><span>Mapa</span></a>
+        <a href="dm.html" class="menu-item"><i class="fas fa-comment-dots"></i><span>DM</span></a>
+        <a href="alerta.html" class="menu-item"><i class="fas fa-bell"></i><span>Alertas</span></a>
+        <a href="cuenta.html" class="menu-item"><i class="fas fa-user"></i><span>Cuenta</span></a>
+    </nav>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        const map = L.map('map').setView([-2.3087, -78.1117], 14);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
+        L.marker([-2.3087, -78.1117]).addTo(map).bindPopup('📍 Zapatería Colombiano<br>Amazonas y Kiruba');
+        L.marker([-2.3050, -78.1080]).addTo(map).bindPopup('🍽️ Restaurante El Sabor<br>Av. Amazonas 123');
+        L.marker([-2.3100, -78.1150]).addTo(map).bindPopup('💊 Farmacia Macas<br>Calle 10 de Agosto');
+        L.marker([-2.3020, -78.1050]).addTo(map).bindPopup('🛒 Supermercado Central<br>Av. del Maestro');
+    </script>
+</body>
+</html>
