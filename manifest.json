@@ -1,12 +1,10 @@
 ﻿{
-  "background_color": "#ffffff",
-  "dir": "ltr",
-  "display": "standalone",
   "name": "Tu-TiendAki",
-  "orientation": "portrait",
-  "scope": "/",
   "short_name": "Tu-TiendAki",
-  "start_url": "/index.html",
+  "description": "De vecinos, para vecinos en Ecuador & LATAM",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
   "theme_color": "#28a745",
   "icons": [
     {
